@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="ResumenDiario" type="Poleo.Objects.ResumenDiario" />
+    <typeAlias alias="VentasResumenDia" type="Poleo.Objects.VentasFinder" />
+  </alias>
+
+  <statements>
+    <select id ="SelectVentasComidaOrdenes" parameterClass="VentasResumenDia" resultClass="ResumenDiario" >
+      SELECT
+      sum (DS.Royalty_Sales) AS Venta,
+      sum (DS.Food) AS Utilizado,
+      sum(DS.Total_Orders) AS Ordenes,
+      DS.System_Date AS Fecha
+      FROM Daily_Summary DS
+      INNER JOIN Tiendas AS T on T.Number_tienda = DS.Location_Code
+      WHERE DS.System_Date between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        DS.Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      group by System_Date
+
+
+      UNION
+      SELECT
+      SUM(Royalty_Sales) AS Venta,
+      SUM(Food) AS Utilizado,
+      SUM(Total_Orders) AS Ordenes,
+      GETDATE() AS Fecha
+      FROM Daily_Summary DS
+      INNER JOIN Tiendas AS T on T.Number_tienda = DS.Location_Code
+      WHERE DS.System_Date between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        DS.Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      order by  Fecha
+    </select>
+  </statements>
+</sqlMap>

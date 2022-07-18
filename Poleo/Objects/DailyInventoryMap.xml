@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="DailyInventoryExtracts" type="Poleo.Objects.DailyInventoryExtracts" />
+  </alias>
+  <statements>
+    <insert id="InsertDailyInventory" parameterClass="DailyInventoryExtracts">
+      INSERT INTO DailyInventoryExtracts
+      ([RecordType]
+      ,[DatabaseVersion]
+      ,[Location_Code]
+      ,[System_Date]
+      ,[Inventory_Code]
+      ,[Description]
+      ,[Inventory_Type_Code]
+      ,[Count_Unit]
+      ,[Count_Unit_Cost]
+      ,[Beginning_Qty]
+      ,[Delivered_Qty]
+      ,[Starting_Qty]
+      ,[Ending_Qty]
+      ,[Actual_Usage]
+      ,[Ideal_Usage]
+      ,[Actual_vs_Ideal_Usage]
+      ,[Cost_Actual_Used]
+      ,[Cost_Ideal_Used]
+      ,[Cost_Actual_vs_Ideal]
+      ,[Order_Unit]
+      ,[Order_Unit_Cost]
+      ,[Count_Per_Order]
+      ,[Portion_Unit]
+      ,[Portion_Per_Count]
+      ,[Vendor_Item_Code]
+      ,[Vendor_Code]
+      ,[Count_Type_Code]
+      ,[Food])
+      VALUES
+      (
+      #RecordType#
+      ,#DatabaseVersion#
+      ,#Location_Code#
+      ,#System_Date#
+      ,#Inventory_Code#
+      ,#Description#
+      ,#Inventory_Type_Code#
+      ,#Count_Unit#
+      ,#Count_Unit_Cost#
+      ,#Beginning_Qty#
+      ,#Delivered_Qty#
+      ,#Starting_Qty#
+      ,#Ending_Qty#
+      ,#Actual_Usage#
+      ,#Ideal_Usage#
+      ,#Actual_vs_Ideal_Usage#
+      ,#Cost_Actual_Used#
+      ,#Cost_Ideal_Used#
+      ,#Cost_Actual_vs_Ideal#
+      ,#Order_Unit#
+      ,#Order_Unit_Cost#
+      ,#Count_Per_Order#
+      ,#Portion_Unit#
+      ,#Portion_Per_Count#
+      ,#Vendor_Item_Code#
+      ,#Vendor_Code#
+      ,#Count_Type_Code#
+      ,#Food#
+      )
+
+
+    </insert>
+  </statements>
+</sqlMap>

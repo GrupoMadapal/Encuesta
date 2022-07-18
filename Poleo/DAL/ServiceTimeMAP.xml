@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="ServiceTime"   type="Poleo.Objects.ServiceTime" />
+  </alias>
+  <statements>
+    
+    <select id="SelectLoadWaitOutEstimated" parameterClass="VentasFinder" resultClass="ServiceTime">
+      <!--
+      Location_Code
+      ,Tiendas.Nombre_tienda  -->
+      <!-- ,OrderLoadTimeSecs
+      ,OrderRackTimeSecs
+      ,OrderDispatchTimeSecs
+      ,OrderDeliveryTimeSecs -->
+      <!--  OrdersDump INNER JOIN Tiendas ON OrdersDump.Location_Code = Tiendas.Number_tienda
+      WHERE Order_Date = '2018-03-19' AND Location_Code = 11597 -->
+      <!-- WHERE Order_Date BETWEEN #DateIni# AND #DateEnd# -->
+      select Namefull from Tiendas WHERE Activo = 1
+    </select>
+    
+  </statements>
+</sqlMap>

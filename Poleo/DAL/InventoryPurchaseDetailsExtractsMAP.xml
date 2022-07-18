@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+	<alias>
+		<typeAlias alias="InventoryPurchase" type="Poleo.Objects.InventoryPurchaseDetailsExtracts" />
+		
+	</alias>
+
+	<statements>
+		<select id="SelectReporteCompras" parameterClass="VentasFinder" resultClass="InventoryPurchase">
+
+			select
+			RecordType
+			,DatabaseVersion
+			,Location_Code
+			,System_Date
+			,PurchaseID
+			,VendorName
+			,VendorCode
+			,InvoiceNumber
+			,Type
+			,VendorItemCode
+			,InventoryCode
+			,Quantity
+			,OrderUnit
+			,Price
+			,Extended_Price
+			from InventoryPurchaseDetailsExtracts
+			inner join Tiendas T on T.Number_tienda = Location_Code
+			where System_Date between #DateIni# AND #DateEnd#
+
+			<isNotEmpty prepend="AND" property="NumTienda" >
+			Location_Code= #NumTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="TipoTienda" >
+			T.Tipo= #TipoTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="UbicacionTienda" >
+			T.Ubicacion = #UbicacionTienda#
+		</isNotEmpty>
+			
+		</select>
+		
+	</statements>
+</sqlMap>

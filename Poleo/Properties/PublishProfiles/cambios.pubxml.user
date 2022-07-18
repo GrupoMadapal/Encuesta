@@ -1,0 +1,1328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo es utilizado por el proceso de paquete/publicación de nuestro proyecto Web. Puede personalizar el comportamiento de este proceso
+editando este archivo MSBuild. Para conocer más acerca de esto, visite http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\Sistemas2\Desktop\Website</_PublishTargetUrl>
+    <History>True|2022-04-05T17:49:39.4467384Z;True|2022-04-05T12:27:21.1624319-05:00;True|2022-03-31T15:48:11.8705172-06:00;True|2022-03-29T15:39:20.8307374-06:00;True|2022-03-29T14:41:58.0083211-06:00;True|2022-03-25T10:24:51.0120085-06:00;True|2021-07-27T15:56:28.0255602-05:00;True|2021-07-22T13:09:59.4473934-05:00;True|2021-07-22T12:04:17.3379256-05:00;True|2021-07-21T12:45:03.5221462-05:00;True|2021-06-11T12:05:37.3652967-05:00;True|2021-06-07T15:55:34.6316070-05:00;True|2021-06-04T14:12:16.8133961-05:00;True|2021-05-27T17:48:26.6454198-05:00;True|2021-05-27T17:35:31.1512923-05:00;True|2021-05-27T14:09:34.4597970-05:00;True|2021-05-27T13:55:02.0358247-05:00;True|2021-05-27T12:27:18.2744903-05:00;True|2021-05-26T18:35:05.2944870-05:00;True|2021-05-24T15:02:56.4113581-05:00;True|2021-05-17T15:18:23.3820130-05:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="About.aspx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Account/Login.aspx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Account/Manage.aspx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Account/OpenAuthProviders.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Account/Register.aspx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Account/RegisterExternalLogin.aspx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Account/RegistroEntradaSalida.aspx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Account/Web.config">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="App_GlobalResources/strText.resx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="bin/AjaxControlToolkit.dll">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="bin/AjaxControlToolkit.pdb">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/AjaxMin.dll">
+      <publishTime>04/12/2013 16:25:36</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/ar/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/AspNet.ScriptManager.jQuery.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/AspNet.ScriptManager.jQuery.UI.Combined.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/Castle.DynamicProxy.dll">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="bin/cs/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.Data.Edm.resources.dll">
+      <publishTime>04/12/2013 16:25:45</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.Data.OData.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/de/System.Spatial.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.AspNet.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.Core.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.OAuth.Consumer.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.OAuth.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.OpenId.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.OpenId.RelyingParty.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/Enumn/StoreType.cs">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="bin/es/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Data.Edm.resources.dll">
+      <publishTime>04/12/2013 16:25:45</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Data.OData.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/es/System.Spatial.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/fr/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.Data.Edm.resources.dll">
+      <publishTime>04/12/2013 16:25:45</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.Data.OData.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/fr/System.Spatial.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/he/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/hi/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/HtmlAgilityPack.dll">
+      <publishTime>04/12/2013 16:25:36</publishTime>
+    </File>
+    <File Include="bin/IBatisNet.Common.dll">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="bin/IBatisNet.Common.Logging.Log4Net.dll">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="bin/IBatisNet.DataMapper.dll">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="bin/it/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.Data.Edm.resources.dll">
+      <publishTime>04/12/2013 16:25:45</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.Data.OData.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/it/System.Spatial.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/ja/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.Data.Edm.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.Data.OData.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/ja/System.Spatial.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/ko/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.Data.Edm.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.Data.OData.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/ko/System.Spatial.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/log4net.dll">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Membership.OpenAuth.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Web.Optimization.WebForms.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Data.Edm.dll">
+      <publishTime>04/12/2013 16:25:45</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Data.OData.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ScriptManager.MSAjax.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ScriptManager.WebForms.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/Microsoft.WindowsAzure.Storage.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/nl/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/pl/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Poleo.dll">
+      <publishTime>04/05/2022 12:47:45</publishTime>
+    </File>
+    <File Include="bin/Poleo.pdb">
+      <publishTime>04/05/2022 12:47:45</publishTime>
+    </File>
+    <File Include="bin/pt/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.Data.Edm.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.Data.OData.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/ru/System.Spatial.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/System.Spatial.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/System.Web.Providers.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/tr-TR/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/AjaxControlToolkit.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Data.Edm.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Data.OData.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Spatial.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.Data.Edm.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.Data.OData.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/System.Spatial.resources.dll">
+      <publishTime>04/12/2013 16:25:46</publishTime>
+    </File>
+    <File Include="BLL/AdicionalBLL.cs">
+      <publishTime>04/10/2019 13:43:39</publishTime>
+    </File>
+    <File Include="BLL/AnioBLL.cs">
+      <publishTime>01/09/2020 15:20:12</publishTime>
+    </File>
+    <File Include="BLL/A_CantidadesBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/ComplementosBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/ConfigFilesTABSBLL.cs">
+      <publishTime>02/09/2016 13:25:43</publishTime>
+    </File>
+    <File Include="BLL/CostosXEmployee2BLL.cs">
+      <publishTime>08/05/2020 18:31:41</publishTime>
+    </File>
+    <File Include="BLL/CostosXEmployeeBLL.cs">
+      <publishTime>08/05/2020 13:15:41</publishTime>
+    </File>
+    <File Include="BLL/CuponesBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/DepositosBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/DetalleFacturaBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/DOT_InventoryBLL.cs">
+      <publishTime>12/07/2018 13:53:51</publishTime>
+    </File>
+    <File Include="BLL/DOT_VentasBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/DQIndicadorBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/DQ_ComprasBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/DQ_IndicadorBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/DQ_LinealVentasBLL.cs">
+      <publishTime>12/12/2019 13:14:41</publishTime>
+    </File>
+    <File Include="BLL/DQ_RankingBLL.cs">
+      <publishTime>05/12/2020 11:59:22</publishTime>
+    </File>
+    <File Include="BLL/DQ_VentasBLL.cs">
+      <publishTime>05/12/2020 12:43:24</publishTime>
+    </File>
+    <File Include="BLL/EmpresaBLL.cs">
+      <publishTime>09/08/2015 11:42:18</publishTime>
+    </File>
+    <File Include="BLL/EntradaHornoBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/EntradaSalidaBLL.cs">
+      <publishTime>03/10/2015 09:44:04</publishTime>
+    </File>
+    <File Include="BLL/EstatusBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/FacturasBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/IndicadorBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/IndicadorMaestroBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/InformacionOperativaBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/InfoTiempoRealBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/Info_MasterIndBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/InventarioBLL.cs">
+      <publishTime>03/10/2015 10:04:49</publishTime>
+    </File>
+    <File Include="BLL/InventoryPurchasesExtractsBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/IPEInvoiceErrorBLL.cs">
+      <publishTime>03/04/2016 11:41:20</publishTime>
+    </File>
+    <File Include="BLL/LogBLL.cs">
+      <publishTime>03/02/2016 18:37:46</publishTime>
+    </File>
+    <File Include="BLL/LoginBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/MenuBLL.cs">
+      <publishTime>10/06/2016 11:29:40</publishTime>
+    </File>
+    <File Include="BLL/ModelsBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/MoveFileTABSBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/ObjectsBLL.cs">
+      <publishTime>11/04/2016 13:51:09</publishTime>
+    </File>
+    <File Include="BLL/ObjectsXUserBLL.cs">
+      <publishTime>11/07/2016 13:36:52</publishTime>
+    </File>
+    <File Include="BLL/OrdenesBLL.cs">
+      <publishTime>04/08/2016 10:21:09</publishTime>
+    </File>
+    <File Include="BLL/OrdersDumpBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/PizzasBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/ProveedorBLL.cs">
+      <publishTime>09/07/2015 13:10:35</publishTime>
+    </File>
+    <File Include="BLL/RankingBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/RegisterFileBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/ResumenDiarioBLL.cs">
+      <publishTime>03/10/2015 12:12:38</publishTime>
+    </File>
+    <File Include="BLL/RolesBLL.cs">
+      <publishTime>11/07/2016 10:57:33</publishTime>
+    </File>
+    <File Include="BLL/SalesDPDataBLL.cs">
+      <publishTime>12/11/2017 13:16:10</publishTime>
+    </File>
+    <File Include="BLL/SalesDPViewBLL.cs">
+      <publishTime>07/02/2017 01:05:03</publishTime>
+    </File>
+    <File Include="BLL/SEF_MotorcyclesBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/SEF_VentasBLL.cs">
+      <publishTime>05/05/2017 10:32:03</publishTime>
+    </File>
+    <File Include="BLL/SettingsFileSalesBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/ShcheduleTransferBLL.cs">
+      <publishTime>07/10/2017 12:13:39</publishTime>
+    </File>
+    <File Include="BLL/TAB_sBLL.cs">
+      <publishTime>07/09/2017 01:52:47</publishTime>
+    </File>
+    <File Include="BLL/TiempoServicioBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/TiendaBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/TransferBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/UserXRolBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/VentasBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BLL/VentasLinealBLL.cs">
+      <publishTime>12/11/2019 13:23:14</publishTime>
+    </File>
+    <File Include="BLL/VentasPruebaLinealBLL.cs">
+      <publishTime>12/06/2019 14:53:00</publishTime>
+    </File>
+    <File Include="BLL/Ventas_LunesBLL.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Bundle.config">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Contact.aspx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/Fondo11360.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/img/bg1.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/img/Fondo11360.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/img/log-in_icon-icons.com_50107.ico">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/img/nuevoLogo.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/img/on-off-power-button_icon-icons.com_53938.ico">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/MenuPrincipal.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/style.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/style2.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/accordion.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/all.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/autocomplete.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/base.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/button.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/core.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/datepicker.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/dialog.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/draggable.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_222222_256x240.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_454545_256x240.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_888888_256x240.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery-ui.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.accordion.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.all.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.autocomplete.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.base.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.button.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.core.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.datepicker.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.dialog.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.progressbar.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.resizable.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.selectable.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.slider.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.tabs.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.theme.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/menu.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_222222_256x240.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_454545_256x240.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_888888_256x240.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery-ui.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.accordion.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.autocomplete.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.button.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.core.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.datepicker.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.dialog.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.progressbar.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.resizable.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.selectable.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.slider.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.tabs.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.theme.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/themes/base/progressbar.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/resizable.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/selectable.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/selectmenu.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/slider.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/sortable.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/spinner.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/tabs.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/theme.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Content/themes/base/tooltip.css">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Controls/ASPxDropDownEdit.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Controls/ComplementosCtrl.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Controls/FacturasCtrl.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Controls/FilterIndicators.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Controls/FilterStoreCtrl.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Controls/LoadXMLFactura.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Controls/LoginCtrl.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Controls/LoginCtrl.ascx.cs">
+      <publishTime>04/11/2016 12:43:21</publishTime>
+    </File>
+    <File Include="Controls/NewPetition.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Controls/PizzasCtrl.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Controls/ProveedoresCtrl.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Controls/UpLoadFile.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Controls/UpLoadFile.ascx.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Controls/VentasCtrl.ascx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/AdicionalMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/ConfigFilesTABSMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/CostosXEmployeeMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/CuponesMAP.xml">
+      <publishTime>03/31/2022 15:33:59</publishTime>
+    </File>
+    <File Include="DAL/DailyInventoryMap.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/DailySummaryDumpMap.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/DetalleFacturaMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/DOT_InventoryMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/DOT_VentasMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/DQ_ComprasMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/DQ_IndicadorMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/DQ_RankingMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/DQ_VentasMAP.xml">
+      <publishTime>04/04/2022 12:12:35</publishTime>
+    </File>
+    <File Include="DAL/EmpresaMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/EntradaHornoMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/EntradaSalidaMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/EstatusMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/FacturaMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/IndicadorMaestroMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/InformacionOperativaMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/InfoTiempoRealMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/Info_MasterIndMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/InventarioMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/InventoryPurchaseDetailsExtractsMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/InventoryPurchasesMap.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/IPEInvoiceErrorMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/KeysExtractsCorpVersionMap.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/LoginMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/LogMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/MenuMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/ModelsMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/ObjectsMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/ObjectsXUserMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/OpenPayMAP.xml">
+      <publishTime>04/06/2021 11:05:35</publishTime>
+    </File>
+    <File Include="DAL/OrdenesMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/OrdersDumpMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/OrdersExtractsMap.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/OrdersFreeMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/PizzasMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/ProductsExtractsMap.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/ProveedorMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/RankingMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/ResumenDiarioMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/RolesMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/SalesDPDataMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/SalesDPViewMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/SEFMotorcyclesMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/SEF_VentasMAP.xml">
+      <publishTime>03/29/2022 10:03:46</publishTime>
+    </File>
+    <File Include="DAL/ServiceTimeMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/SettingsFileSalesMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/ShcheduleTransferMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/TiempoServicioMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/TiendaMAP.xml">
+      <publishTime>03/11/2022 10:32:02</publishTime>
+    </File>
+    <File Include="DAL/TransactionMap.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/TransferMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/UserXRolMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/VentasMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="DAL/Ventas_LunesMAP.xml">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Default.aspx">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Enumn/StoreType.cs">
+      <publishTime>11/03/2016 11:29:57</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/accent.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/arrow.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/bg.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/bullet.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/calendario.gif">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/Carousel/15259734_1470963869598577_2921272096247029014_o.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/Carousel/16602947_1563856773642619_2196270466766185271_n.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/Carousel/17545611_408597229501217_2080797769863736357_o.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/Carousel/17635173_406654459695494_2361420118644115122_o.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/dairyqueen_d_20100617_18408.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/dominos.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/Excel-Grey.ico">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/excel.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/excel2.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/ExcelButton.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/fondo.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/fondo1.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/FONDOweb.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/heroAccent.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/icono.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/images.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/loading_logofinal_by_zegerdon-d60eb1v.gif">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/logo-oficina.ico">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/logo-oficina.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/LogoMADAPAL.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/Logo_DP.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/Logo_DP.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/Logo_DQ.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/Logo_DQ.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/LOGO_MADAPAL.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/LOGO_MADAPAL_white.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/nuevoLogo.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/orderedList0.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/orderedList1.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/orderedList2.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/orderedList3.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/orderedList4.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/orderedList5.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/orderedList6.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/orderedList7.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/orderedList8.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/orderedList9.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/password.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/tweed.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/user.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/usuario.jpg">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Images/ver.png">
+      <publishTime>03/07/2022 09:27:01</publishTime>
+    </File>
+    <File Include="Logon.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Objects/DailyInventoryMap.xml">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Objects/DailySummaryDumpMap.xml">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Objects/InventoryPurchasesMap.xml">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Objects/KeysExtractsCorpVersionMap.xml">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Objects/OrdersExtractsMap.xml">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Objects/ProductsExtractsMap.xml">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Objects/RegisterFileMap.xml">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Objects/TransactionMap.xml">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="PageFactura.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Pages/Pag_Communication.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Pages/Pag_Costos.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Pages/Pag_CuponesDP.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Pages/Pag_Dominos.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Pages/Pag_DQ.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Pages/Pag_FullTemplate.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Pages/Pag_InfoTR.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Pages/Pag_MasterInd.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Pages/Pag_SEF.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Pages/Pag_Training.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="providers.config">
+      <publishTime>03/07/2022 09:27:03</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.3.js">
+      <publishTime>06/05/2015 11:55:13</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.3.min.js">
+      <publishTime>06/05/2015 11:55:13</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.3.min.map">
+      <publishTime>06/05/2015 11:55:13</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.min.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.min.map">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.11.4.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.11.4.min.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.8.24.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.8.24.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/DetailsView.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/Focus.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/GridView.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/Menu.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MenuStandards.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjax.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxApplicationServices.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxComponentModel.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxCore.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxGlobalization.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxHistory.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxNetwork.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxSerialization.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxTimer.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxWebForms.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxWebServices.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/SmartNav.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/TreeView.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebForms.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebParts.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebUIValidation.js">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Site.Master">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Site.Mobile.Master">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="SqlMap.config">
+      <publishTime>03/11/2022 11:12:42</publishTime>
+    </File>
+    <File Include="SqlMapDOT.config">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="SqlMapDQ.config">
+      <publishTime>03/10/2022 16:59:15</publishTime>
+    </File>
+    <File Include="SqlMapSEF.config">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="SqlMapSEFMotorcycles.config">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="SqlMapV.config">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Test.aspx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Tools/ToolsTime.cs">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="ViewSwitcher.ascx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>03/25/2022 10:24:50</publishTime>
+    </File>
+    <File Include="WebServices/AutoCompleteFacturas.asmx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="WebServices/LoadInfoSalesDP.asmx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="WebServices/LoadXMLFacturas.asmx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="WebServices/UploadFilesAutomatically.asmx">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="XML/XmlButtonsC.xml">
+      <publishTime>03/07/2022 09:27:02</publishTime>
+    </File>
+    <File Include="XML/XmlButtonsDP.xml">
+      <publishTime>03/31/2022 16:04:40</publishTime>
+    </File>
+    <File Include="XML/XmlButtonsDQ.xml">
+      <publishTime>03/23/2022 12:56:37</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="EntradaHorno" type="Poleo.Objects.EntradaHorno" />
+  </alias>
+ 
+  <statements>
+    <select id="SelectEntradaHorno" parameterClass="VentasFinder" resultClass="EntradaHorno">
+      <!--SELECT COUNT(Ord_No) AS 'OrdenesHorno3min',
+      Ord_Dt,
+      DATEPART(ISO_WEEK, Ord_Dt) as numeroSemana,
+      CASE WHEN DATEPART(DW, Ord_Dt)=1 THEN 7 ELSE DATEPART(DW, Ord_Dt)-1 END AS NumDia
+      FROM OrdersExtracts
+      WHERE Ord_Dt BETWEEN #DateIni# AND #DateEnd# AND Store_No = #NumTienda# AND Ord_Status_Cd <![CDATA[<>]]> 'A'
+      AND Load_Time_Secs <![CDATA[<=]]> 180 AND Load_Time_Secs > 0
+      GROUP BY Ord_Dt-->
+
+      <!--SELECT
+      Order_Count,
+      Location_Code,
+      EndDate,
+      DATEPART(ISO_WEEK, EndDate) as numeroSemana,
+      CASE WHEN DATEPART(DW, EndDate)=1 THEN 7 ELSE DATEPART(DW, EndDate)-1 END AS NumDia
+      INTO ##ORDERS
+      FROM KeysExtractsCorpVersion
+      WHERE EndDate BETWEEN #DateIni# AND #DateEnd# AND Location_Code = #NumTienda#
+
+      SELECT COUNT(OE.Ord_No) AS 'OrdenesHorno3min',
+      ##ORDERS.Order_Count,
+      OE.Store_No,
+      OE.Ord_Dt,
+      DATEPART(ISO_WEEK, OE.Ord_Dt) as numeroSemana,
+      CASE WHEN DATEPART(DW, OE.Ord_Dt)=1 THEN 7 ELSE DATEPART(DW, OE.Ord_Dt)-1 END AS NumDia
+      FROM OrdersExtracts OE
+      INNER JOIN ##ORDERS ON OE.Store_No = ##ORDERS.Location_Code AND DATEPART(ISO_WEEK, OE.Ord_Dt) = ##ORDERS.numeroSemana AND CASE WHEN DATEPART(DW, OE.Ord_Dt)=1 THEN 7 ELSE DATEPART(DW, OE.Ord_Dt)-1 END = ##ORDERS.NumDia
+      WHERE OE.Ord_Dt BETWEEN #DateIni# AND #DateEnd# AND OE.Store_No = #NumTienda# AND OE.Ord_Status_Cd <![CDATA[<>]]> 'A'
+      AND OE.Load_Time_Secs <![CDATA[<=]]> 180 AND OE.Load_Time_Secs > 0
+      GROUP BY OE.Ord_Dt, OE.Store_No, ##ORDERS.Order_Count
+      ORDER BY OE.Ord_Dt
+
+      DROP TABLE ##ORDERS-->
+
+      SELECT
+      Order_Count,
+      Location_Code,
+      EndDate,
+      DATEPART(ISO_WEEK, EndDate) as numeroSemana,
+      CASE WHEN DATEPART(DW, EndDate)=0 THEN 6 ELSE DATEPART(DW, EndDate) END AS NumDia
+      INTO ##ORDERS
+      FROM KeysExtractsCorpVersion
+      WHERE EndDate BETWEEN #DateIni# AND #DateEnd# AND Location_Code = #NumTienda#
+
+      SELECT
+      SUM(CASE WHEN OD.OrderLoadTimeSecs <![CDATA[<=]]> 180 AND OD.OrderLoadTimeSecs > 0 THEN 1 ELSE 0 END) AS 'OrdenesHorno3min',
+      SUM(CASE WHEN OD.OrderDispatchTimeSecs <![CDATA[<=]]> 900 AND OD.OrderDispatchTimeSecs > 300 THEN 1 ELSE 0 END) AS 'OrdenesSalidaTienda15min',
+      ##ORDERS.Order_Count,
+      OD.Location_Code,
+      OD.Order_Date,
+      DATEPART(ISO_WEEK, OD.Order_Date) as numeroSemana,
+      CASE WHEN DATEPART(DW, OD.Order_Date)=0 THEN 6 ELSE DATEPART(DW, OD.Order_Date) END AS NumDia
+      FROM OrdersDump OD
+      INNER JOIN ##ORDERS ON OD.Location_Code = ##ORDERS.Location_Code AND DATEPART(ISO_WEEK, OD.Order_Date) = ##ORDERS.numeroSemana AND CASE WHEN DATEPART(DW, OD.Order_Date)=0 THEN 6 ELSE DATEPART(DW, OD.Order_Date) END = ##ORDERS.NumDia
+      WHERE OD.Order_Date BETWEEN #DateIni# AND #DateEnd# AND OD.Location_Code = #NumTienda#
+      GROUP BY OD.Location_Code, OD.Order_Date, ##ORDERS.Order_Count
+      ORDER BY OD.Order_Date
+
+      DROP TABLE ##ORDERS
+    </select>
+  </statements>
+</sqlMap>

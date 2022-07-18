@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Status" type="Poleo.Objects.Status" />
+  </alias>
+
+  <statements>
+    <select id="SelectStatus" resultClass="Status">
+      SELECT * FROM Status
+    </select>
+
+  </statements>
+</sqlMap>

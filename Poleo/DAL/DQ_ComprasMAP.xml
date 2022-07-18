@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="DQ_Compras" type="Poleo.Objects.DQ_Compras" />
+  </alias>
+
+  <statements>
+    <select id="SelectComprasHeladoBaseXGalon" resultClass="DQ_Compras" parameterClass="DQ_Compras">
+      <!-- SELECT
+      ALMACEN.NOMBREALMACEN AS Sucursal,
+      SUM(ALBCOMPRALIN.UNID1 * 4) AS Galones
+      FROM ALBCOMPRACAB
+      INNER JOIN ALBCOMPRALIN ON ALBCOMPRACAB.NUMSERIE = ALBCOMPRALIN.NUMSERIE AND ALBCOMPRACAB.NUMALBARAN = ALBCOMPRALIN.NUMALBARAN
+      INNER JOIN ALMACEN ON SUBSTRING(ALBCOMPRACAB.NUMSERIE,1,2) = ALMACEN.CODALMACEN
+      WHERE FECHAALBARAN BETWEEN #DateIni# AND #DateEnd# AND ALBCOMPRALIN.CODARTICULO = '10397'
+      GROUP BY ALMACEN.NOMBREALMACEN -->
+      
+      DECLARE @BaseHelado TABLE
+      (
+      Sucursal VARCHAR(30),
+      Galones INT
+      )
+
+	    INSERT @BaseHelado
+      SELECT
+      [BD1].[dbo].ALMACEN.NOMBREALMACEN AS Sucursal,
+      SUM([BD1].[dbo].ALBCOMPRALIN.UNID1 * 4) AS Galones
+      FROM [BD1].[dbo].ALBCOMPRACAB
+      INNER JOIN [BD1].[dbo].ALBCOMPRALIN ON [BD1].[dbo].ALBCOMPRACAB.NUMSERIE = [BD1].[dbo].ALBCOMPRALIN.NUMSERIE
+	    AND [BD1].[dbo].ALBCOMPRACAB.NUMALBARAN = [BD1].[dbo].ALBCOMPRALIN.NUMALBARAN
+      INNER JOIN [BD1].[dbo].ALMACEN ON SUBSTRING([BD1].[dbo].ALBCOMPRACAB.NUMSERIE,1,2) = [BD1].[dbo].ALMACEN.CODALMACEN
+      WHERE FECHAALBARAN BETWEEN  #DateIni# AND #DateEnd# AND [BD1].[dbo].ALBCOMPRALIN.CODARTICULO = '10397'
+      GROUP BY [BD1].[dbo].ALMACEN.NOMBREALMACEN
+				        UNION
+	    SELECT
+      [DairyQueen].[dbo].ALMACEN.NOMBREALMACEN AS Sucursal,
+      SUM([DairyQueen].[dbo].ALBCOMPRALIN.UNID1 * 4) AS Galones
+      FROM [DairyQueen].[dbo].ALBCOMPRACAB
+      INNER JOIN [DairyQueen].[dbo].ALBCOMPRALIN ON [DairyQueen].[dbo].ALBCOMPRACAB.NUMSERIE = [DairyQueen].[dbo].ALBCOMPRALIN.NUMSERIE 
+	    AND [DairyQueen].[dbo].ALBCOMPRACAB.NUMALBARAN = [DairyQueen].[dbo].ALBCOMPRALIN.NUMALBARAN
+      INNER JOIN [DairyQueen].[dbo].ALMACEN ON SUBSTRING([DairyQueen].[dbo].ALBCOMPRACAB.NUMSERIE,1,2) = [DairyQueen].[dbo].ALMACEN.CODALMACEN
+      WHERE FECHAALBARAN BETWEEN  #DateIni# AND #DateEnd#  AND [DairyQueen].[dbo].ALBCOMPRALIN.CODARTICULO = '5'
+      GROUP BY [DairyQueen].[dbo].ALMACEN.NOMBREALMACEN
+	  
+	    SELECT Sucursal, SUM(Galones) AS Galones
+	    FROM @BaseHelado GROUP BY Sucursal
+    </select>
+  </statements>
+</sqlMap>

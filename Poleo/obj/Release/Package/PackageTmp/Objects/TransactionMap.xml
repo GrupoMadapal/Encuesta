@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Transactions" type="Poleo.Objects.Transactions" />
+  </alias>
+  <statements>
+    <insert id="InsertTransactions" parameterClass="Transactions">
+      INSERT INTO TransactionsExtracts
+      ([RecordType]
+      ,[DatabaseVersion]
+      ,[Location_Code]
+      ,[System_Date]
+      ,[Account_Code]
+      ,[Account_Description]
+      ,[Trans_Sequence]
+      ,[Trans_Description]
+      ,[Invoice_Number]
+      ,[Trans_Amount]
+      ,[Debit_Credit_Code]
+      ,[Edit_Datetime]
+      ,[Edit_User]
+      ,[Comments]
+      ,[Deposit_Datetime]
+      ,[Bank_Number]
+      ,[Bank_Name]
+      ,[Deposit_Slip_Number]
+      ,[Deposit_Bag_Number]
+      ,[Deposit_Employee_Code1]
+      ,[Deposit_Employee_Code2]
+      ,[IsDeposit]
+      ,[Deposit_Cash_Amount]
+      ,[Deposit_Check_Amount]
+      ,[Deposit_Govt_ID1]
+      ,[Deposit_Name1]
+      ,[Deposit_Govt_ID2]
+      ,[Deposit_Name2]
+      ,[Deposit_Check_Count])
+      VALUES
+      (#RecordType#
+      ,#DatabaseVersion#
+      ,#Location_Code#
+      ,#System_Date#
+      ,#Account_Code#
+      ,#Account_Description#
+      ,#Trans_Sequence#
+      ,#Trans_Description#
+      ,#Invoice_Number#
+      ,#Trans_Amount#
+      ,#Debit_Credit_Code#
+      ,#Edit_DateTime#
+      ,#Edit_User#
+      ,#Comments#
+      ,#Deposit_DateTime#
+      ,#Bank_Number#
+      ,#Bank_name#
+      ,#Deposit_Slip_Number#
+      ,#Deposit_bag_number#
+      ,#Deposit_Employee_Code1#
+      ,#Deposit_Employee_Code2#
+      ,#IsDeposit#
+      ,#Deposit_Cast_amount#
+      ,#Deposit_Check_Amount#
+      ,#Deposit_Govt_ID1#
+      ,#DepositName1#
+      ,#Deposit_Govt_ID2#
+      ,#DepositName2#
+      ,#Deposit_Check_Count#)
+
+
+    </insert>
+  </statements>
+</sqlMap>

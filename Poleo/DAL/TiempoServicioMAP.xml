@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="TiempoServicio" type="Poleo.Objects.TiempoServicio" />
+    
+  </alias>
+  <statements>
+    <select id="SelectTiempoServicio" parameterClass="VentasFinder" resultClass="TiempoServicio">
+      <!--SELECT
+      SUM(CASE WHEN Product_Code LIKE 'PKCNGT' THEN Quantity/2
+      WHEN Product_Code LIKE 'PKCPAP' THEN Quantity/2
+      WHEN Product_Code LIKE 'WINGSMED' THEN Quantity*2 ELSE Quantity END) AS  Adicionales,
+      EndDate,
+      Location_Code,
+      DATEPART(ISO_WEEK, EndDate)-1 as numeroSemana,
+      CASE WHEN DATEPART(DW, EndDate)=1 THEN 7 ELSE DATEPART(DW, EndDate)-1 END AS NumDia
+      INTO ##TBLADICIONALES
+      FROM ProductsExtracts
+      WHERE EndDate BETWEEN #DateIni# AND #DateEnd# AND Location_Code = #NumTienda#
+      AND (Product_Category_Code  LIKE 'Wings' OR Product_Category_Code  LIKE 'Bread' OR Product_Category_Code  LIKE 'Drinks')
+      GROUP BY EndDate, Location_Code
+
+      SELECT
+      KEYC.Ave_Load_Hms AS EntradaHornoMinHMS,
+      --><!--KEYC.Ave_load_Seconds AS EntradaHornoSec,--><!--
+      KEYC.Load_Time AS EntradaHornoSec,
+      KEYC.Load_Time_Order_Count AS TotalOrder, /*Added by Hector Sanchez M. - 20160629*/
+      CAST(KEYC.Corp_Attain_Delivery_Time_Order_Count AS DECIMAL(12,2)) AS OrdenesEntregaTime,
+      CAST(KEYC.Run_Order_Count AS DECIMAL(12,2)) AS OrdenesRunTime,
+      CAST(KEYC.Attain_Dispatch_Order_Count AS DECIMAL(12,2)) AS OrdenesSalidaTienda,
+      CAST(Ad.Adicionales AS DECIMAL(12,2)) AS Adicionales,
+      KEYC.Order_Count AS Orders,
+      KEYC.EndDate AS Fecha,
+      CASE WHEN DATEPART(dw, KEYC.EndDate)=1 THEN 7 ELSE DATEPART(dw, KEYC.EndDate)-1 END AS NumDia,
+      DATEPART(ISO_WEEK, KEYC.EndDate)-1 as NumSemana
+      FROM KeysExtractsCorpVersion KEYC
+      INNER JOIN ##TBLADICIONALES Ad ON Ad.Location_Code = KEYC.Location_Code AND Ad.numeroSemana = DATEPART(ISO_WEEK, KEYC.EndDate)-1 AND Ad.NumDia = CASE WHEN DATEPART(dw, KEYC.EndDate)=1 THEN 7 ELSE DATEPART(dw, KEYC.EndDate)-1 END
+      WHERE KEYC.EndDate BETWEEN #DateIni# AND #DateEnd#
+      AND KEYC.Location_Code = #NumTienda#
+      ORDER BY KEYC.EndDate
+
+      DROP TABLE ##TBLADICIONALES-->
+
+      SELECT
+      SUM(CASE WHEN Product_Code LIKE 'PKCNGT' THEN Quantity/2
+      WHEN Product_Code LIKE 'PKCPAP' THEN Quantity/2
+      WHEN Product_Code LIKE 'WINGSMED' THEN Quantity*2 ELSE Quantity END) AS  Adicionales,
+      EndDate,
+      Location_Code,
+      DATEPART(ISO_WEEK, EndDate)-1 as numeroSemana,
+      CASE WHEN DATEPART(DW, EndDate)=0 THEN 6 ELSE DATEPART(DW, EndDate) END AS NumDia
+      INTO ##TBLADICIONALES
+      FROM ProductsExtracts
+      WHERE EndDate BETWEEN #DateIni# AND #DateEnd# AND Location_Code = #NumTienda#
+      AND (Product_Category_Code  LIKE 'Wings' OR Product_Category_Code  LIKE 'Bread' OR Product_Category_Code  LIKE 'Drinks')
+      GROUP BY EndDate, Location_Code
+
+      SELECT
+      KEYC.Ave_Load_Hms AS EntradaHornoMinHMS,
+      KEYC.Load_Time AS EntradaHornoSec,
+      KEYC.Ave_Delivery_Hms AS EstimadoEntregaHMS,
+      KEYC.Delivery_Time AS EstimadoEntregaSec,
+      KEYC.Ave_Wait_Hms AS RepisaHMS,
+      KEYC.Wait_Time AS RepisaSec,
+      KEYC.Load_Time_Order_Count AS TotalOrder,
+      KEYC.Delivery_Time_Order_Count AS OrdenesEstimadoEntrega,
+      KEYC.Wait_Order_Count AS OrdenesRepisa,
+      CAST(KEYC.Corp_Attain_Delivery_Time_Order_Count AS DECIMAL(12,2)) AS OrdenesEntregaTime,
+      CAST(KEYC.Run_Order_Count AS DECIMAL(12,2)) AS OrdenesRunTime,
+      CAST(KEYC.Attain_Dispatch_Order_Count AS DECIMAL(12,2)) AS OrdenesSalidaTienda,
+      CAST(Ad.Adicionales AS DECIMAL(12,2)) AS Adicionales,
+      KEYC.Order_Count AS Orders,
+      KEYC.EndDate AS Fecha,
+      CASE WHEN DATEPART(dw, KEYC.EndDate)=0 THEN 6 ELSE DATEPART(dw, KEYC.EndDate) END AS NumDia,
+      DATEPART(ISO_WEEK, KEYC.EndDate) as NumSemana
+      FROM KeysExtractsCorpVersion KEYC
+      LEFT JOIN ##TBLADICIONALES Ad ON Ad.Location_Code = KEYC.Location_Code AND Ad.numeroSemana = DATEPART(ISO_WEEK, KEYC.EndDate)-1 AND Ad.NumDia = CASE WHEN DATEPART(dw, KEYC.EndDate)=0 THEN 6 ELSE DATEPART(dw, KEYC.EndDate) END
+      WHERE KEYC.EndDate BETWEEN #DateIni# AND #DateEnd#
+      AND KEYC.Location_Code = #NumTienda#
+      ORDER BY KEYC.EndDate
+
+      DROP TABLE ##TBLADICIONALES
+    </select>
+
+    
+  </statements>
+</sqlMap>

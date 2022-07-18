@@ -1,0 +1,1239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B77679BC-C469-4F61-92E7-AD8219CD5492}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Poleo</RootNamespace>
+    <AssemblyName>Poleo</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.1.7.1213, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Respaldo\Respaldo\Respaldo\AjaxControlToolkit.Binary.NET40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.2.1.4\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery.UI.Combined, Version=1.11.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.11.4\lib\net45\AspNet.ScriptManager.jQuery.UI.Combined.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Cells, Version=22.5.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Cells.22.5.0\lib\net40\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy">
+      <HintPath>..\..\..\..\Downloads\Ibatis.DataMapper.1.6.2.bin\Castle.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.Common">
+      <HintPath>..\..\..\..\Downloads\Ibatis.DataMapper.1.6.2.bin\IBatisNet.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.Common.Logging.Log4Net">
+      <HintPath>..\..\..\..\Downloads\Ibatis.DataMapper.1.6.2.bin\IBatisNet.Common.Logging.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.DataMapper">
+      <HintPath>..\..\..\..\Downloads\Ibatis.DataMapper.1.6.2.bin\IBatisNet.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="iTextSharp, Version=4.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
+      <HintPath>..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\..\Downloads\Ibatis.DataMapper.1.6.2.bin\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.5.0.0\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=20.1460.0.52, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Base.20.1.0.52\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=20.1460.0.52, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.20.1.0.52\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.6.0.0\lib\net461\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata, Version=6.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.6.0.1\lib\net461\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.8\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.8\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.8\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.8\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.8\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.8\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Membership.OpenAuth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.1\lib\net45\Microsoft.AspNet.Membership.OpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.0\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Account\RegistroEntradaSalida.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Fondo11360.jpg" />
+    <Content Include="Content\img\bg1.jpg" />
+    <Content Include="Content\img\Fondo11360.jpg" />
+    <Content Include="Content\img\log-in_icon-icons.com_50107.ico" />
+    <Content Include="Content\img\nuevoLogo.png" />
+    <Content Include="Content\img\on-off-power-button_icon-icons.com_53938.ico" />
+    <Content Include="Content\MenuPrincipal.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\style2.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Controls\ASPxDropDownEdit.ascx" />
+    <Content Include="Controls\ComplementosCtrl.ascx" />
+    <Content Include="Controls\FacturasCtrl.ascx" />
+    <Content Include="Controls\FilterIndicators.ascx" />
+    <Content Include="Controls\FilterStoreCtrl.ascx" />
+    <Content Include="Controls\LoadXMLFactura.ascx" />
+    <Content Include="Controls\LoginCtrl.ascx" />
+    <Content Include="Controls\NewPetition.ascx" />
+    <Content Include="Controls\PizzasCtrl.ascx" />
+    <Content Include="Controls\ProveedoresCtrl.ascx" />
+    <Content Include="Controls\UpLoadFile.ascx" />
+    <Content Include="Controls\VentasCtrl.ascx" />
+    <Content Include="DAL\AdicionalMAP.xml" />
+    <Content Include="DAL\ConfigFilesTABSMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\CostosXEmployeeMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\CuponesMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\DailyInventoryMap.xml" />
+    <Content Include="DAL\DailySummaryDumpMap.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\DetalleFacturaMAP.xml" />
+    <Content Include="DAL\DOT_InventoryMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\DOT_VentasMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\DQ_ComprasMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\DQ_IndicadorMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\DQ_RankingMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\DQ_VentasMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\EmpresaMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\EncuestaMAP.xml" />
+    <Content Include="DAL\EntradaHornoMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\EntradaSalidaMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\FacturaMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\IndicadorMaestroMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\InformacionOperativaMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\InfoTiempoRealMAP.xml" />
+    <Content Include="DAL\InventarioMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\InventoryPurchaseDetailsExtractsMAP.xml" />
+    <Content Include="DAL\InventoryPurchasesMap.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\IPEInvoiceErrorMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\KeysExtractsCorpVersionMap.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\LoginMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\LogMAP.xml" />
+    <Content Include="DAL\MenuMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\ModelsMAP.xml" />
+    <Content Include="DAL\ObjectsMAP.xml" />
+    <Content Include="DAL\ObjectsXUserMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\OrdenesMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\OrdersDumpMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\OrdersExtractsMap.xml" />
+    <Content Include="DAL\OrdersFreeMAP.xml" />
+    <Content Include="DAL\PizzasMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\ProductsExtractsMap.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\ProveedorMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\RankingMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\ResumenDiarioMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\RolesMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\SalesDPViewMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\SEFMotorcyclesMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\SEF_VentasMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\EstatusMAP.xml" />
+    <Content Include="DAL\Ventas_LunesMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\ShcheduleTransferMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\SalesDPDataMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\SettingsFileSalesMAP.xml" />
+    <Content Include="DAL\ServiceTimeMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\TiendaMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\TiempoServicioMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\TransactionMap.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\TransferMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\UserXRolMAP.xml" />
+    <Content Include="DAL\VentasMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAL\Info_MasterIndMAP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="EncuestaSalida.aspx" />
+    <Content Include="Images\Carousel\15259734_1470963869598577_2921272096247029014_o.jpg" />
+    <Content Include="Images\Carousel\16602947_1563856773642619_2196270466766185271_n.png" />
+    <Content Include="Images\Carousel\17545611_408597229501217_2080797769863736357_o.jpg" />
+    <Content Include="Images\Carousel\17635173_406654459695494_2361420118644115122_o.jpg" />
+    <Content Include="Images\Excel-Grey.ico" />
+    <Content Include="Images\icono.png" />
+    <Content Include="Images\Logo_DP.png" />
+    <Content Include="Images\Logo_DQ.png" />
+    <Content Include="Images\ver.png" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\arrow.png" />
+    <Content Include="Images\bg.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\calendario.gif" />
+    <Content Include="Images\dairyqueen_d_20100617_18408.jpg" />
+    <Content Include="Images\dominos.jpg" />
+    <Content Include="Images\excel.png" />
+    <Content Include="Images\excel2.png" />
+    <Content Include="Images\ExcelButton.png" />
+    <Content Include="Images\fondo.png" />
+    <Content Include="Images\fondo1.jpg" />
+    <Content Include="Images\FONDOweb.jpg" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\images.jpg" />
+    <Content Include="Images\loading_logofinal_by_zegerdon-d60eb1v.gif" />
+    <Content Include="Images\logo-oficina.ico" />
+    <Content Include="Images\logo-oficina.jpg" />
+    <Content Include="Images\LogoMADAPAL.jpg" />
+    <Content Include="Images\Logo_DP.jpg" />
+    <Content Include="Images\Logo_DQ.jpg" />
+    <Content Include="Images\LOGO_MADAPAL.jpg" />
+    <Content Include="Images\LOGO_MADAPAL_white.jpg" />
+    <Content Include="Images\nuevoLogo.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\password.jpg" />
+    <Content Include="Images\tweed.png" />
+    <Content Include="Images\user.jpg" />
+    <Content Include="Images\usuario.jpg" />
+    <Content Include="Logon.aspx" />
+    <Content Include="Objects\DailyInventoryMap.xml" />
+    <Content Include="Objects\DailySummaryDumpMap.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Objects\InventoryPurchasesMap.xml" />
+    <Content Include="Objects\KeysExtractsCorpVersionMap.xml" />
+    <Content Include="Objects\OrdersExtractsMap.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Objects\ProductsExtractsMap.xml" />
+    <Content Include="Objects\RegisterFileMap.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Objects\TransactionMap.xml" />
+    <Content Include="packages.config" />
+    <Content Include="PageFactura.aspx" />
+    <Content Include="Pages\Pag_Communication.aspx" />
+    <Content Include="Pages\Pag_Costos.aspx" />
+    <Content Include="Pages\Pag_CuponesDP.aspx" />
+    <Content Include="Pages\Pag_Dominos.aspx" />
+    <Content Include="Pages\Pag_DQ.aspx" />
+    <Content Include="Pages\Pag_FullTemplate.aspx" />
+    <Content Include="Pages\Pag_InfoTR.aspx" />
+    <Content Include="Pages\Pag_MasterInd.aspx" />
+    <Content Include="Pages\Pag_Reclutamiento.aspx" />
+    <Content Include="Pages\Pag_SEF.aspx" />
+    <Content Include="Pages\Pag_Training.aspx" />
+    <Content Include="providers.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebServices\LoadInfoSalesDP.asmx" />
+    <Content Include="WebServices\LoadXMLFacturas.asmx" />
+    <Content Include="WebServices\UploadFilesAutomatically.asmx" />
+    <Content Include="XML\XmlButtonsC.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="XML\XmlButtonsDP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="XML\XmlButtonsDQ.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="XML\XMLButtonsReclutamiento.xml" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="WebServices\AutoCompleteFacturas.asmx" />
+    <None Include="Properties\PublishProfiles\cambios.pubxml" />
+    <None Include="Properties\PublishProfiles\n2.pubxml" />
+    <None Include="Properties\PublishProfiles\nuevo.pubxml" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Test.aspx" />
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Bundle.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Site.Mobile.Master" />
+    <Content Include="SqlMap.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMapDQ.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMapSEF.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMapDOT.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMapV.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMapSEFMotorcycles.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\RegistroEntradaSalida.aspx.cs">
+      <DependentUpon>RegistroEntradaSalida.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RegistroEntradaSalida.aspx.designer.cs">
+      <DependentUpon>RegistroEntradaSalida.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\strText.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strText.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\AdicionalBLL.cs" />
+    <Compile Include="BLL\AnioBLL.cs" />
+    <Compile Include="BLL\A_CantidadesBLL.cs" />
+    <Compile Include="BLL\ConfigFilesTABSBLL.cs" />
+    <Compile Include="BLL\ConPagoOpenPayBLL.cs" />
+    <Compile Include="BLL\CostosXEmployee2BLL.cs" />
+    <Compile Include="BLL\CostosXEmployeeBLL.cs" />
+    <Compile Include="BLL\CuponesBLL.cs" />
+    <Compile Include="BLL\CuponesIncentivosBLL.cs" />
+    <Compile Include="BLL\CuponesIncentivosSLPBLL.cs" />
+    <Compile Include="BLL\DetalleOpenPayBLL.cs" />
+    <Compile Include="BLL\DOT_InventoryBLL.cs" />
+    <Compile Include="BLL\DOT_VentasBLL.cs" />
+    <Compile Include="BLL\DQ_ComprasBLL.cs" />
+    <Compile Include="BLL\DQ_IndicadorBLL.cs" />
+    <Compile Include="BLL\DQ_LinealVentasBLL.cs" />
+    <Compile Include="BLL\DQ_RankingBLL.cs" />
+    <Compile Include="BLL\EncuestaBLL.cs" />
+    <Compile Include="BLL\EntradaHornoBLL.cs" />
+    <Compile Include="BLL\InfoTiempoRealBLL.cs" />
+    <Compile Include="BLL\Info_MasterIndBLL.cs" />
+    <Compile Include="BLL\int32.cs" />
+    <Compile Include="BLL\InventoryPurchasesExtractsBLL.cs" />
+    <Compile Include="BLL\LogBLL.cs" />
+    <Compile Include="BLL\MenuBLL.cs" />
+    <Compile Include="BLL\ModelsBLL.cs" />
+    <Compile Include="BLL\MoveFileTABSBLL.cs" />
+    <Compile Include="BLL\ObjectsBLL.cs" />
+    <Compile Include="BLL\ObjectsXUserBLL.cs" />
+    <Compile Include="BLL\OrdenesBLL.cs" />
+    <Compile Include="BLL\ComplementosBLL.cs" />
+    <Compile Include="BLL\DepositosBLL.cs" />
+    <Compile Include="BLL\DetalleFacturaBLL.cs" />
+    <Compile Include="BLL\DQ_VentasBLL.cs" />
+    <Compile Include="BLL\EmpresaBLL.cs" />
+    <Compile Include="BLL\EntradaSalidaBLL.cs" />
+    <Compile Include="BLL\FacturasBLL.cs" />
+    <Compile Include="BLL\IndicadorBLL.cs" />
+    <Compile Include="BLL\IndicadorMaestroBLL.cs" />
+    <Compile Include="BLL\InformacionOperativaBLL.cs" />
+    <Compile Include="BLL\InventarioBLL.cs" />
+    <Compile Include="BLL\LoginBLL.cs" />
+    <Compile Include="BLL\OrdenesCanceladasBLL.cs" />
+    <Compile Include="BLL\OrdenesEditadasBLL.cs" />
+    <Compile Include="BLL\OrdersDumpBLL.cs" />
+    <Compile Include="BLL\OrdersFreeBLL.cs" />
+    <Compile Include="BLL\PizzasBLL.cs" />
+    <Compile Include="BLL\ProveedorBLL.cs" />
+    <Compile Include="BLL\RankingBLL.cs" />
+    <Compile Include="BLL\RegisterFileBLL.cs" />
+    <Compile Include="BLL\ReporteComprasBLL.cs" />
+    <Compile Include="BLL\ResumenDiarioBLL.cs" />
+    <Compile Include="BLL\RolesBLL.cs" />
+    <Compile Include="BLL\SalesDPDataBLL.cs" />
+    <Compile Include="BLL\SalesDPViewBLL.cs" />
+    <Compile Include="BLL\SEF_MotorcyclesBLL.cs" />
+    <Compile Include="BLL\SEF_VentasBLL.cs" />
+    <Compile Include="BLL\SettingsFileSalesBLL.cs" />
+    <Compile Include="BLL\ShcheduleTransferBLL.cs" />
+    <Compile Include="BLL\EstatusBLL.cs" />
+    <Compile Include="BLL\TAB_sBLL.cs" />
+    <Compile Include="BLL\TiempoServicioBLL.cs" />
+    <Compile Include="BLL\TiemposHistorialBLL.cs" />
+    <Compile Include="BLL\TiemposHoyBLL.cs" />
+    <Compile Include="BLL\TiendaBLL.cs" />
+    <Compile Include="BLL\TransferBLL.cs" />
+    <Compile Include="BLL\UserXRolBLL.cs" />
+    <Compile Include="BLL\VentasBLL.cs" />
+    <Compile Include="BLL\VentasLinealBLL.cs" />
+    <Compile Include="BLL\VentasPruebaLinealBLL.cs" />
+    <Compile Include="BLL\Ventas_LunesBLL.cs" />
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ASPxDropDownEdit.ascx.cs">
+      <DependentUpon>ASPxDropDownEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ASPxDropDownEdit.ascx.designer.cs">
+      <DependentUpon>ASPxDropDownEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ComplementosCtrl.ascx.cs">
+      <DependentUpon>ComplementosCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ComplementosCtrl.ascx.designer.cs">
+      <DependentUpon>ComplementosCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FacturasCtrl.ascx.cs">
+      <DependentUpon>FacturasCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\FacturasCtrl.ascx.designer.cs">
+      <DependentUpon>FacturasCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FilterIndicators.ascx.cs">
+      <DependentUpon>FilterIndicators.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\FilterIndicators.ascx.designer.cs">
+      <DependentUpon>FilterIndicators.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FilterStoreCtrl.ascx.cs">
+      <DependentUpon>FilterStoreCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\FilterStoreCtrl.ascx.designer.cs">
+      <DependentUpon>FilterStoreCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LoadXMLFactura.ascx.cs">
+      <DependentUpon>LoadXMLFactura.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\LoadXMLFactura.ascx.designer.cs">
+      <DependentUpon>LoadXMLFactura.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LoginCtrl.ascx.cs">
+      <DependentUpon>LoginCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\LoginCtrl.ascx.designer.cs">
+      <DependentUpon>LoginCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NewPetition.ascx.cs">
+      <DependentUpon>NewPetition.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\NewPetition.ascx.designer.cs">
+      <DependentUpon>NewPetition.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PizzasCtrl.ascx.cs">
+      <DependentUpon>PizzasCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\PizzasCtrl.ascx.designer.cs">
+      <DependentUpon>PizzasCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProveedoresCtrl.ascx.cs">
+      <DependentUpon>ProveedoresCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ProveedoresCtrl.ascx.designer.cs">
+      <DependentUpon>ProveedoresCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UpLoadFile.ascx.cs">
+      <DependentUpon>UpLoadFile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\UpLoadFile.ascx.designer.cs">
+      <DependentUpon>UpLoadFile.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VentasCtrl.ascx.cs">
+      <DependentUpon>VentasCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\VentasCtrl.ascx.designer.cs">
+      <DependentUpon>VentasCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\AdicionalDAL.cs" />
+    <Compile Include="DAL\ComplementosDAL.cs" />
+    <Compile Include="DAL\ConfigFilesTABSDAL.cs" />
+    <Compile Include="DAL\CostosXEmployeeDAL.cs" />
+    <Compile Include="DAL\CuponesDAL.cs" />
+    <Compile Include="DAL\DetalleFacturaDAL.cs" />
+    <Compile Include="DAL\DOT_InventoryDAL.cs" />
+    <Compile Include="DAL\DOT_VentasDAL.cs" />
+    <Compile Include="DAL\DQ_ComprasDAL.cs" />
+    <Compile Include="DAL\DQ_IndicadorDAL.cs" />
+    <Compile Include="DAL\DQ_RankingDAL.cs" />
+    <Compile Include="DAL\DQ_VentasDAL.cs" />
+    <Compile Include="DAL\EmpresaDAL.cs" />
+    <Compile Include="DAL\EncuestaDAL.cs" />
+    <Compile Include="DAL\EntradaHornoDAL.cs" />
+    <Compile Include="DAL\EntradaSalidaDAL.cs" />
+    <Compile Include="DAL\FacturasDAL.cs" />
+    <Compile Include="DAL\IndicadorMaestroDAL.cs" />
+    <Compile Include="DAL\InformacionOperativaDAL.cs" />
+    <Compile Include="DAL\InfoTiempoRealDAL.cs" />
+    <Compile Include="DAL\Info_MasterIndDAL.cs" />
+    <Compile Include="DAL\InventarioDAL.cs" />
+    <Compile Include="DAL\InventoryPurchaseDetailsExtractsDAL.cs" />
+    <Compile Include="DAL\InventoryPurchasesDAL.cs" />
+    <Compile Include="BLL\IPEInvoiceErrorBLL.cs" />
+    <Compile Include="DAL\IPEInvoiceErrorDAL.cs" />
+    <Compile Include="DAL\LogDAL.cs" />
+    <Compile Include="DAL\LoginDAL.cs" />
+    <Compile Include="DAL\MenuDAL.cs" />
+    <Compile Include="DAL\ModelsDAL.cs" />
+    <Compile Include="DAL\ObjectsDAL.cs" />
+    <Compile Include="DAL\ObjectsXUserDAL.cs" />
+    <Compile Include="DAL\OrdenesDAL.cs" />
+    <Compile Include="DAL\OrdersDumpDAL.cs" />
+    <Compile Include="DAL\OrdersFreeDAL.cs" />
+    <Compile Include="DAL\PizzasDAL.cs" />
+    <Compile Include="DAL\ProveedorDAL.cs" />
+    <Compile Include="DAL\RankingDAL.cs" />
+    <Compile Include="DAL\ResumenDiarioDAL.cs" />
+    <Compile Include="DAL\RolesDAL.cs" />
+    <Compile Include="DAL\SalesDPDataDAL.cs" />
+    <Compile Include="DAL\SalesDPViewDAL.cs" />
+    <Compile Include="DAL\SEFMotorcyclesDAL.cs" />
+    <Compile Include="DAL\SEF_VentasDAL.cs" />
+    <Compile Include="DAL\ServiceTimeDAL.cs" />
+    <Compile Include="DAL\SettingsFileSalesDAL.cs" />
+    <Compile Include="DAL\ShcheduleTransferDAL.cs" />
+    <Compile Include="DAL\EstatusDAL.cs" />
+    <Compile Include="DAL\TiendaDAL.cs" />
+    <Compile Include="DAL\TiempoServicioDAL.cs" />
+    <Compile Include="DAL\TransferDAL.cs" />
+    <Compile Include="DAL\UserXRolDAL.cs" />
+    <Compile Include="DAL\VentaDAL.cs" />
+    <Compile Include="DAL\VentasPruebaLinealDAL.cs" />
+    <Compile Include="DAL\Ventas_LunesDAL.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EncuestaSalida.aspx.cs">
+      <DependentUpon>EncuestaSalida.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EncuestaSalida.aspx.designer.cs">
+      <DependentUpon>EncuestaSalida.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Enumn\StoreType.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Logon.aspx.cs">
+      <DependentUpon>Logon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logon.aspx.designer.cs">
+      <DependentUpon>Logon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Objects\Contabilidad.cs" />
+    <Compile Include="Objects\ContabilidadDP.cs" />
+    <Compile Include="Objects\CostosXEmployee.cs" />
+    <Compile Include="Objects\CuponesIncentivosSLP.cs" />
+    <Compile Include="Objects\Date.cs" />
+    <Compile Include="Objects\EncuestaFooter.cs" />
+    <Compile Include="Objects\EncuestaHeader.cs" />
+    <Compile Include="Objects\Encuesta_ASPECTOLABORAL.cs" />
+    <Compile Include="Objects\Encuesta_ESTUDIOS_U_OTROS_INTERESES_PROFESIONALES.cs" />
+    <Compile Include="Objects\Encuesta_FamiliaresPersonales.cs" />
+    <Compile Include="Objects\Encuesta_OportunidadLaboral.cs" />
+    <Compile Include="Objects\InventoryPurchaseDetailsExtracts.cs" />
+    <Compile Include="Objects\Models.cs" />
+    <Compile Include="Objects\ObjOpenPay.cs" />
+    <Compile Include="Objects\RecluFechas.cs" />
+    <Compile Include="Objects\SEF_Motorcycles.cs" />
+    <Compile Include="Objects\Status.cs" />
+    <Compile Include="Objects\Ventas_Lunes.cs" />
+    <Compile Include="Objects\Adicional.cs" />
+    <Compile Include="Objects\Año.cs" />
+    <Compile Include="Objects\ColVentas.cs" />
+    <Compile Include="Objects\Complementos.cs" />
+    <Compile Include="Objects\ConfigFilesTABS.cs" />
+    <Compile Include="Objects\Cupones.cs" />
+    <Compile Include="Objects\DailyInventoryExtracts.cs" />
+    <Compile Include="Objects\DailySummaryDump.cs" />
+    <Compile Include="Objects\DepositoYTransacciones.cs" />
+    <Compile Include="Objects\DetallesFactura.cs" />
+    <Compile Include="BLL\DQIndicadorBLL.cs" />
+    <Compile Include="Objects\DOT_Inventory.cs" />
+    <Compile Include="Objects\DQ_Compras.cs" />
+    <Compile Include="Objects\DQ_Indicador.cs" />
+    <Compile Include="Objects\DQ_Ranking.cs" />
+    <Compile Include="Objects\DQ_Ventas.cs" />
+    <Compile Include="Objects\DQ_VentasArticulos.cs" />
+    <Compile Include="Objects\DQ_VentasFinder.cs" />
+    <Compile Include="Objects\Empresa.cs" />
+    <Compile Include="Objects\Encript.cs" />
+    <Compile Include="Objects\EntradaHorno.cs" />
+    <Compile Include="Objects\EntradasSalidas.cs" />
+    <Compile Include="Objects\Facturas.cs" />
+    <Compile Include="Objects\FacturasFinder.cs" />
+    <Compile Include="Objects\Files.cs" />
+    <Compile Include="Objects\IndicadorMaestro.cs" />
+    <Compile Include="Objects\InformacionOperativa.cs" />
+    <Compile Include="Objects\InfoTiempoReal.cs" />
+    <Compile Include="Objects\Info_MasterInd.cs" />
+    <Compile Include="Objects\Inventario.cs" />
+    <Compile Include="Objects\InventoryPurchasesExtracts.cs" />
+    <Compile Include="Objects\IPEInvoiceError.cs" />
+    <Compile Include="Objects\KeysExtractsCorpVersion.cs" />
+    <Compile Include="Objects\Log.cs" />
+    <Compile Include="Objects\Login.cs" />
+    <Compile Include="Objects\Menu.cs" />
+    <Compile Include="Objects\Objects.cs" />
+    <Compile Include="Objects\ObjectsXUser.cs" />
+    <Compile Include="Objects\OrdenesFinder.cs" />
+    <Compile Include="Objects\OrderbyTime.cs" />
+    <Compile Include="Objects\OrderCupons.cs" />
+    <Compile Include="Objects\OrderDetail.cs" />
+    <Compile Include="Objects\OrdersDump.cs" />
+    <Compile Include="Objects\OrdersExtracts.cs" />
+    <Compile Include="Objects\Pizzas.cs" />
+    <Compile Include="Objects\ProductsExtractscs.cs" />
+    <Compile Include="Objects\Proveedor.cs" />
+    <Compile Include="Objects\PurchaseDetailcs.cs" />
+    <Compile Include="Objects\Ranking.cs" />
+    <Compile Include="Objects\RankingFinder.cs" />
+    <Compile Include="Objects\RegisterFile.cs" />
+    <Compile Include="Objects\RegisterFileDAL.cs" />
+    <Compile Include="Objects\ResultTabs.cs" />
+    <Compile Include="Objects\ResumenDiario.cs" />
+    <Compile Include="Objects\ResumenVentas.cs" />
+    <Compile Include="Objects\Roles.cs" />
+    <Compile Include="Objects\RowVentas.cs" />
+    <Compile Include="Objects\SalesDP.cs" />
+    <Compile Include="Objects\SalesLastYear.cs" />
+    <Compile Include="Objects\Semana.cs" />
+    <Compile Include="Objects\ServiceTime.cs" />
+    <Compile Include="Objects\SettingsFileSales.cs" />
+    <Compile Include="Objects\ShcheduleTransfer.cs" />
+    <Compile Include="Objects\TAB´s.cs" />
+    <Compile Include="Objects\TiempoServicio.cs" />
+    <Compile Include="Objects\Tienda.cs" />
+    <Compile Include="Objects\TotalSales.cs" />
+    <Compile Include="Objects\Transactions.cs" />
+    <Compile Include="Objects\Transfer.cs" />
+    <Compile Include="Objects\UserXRol.cs" />
+    <Compile Include="Objects\Ventas.cs" />
+    <Compile Include="Objects\VentasFinder.cs" />
+    <Compile Include="PageFactura.aspx.cs">
+      <DependentUpon>PageFactura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageFactura.aspx.designer.cs">
+      <DependentUpon>PageFactura.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pag_Communication.aspx.cs">
+      <DependentUpon>Pag_Communication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pag_Communication.aspx.designer.cs">
+      <DependentUpon>Pag_Communication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pag_Costos.aspx.cs">
+      <DependentUpon>Pag_Costos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pag_Costos.aspx.designer.cs">
+      <DependentUpon>Pag_Costos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pag_CuponesDP.aspx.cs">
+      <DependentUpon>Pag_CuponesDP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pag_CuponesDP.aspx.designer.cs">
+      <DependentUpon>Pag_CuponesDP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pag_Dominos.aspx.cs">
+      <DependentUpon>Pag_Dominos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pag_Dominos.aspx.designer.cs">
+      <DependentUpon>Pag_Dominos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pag_DQ.aspx.cs">
+      <DependentUpon>Pag_DQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pag_DQ.aspx.designer.cs">
+      <DependentUpon>Pag_DQ.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pag_FullTemplate.aspx.cs">
+      <DependentUpon>Pag_FullTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pag_FullTemplate.aspx.designer.cs">
+      <DependentUpon>Pag_FullTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pag_InfoTR.aspx.cs">
+      <DependentUpon>Pag_InfoTR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pag_InfoTR.aspx.designer.cs">
+      <DependentUpon>Pag_InfoTR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pag_MasterInd.aspx.cs">
+      <DependentUpon>Pag_MasterInd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pag_MasterInd.aspx.designer.cs">
+      <DependentUpon>Pag_MasterInd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pag_Reclutamiento.aspx.cs">
+      <DependentUpon>Pag_Reclutamiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pag_Reclutamiento.aspx.designer.cs">
+      <DependentUpon>Pag_Reclutamiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pag_SEF.aspx.cs">
+      <DependentUpon>Pag_SEF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pag_SEF.aspx.designer.cs">
+      <DependentUpon>Pag_SEF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pag_Training.aspx.cs">
+      <DependentUpon>Pag_Training.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pag_Training.aspx.designer.cs">
+      <DependentUpon>Pag_Training.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="strText.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strText.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\ToolsControls.cs" />
+    <Compile Include="Tools\ToolsFile.cs" />
+    <Compile Include="Tools\ToolsTime.cs" />
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebServices\AutoCompleteFacturas.asmx.cs">
+      <DependentUpon>AutoCompleteFacturas.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\LoadInfoSalesDP.asmx.cs">
+      <DependentUpon>LoadInfoSalesDP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\LoadXMLFacturas.asmx.cs">
+      <DependentUpon>LoadXMLFacturas.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\UploadFilesAutomatically.asmx.cs">
+      <DependentUpon>UploadFilesAutomatically.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ADODB">
+      <Guid>{B691E011-1797-432E-907A-4D8C69339129}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\strText.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>strText.Designer.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="Objects\Report1.rdlc" />
+    <EmbeddedResource Include="strText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>strText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52400</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52400/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

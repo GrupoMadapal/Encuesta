@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <statements>
+    <select id="selectLstSalesDPView" resultClass="SalesDP" parameterClass="SalesDP">
+      SELECT * FROM SM_SalesDPView
+      WHERE
+      <iterate prepend=" NumeroTienda IN " property="LstNumTienda" open="(" close=")" conjunction=",">
+        #LstNumTienda[]#
+      </iterate>
+    </select>
+
+    <insert id="insertObjSalesDPView">
+      <!--INSERT INTO SM_SalesDPView(NumeroTienda, NombreTienda, VentasReales, VentasAnoPasado, PorcVentas, Ordenes, OrdenesGratis, OrdenesCanceladas, EntradaHorno, TiempoEntrega)
+      VALUES (#NumeroTienda#, #NombreTienda#, #VentasReales#, #VentasAnoPasado#, #PorcVentas#, #Ordenes, #OrdenesGratis#, #OrdenesCanceladas#, #EntradaHorno#, #TiempoEntrega#)-->
+      
+      INSERT INTO SM_SalesDPView
+      SELECT * FROM SM_SalesDPData
+    </insert>
+
+    <delete id="deleteSalesDPView">
+      DELETE FROM SM_SalesDPView
+    </delete>
+  </statements>
+</sqlMap>

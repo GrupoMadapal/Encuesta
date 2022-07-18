@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Pizzas" type="Poleo.Objects.Pizzas" />
+    <typeAlias alias="VentasFinder2" type="Poleo.Objects.VentasFinder" />
+
+  </alias>
+  <statements>
+    <select id="SelectPizzas" parameterClass="VentasFinder2" resultClass="Pizzas">
+      Declare  @PizzasCount table(  Size varchar(15),Code varchar(25),Cantidad int)
+
+      insert into @PizzasCount
+      SELECT
+      SUBSTRING(Product_Size_Code,1,2) as Size,
+      ( case when Product_Crust_Code='ORIG' OR Product_Crust_Code='PKC'OR Product_Crust_Code='PKCO'THEN 'ORIGINAL'
+      WHEN Product_Crust_Code ='CHY' THEN 'CRUNCHY'
+      WHEN Product_Crust_Code ='DD' THEN 'DOUBLE DECKER'
+      WHEN Product_Crust_Code='PP' and Product_Size_Code like 'D4' THEN 'D4'
+      WHEN Product_Crust_Code='PP' and Product_Size_Code like '6' THEN 'Eventos'
+      WHEN Product_Code like 'DOM%' THEN 'DOMINATO'
+      ELSE Product_Crust_Code END  ) as Code,
+      SUM( Quantity) as Cantidad
+      FROM ProductsExtracts P
+      inner join Tiendas as T on T.Number_tienda=P.Location_Code
+      where (Product_Category_Code like 'pizza' or Product_Code like 'DOM%') and
+      EndDate between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+         Location_Code= #NumTienda#    
+      </isNotEmpty> 
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+         T.Tipo= #TipoTienda#    
+      </isNotEmpty>
+    <isNotEmpty prepend="AND" property="UbicacionTienda" >
+         T.Ubicacion = #UbicacionTienda#    
+      </isNotEmpty>
+      group by Product_Size_Code, Product_Crust_Code,Product_Code
+      order by Product_Size_Code
+
+
+      select
+ 
+      Size,
+      Code,
+      (case  when Size='D4' then sum(Cantidad)/4 else sum(Cantidad)end) as Cantidad
+      from @PizzasCount
+      group by  size,Code
+      order by Size
+    </select>
+    <select id="SelectProductos" parameterClass="VentasFinder2" resultClass="Pizzas">
+      SELECT
+      Product_Description as Producto,
+      SUM(Quantity) as CantidadTotal
+      FROM ProductsExtracts P
+      inner join Tiendas as T on T.Number_tienda=P.Location_Code
+      where Product_Category_Code like 'pizza' and
+      EndDate between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      group by Product_Description
+
+    </select>
+    <select id="SelectComplementos" parameterClass ="VentasFinder2" resultClass ="Pizzas">
+      Declare @CompCount table
+      (
+      Producto varchar(250),
+      Code varchar(100),
+      Size varchar(100),
+      Cantidad int
+      )
+      insert @CompCount
+      SELECT
+      case
+
+      when Product_Size_Code ='16OZ'  then 'REFRESCO 16 OZ'
+      when Product_Size_Code ='12OZ'  then 'REFRESCO 12 OZ'
+      when Product_Size_Code ='22OZ'  then 'REFRESCO 22 OZ'
+      when Product_Size_Code ='2LTS'  then 'REFRESCO 2 LTS'
+      when Product_Size_Code ='600ML' then 'REFRESCO 600ML'
+      when Product_Size_Code like 'A%600ML' then 'AGUA 600ML'
+      when Product_Description='ORDEN CHICKEN BOX' or Product_Description LIKE '%FINGERS%'  then 'FINGERS'
+      when Product_Description like'%PAPOTAS%' then 'PAPOTAS'
+      when Product_Description LIKE '%WINGS%'  then 'WINGS'
+      when Product_Description LIKE '%CANELAZO%'   then 'CANELAZO'
+      when Product_Description like'%CHEESY BREAD%'   then 'CHEESY BREAD'
+      when Product_Description LIKE '%SWEET BREAD%'   then 'SWEET BREAD'
+      when Product_Description LIKE '%CHICKEN BREAD%'   then 'CHICKEN BREAD'
+
+      else Product_Description end as Producto,
+      Product_Category_Code as Code,
+      Product_Size_Code as Size,
+      case when Product_Description='ORDEN PKC FINGERS' or Product_Description='ORDEN PKC PAPOTAS' then Quantity/2
+      WHEN Product_Description='ORDEN WINGS MEDIANAS' THEN Quantity *2 else Quantity end as  Cantidad
+      FROM ProductsExtracts p
+      inner join Tiendas as T on T.Number_tienda=P.Location_Code
+      where Product_Category_Code not like 'Pizza' and Product_Category_Code not like 'Sides' AND Product_Code NOT like 'DOM%'
+      and EndDate between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+
+      order by Product_Category_Code
+
+      select Producto,  SUM(Cantidad) as Cantidad from @CompCount
+      group by Producto
+
+    </select>
+    <select id="SelectCupones" parameterClass ="VentasFinder2" resultClass ="Pizzas">
+      <!--Declare  @Orders table
+      (
+      Numero_order varchar(500),
+      Location_Code varchar(500)
+      )
+
+      insert @Orders
+      select Ord_No as Numero_order,
+      Store_No as Location_Code
+      from OrdersExtracts P
+      inner join Tiendas as T on T.Number_tienda=P.Store_No
+      where Ord_Status_Cd='G' and Ord_Dt between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Store_No= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>-->
+
+      declare @pizzas table
+      (
+      Cupon varchar(100),
+      Cantidad int
+      )
+      insert @pizzas
+      select
+      case when substring(CouponCode,3,2)='21'then 'Martes 2X1'
+      when substring(CouponCode,4,2)='21'then 'Martes 2X1'
+      when CouponCode IN ('MG1','MG2')then 'Martes 2X1'
+      else CouponCode end Cupon,
+      SUM(OrdCpnQty) as Cantidad
+      from OrderCoupons OC
+      <!--inner join @Orders ORD on OC.Order_Number=ORD.Numero_order and OC.Location_Code=ORD.Location_Code-->
+      inner join Tiendas as T on T.Number_tienda=OC.Location_Code
+      where OC.Order_Date between #DateIni# AND #DateEnd# and  CouponCode not in ('536','535','N11','5R2','5R3','5R4','5R5')
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        OC.Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      group by CouponCode
+      order by cantidad desc
+
+      declare @pizzas2 table
+      (
+      Code varchar(100),
+      Cantidad int
+      )
+      insert @pizzas2
+      select
+      case when 6  > sum(Cantidad)  then 'Varios' else Cupon  end as Codigo
+      ,sum(Cantidad) as Cantidad from @pizzas
+      group by Cupon
+      order by Cantidad desc
+
+      select Code,Cupones.Descripcion, SUM(Cantidad) as Cantidad  from @pizzas2
+      left join Cupones  on Cupones.codigo=Code
+      group by Code,Cupones.Descripcion
+      order by Cantidad desc
+    </select>
+    <select id="SelectCupones2" parameterClass ="VentasFinder2" resultClass ="Pizzas">
+      declare @pizzas table
+      (
+      Code varchar(100),
+      Cantidad int
+      )
+
+      insert @pizzas
+      SELECT
+      case
+      when First_Cpn_Cd ='N11' then 'Pizza Mostrador'
+      when First_Cpn_Cd ='536' then 'Cupon Madapal'
+      when First_Cpn_Cd ='535' then 'Tarjeta Dot'
+      when First_Cpn_Cd ='5R2' or First_Cpn_Cd ='5R3' or First_Cpn_Cd ='5R4'or First_Cpn_Cd ='5R5' then 'Remake'
+      else First_Cpn_Cd end as Code
+      , COUNT(First_Cpn_Cd) as Cantidad
+      FROM OrdersExtracts p
+      inner join Tiendas as T on T.Number_tienda=P.Store_No
+      where First_Cpn_Cd not like '' and Ord_Dt between #DateIni# AND #DateEnd#
+      and  First_Cpn_Cd  in ('536','535','N11','5R2','5R3','5R4','5R5')
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Store_No= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      group by  First_Cpn_Cd,Cpn_Descr
+      order by   Cantidad desc,First_Cpn_Cd
+
+      select Code , SUM(cantidad) as Cantidad  from @pizzas
+      group by Code
+      order by Cantidad desc
+
+    </select>
+    
+    <select id="SelectPizzasMaestro" parameterClass="VentasFinder2" resultClass="Pizzas" >
+      
+       Declare  @PizzasCount table
+   (  
+   Size varchar(15),
+   Code varchar(25),
+   Cantidad int)
+
+      insert into @PizzasCount
+      SELECT
+      SUBSTRING(Product_Size_Code,1,2) as Size,
+      ( case when Product_Crust_Code='ORIG' OR Product_Crust_Code='PKC'OR Product_Crust_Code='PKCO'THEN 'ORIGINAL'
+      WHEN Product_Crust_Code ='CHY' THEN 'CRUNCHY'
+      WHEN Product_Crust_Code ='DD' THEN 'DOUBLE DECKER'
+      WHEN Product_Crust_Code='PP' and Product_Size_Code like 'D4' THEN 'D4'
+      WHEN Product_Crust_Code='PP' and Product_Size_Code like '6' THEN 'Eventos'
+      WHEN Product_Code like 'DOM%' THEN 'DOMINATO'
+      WHEN Product_Menu_Code like '%MOS' THEN 'MOSTRADOR'
+      ELSE Product_Crust_Code END  ) as Code,
+      SUM( Quantity) as Cantidad
+      FROM ProductsExtracts P
+      inner join Tiendas as T on T.Number_tienda=P.Location_Code
+      where (Product_Category_Code like 'pizza' or Product_Code like 'DOM%') and
+      EndDate between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+         Location_Code= #NumTienda#    
+      </isNotEmpty> 
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+         T.Tipo= #TipoTienda#    
+      </isNotEmpty>
+    <isNotEmpty prepend="AND" property="UbicacionTienda" >
+         T.Ubicacion = #UbicacionTienda#    
+      </isNotEmpty>      
+      group by Product_Size_Code, Product_Crust_Code,Product_Code,Product_Menu_Code
+      order by Product_Size_Code
+      
+   Declare  @PizzasCount2 table
+   (  
+   Size varchar(15),
+   Code varchar(25),
+   Cantidad int)
+
+	  insert @PizzasCount2	
+      select 
+      Size,
+      Code,
+      (case  when Size='D4' then sum(Cantidad)/4 else sum(Cantidad)end) as Cantidad
+      from @PizzasCount
+      group by  size,Code
+      order by Size     
+       
+      
+     insert @PizzasCount2 
+     SELECT Product_Size_Code,'ORIGINAL85' as Code, SUM(Quantity) as Catidad FROM ProductsExtracts
+     WHERE Product_Menu_Code like '%MOS' AND 
+     EndDate between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+         Location_Code= #NumTienda#    
+      </isNotEmpty> 
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+         T.Tipo= #TipoTienda#    
+      </isNotEmpty>
+    <isNotEmpty prepend="AND" property="UbicacionTienda" >
+         T.Ubicacion = #UbicacionTienda#    
+      </isNotEmpty>
+         group by Product_Size_Code
+         
+         create table ##pizzas 
+         (
+           Descripcion varchar(100),
+           Size varchar(15),
+		   Code varchar(25),
+		   orden int
+         )
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('Pizzas 6','6','ORIGINAL',1)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('Pizzas 8','8','ORIGINAL',2)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('Pizzas 12','12','ORIGINAL',3)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('Pizzas 14','14','ORIGINAL',4)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('Double Decker','14','DOUBLE DECKER',5)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('Crunchy','14','CRUNCHY',6)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('Pizzas PA´LLEVAR','14','ORIGINALPA',7)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('ORILLA DE 3 QUESOS GRANDE','14','ORILLA3Q',8)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('ORILLA DE 3 QUESOS MEDIANA','12','ORILLA3Q',9)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('ORILLA QUESO GRANDE','14','ORILLA',10)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('ORILLA QUESO MEDIANA','12','ORILLA',11)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('PIZZA GRANDE PROMO 85','14','ORIGINAL85',12)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('PIZZA DE SARTEN 8','8','SARTEN',14)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('PIZZA DE SARTEN 14','14','SARTEN',15)
+         insert ##pizzas (Descripcion,Size,Code,orden) values ('D4','D4','D4',16)
+      
+     SELECT distinct ##pizzas.*, pc.Cantidad
+     FROM ##pizzas 
+     LEFT JOIN @PizzasCount2  AS pc ON ##pizzas.Code=pc.Code AND ##pizzas.Size=pc.Size
+	 order by ##pizzas.orden
+     
+     DROP TABLE ##pizzas
+    </select>
+   
+
+  </statements>
+</sqlMap>

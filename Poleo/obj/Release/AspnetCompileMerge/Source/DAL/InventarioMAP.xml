@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Inventario" type="Poleo.Objects.Inventario" />
+    <typeAlias alias="VentasInventario" type="Poleo.Objects.VentasFinder" />
+  </alias>
+
+  <statements>
+    <select id ="SelectMasasPizzas" parameterClass="VentasInventario" resultClass="Inventario" >
+      Declare @Masas table
+      (
+      Inventory_Code varchar(100),
+      Inventory_Type_Code varchar(50),
+      cost_unit  decimal(8,2),
+      Delivered_Qty decimal(8,2),
+      Actual_Usage decimal(8,2),
+      Ideal_Usage decimal(10,2),
+      Description varchar(250)
+      )
+      Declare @Masas2 table
+      (
+      Inventory_Code varchar(100),
+      Inventory_Type_Code varchar(50),
+      Beginning_Qty decimal(8,2)
+      )
+
+      Declare @Masas3 table
+      (
+      Inventory_Code varchar(100),
+      Inventory_Type_Code varchar(50),
+      Ending_Qty decimal(8,2)
+      )
+
+      insert @Masas
+      SELECT
+      Inventory_Code,
+      Inventory_Type_Code,
+      ROUND(Count_Unit_Cost,2,0) AS cost_unit,
+      SUM(Delivered_Qty) AS Delivered_Qty,
+      SUM(Actual_Usage) AS  Actual_Usage,
+      SUM(Ideal_Usage) as Ideal_Usage,
+      Description
+      FROM DailyInventoryExtracts P
+      inner join Tiendas as T on T.Number_tienda=P.Location_Code
+      WHERE System_Date between #DateIni# AND #DateEnd#   AND  Starting_Qty > 0
+      and (Inventory_Code LIKE '%17' OR Inventory_Code LIKE '%14'  OR Inventory_Code LIKE 'CA%' OR Inventory_Code LIKE 'MA[0-9]%')
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      GROUP BY Inventory_Code,Inventory_Type_Code,ROUND(Count_Unit_Cost,2,0), Description
+      ORDER BY Inventory_Type_Code
+
+      INSERT @Masas2
+      SELECT
+      Inventory_Code,
+      Inventory_Type_Code,
+      Beginning_Qty
+      FROM DailyInventoryExtracts P
+      inner join Tiendas as T on T.Number_tienda=P.Location_Code
+      WHERE  System_Date = #DateIni# 
+      and (Inventory_Code LIKE '%17' OR Inventory_Code LIKE '%14' OR Inventory_Code LIKE 'CA%' OR Inventory_Code LIKE 'MA[0-9]%')
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      ORDER BY  Inventory_Type_Code
+
+      INSERT @Masas3
+      SELECT
+      Inventory_Code,
+      Inventory_Type_Code,
+      Ending_Qty
+      Description
+      FROM DailyInventoryExtracts P
+      inner join Tiendas as T on T.Number_tienda=P.Location_Code
+      WHERE   System_Date = #DateEnd#
+      AND (Inventory_Code like '%17' or Inventory_Code like '%14'  or Inventory_Code like 'CA%' or Inventory_Code like 'MA[0-9]%')
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      ORDER BY  Inventory_Type_Code
+
+
+      SELECT
+      M1.Inventory_Code as Code,
+      M1.Description as Producto,
+      M1.cost_unit as PrecioUnitario,
+      M2.Beginning_Qty,
+      M1.Delivered_Qty,
+      M3.Ending_Qty,
+      M1.Actual_Usage,
+      M1.Ideal_Usage
+      FROM  @Masas M1
+      INNER JOIN  @Masas2 M2 on M1.Inventory_Code=M2.Inventory_Code
+      INNER JOIN  @Masas3 M3 on M1.Inventory_Code=M3.Inventory_Code
+    </select>
+    <select id ="SelectDrink" parameterClass="VentasInventario" resultClass="Inventario" >
+      Declare @COCA table
+      (
+      inventory_Code varchar(200),
+      cost_unit decimal(8,2),
+      Delivered_Qty Decimal(8,2),
+      Actual_Usage Decimal(8,2),
+      Ideal_Usage decimal(10,2)
+      )
+      Declare @COCAIni table
+      (
+      inventory_Code varchar(200),
+      cost_unit decimal(8,2),
+      Beginning_Qty Decimal(8,2)
+      )
+      Declare @COCAEnd table
+      (
+      inventory_Code varchar(200),
+      cost_unit decimal(8,2),
+      Ending_Qty Decimal(8,2)
+      )
+
+      INSERT @COCA
+      SELECT
+      Drink.inventory_Code
+      ,Drink.cost_unit
+      , SUM(Drink.Delivered_Qty) AS Delivered_Qty
+      , SUM(Drink.Actual_Usage) AS Actual_Usage
+      , SUM(Drink.Ideal_Usage) AS Ideal_Usage
+      FROM (SELECT
+      CASE WHEN  Inventory_Code LIKE '%600%' THEN '600 ML'
+      WHEN Inventory_Code LIKE '%2L%' THEN '2Lts'
+      WHEN Inventory_Code LIKE 'BAG%' THEN 'REFIL'
+      ELSE Inventory_Code END AS inventory_Code ,
+      ROUND(Count_Unit_Cost,2,0) AS cost_unit,
+      SUM(Delivered_Qty) AS Delivered_Qty ,
+      SUM(Actual_Usage) AS Actual_Usage,
+      SUM(Ideal_Usage) as Ideal_Usage
+      FROM DailyInventoryExtracts P
+      inner join Tiendas as T on T.Number_tienda=P.Location_Code
+      WHERE
+      System_Date BETWEEN #DateIni# AND #DateEnd#
+      AND Starting_Qty > 0
+      AND Inventory_Type_Code like 'Cola'
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      GROUP BY  Inventory_Code,ROUND(Count_Unit_Cost,2,0)
+      ) AS Drink
+      GROUP BY Drink.inventory_Code,Drink.cost_unit
+
+      INSERT @COCAIni
+      SELECT
+      Drink.inventory_Code
+      ,Drink.cost_unit
+      , SUM(Drink.Beginning_Qty) AS Beginning_Qty
+      FROM (SELECT
+      CASE WHEN  Inventory_Code LIKE '%600%' THEN '600 ML'
+      WHEN Inventory_Code LIKE '%2L%' THEN '2Lts'
+      WHEN Inventory_Code LIKE 'BAG%' THEN 'REFIL'
+      ELSE Inventory_Code END AS inventory_Code ,
+      ROUND(Count_Unit_Cost,2,0) AS cost_unit,
+      SUM(Beginning_Qty) AS Beginning_Qty
+      FROM DailyInventoryExtracts P
+      inner join Tiendas as T on T.Number_tienda=P.Location_Code
+      WHERE
+      System_Date = #DateIni#
+      AND Starting_Qty > 0
+      AND Inventory_Type_Code like 'Cola'
+      <isNotEmpty prepend="AND" property="NumTienda" >
+      Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      GROUP BY  Inventory_Code,ROUND(Count_Unit_Cost,2,0)
+      ) AS Drink
+      GROUP BY Drink.inventory_Code,Drink.cost_unit
+
+      INSERT @COCAEnd
+      SELECT
+      Drink.inventory_Code
+      ,Drink.cost_unit
+      , SUM(Drink.Ending_Qty) AS Ending_Qty
+      FROM (SELECT
+      CASE WHEN  Inventory_Code LIKE '%600%' THEN '600 ML'
+      WHEN Inventory_Code LIKE '%2L%' THEN '2Lts'
+      WHEN Inventory_Code LIKE 'BAG%' THEN 'REFIL'
+      ELSE Inventory_Code END AS inventory_Code ,
+      ROUND(Count_Unit_Cost,2,0) AS cost_unit,
+      SUM(Ending_Qty) AS Ending_Qty
+      FROM DailyInventoryExtracts P
+      inner join Tiendas as T on T.Number_tienda=P.Location_Code
+      WHERE
+      System_Date = #DateEnd#
+      AND Starting_Qty > 0
+      AND Inventory_Type_Code like 'Cola'
+      <isNotEmpty prepend="AND" property="NumTienda" >
+      Location_Code= #NumTienda#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="TipoTienda" >
+      T.Tipo= #TipoTienda#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="UbicacionTienda" >
+      T.Ubicacion = #UbicacionTienda#
+    </isNotEmpty>
+      GROUP BY  Inventory_Code,ROUND(Count_Unit_Cost,2,0)
+      ) AS Drink
+      GROUP BY Drink.inventory_Code,Drink.cost_unit
+
+
+
+      SELECT
+      C1.inventory_Code AS Code,
+      C1.cost_unit AS PrecioUnitario ,
+      C2.Beginning_Qty,
+      C1.Delivered_Qty,
+      C1.Actual_Usage,
+      C3.Ending_Qty,
+      C1.Ideal_Usage
+      FROM @COCA AS C1
+      INNER JOIN @COCAIni AS C2 ON C2.inventory_Code=C1.inventory_Code AND C1.cost_unit=C2.cost_unit
+      INNER JOIN @COCAEnd AS C3 ON C3.inventory_Code= C1.inventory_Code AND C1.cost_unit=C3.cost_unit
+    </select>
+
+    <select id ="SelectInventarioInicialFinal" parameterClass="VentasInventario" resultClass="Inventario" >
+
+      SELECT SUM( INV2.Count_Unit_Cost * INV2.Beginning_Qty) AS Inventario_Inicial, 0 as  Inventario_Final
+      FROM  DailyInventoryExtracts INV2
+      INNER JOIN Tiendas AS T on T.Number_tienda = INV2.Location_Code
+      WHERE INV2.System_Date = #DateIni#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        INV2.Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      UNION
+      SELECT 0 AS Inventario_Inicial, SUM( INV.Count_Unit_Cost * INV.Ending_Qty) AS Inventario_Final
+      FROM  DailyInventoryExtracts INV
+      INNER JOIN Tiendas AS T on T.Number_tienda = INV.Location_Code
+      WHERE INV.System_Date = #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        INV.Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      
+    </select>
+  
+  </statements>
+</sqlMap>

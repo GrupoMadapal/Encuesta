@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Adicional" type="Poleo.Objects.Adicional" />
+  </alias>
+
+  <statements>
+    <select id="SelectAdcCanelazo" resultClass="Adicional" parameterClass="VentasFinder">
+      SELECT PE.Location_Code, T.Nombre_tienda, SUM(PE.Quantity) AS Quantity
+      FROM ProductsExtracts PE
+      INNER JOIN Tiendas T ON PE.Location_Code = T.Number_tienda
+      WHERE BeginDate BETWEEN #DateIni# AND #DateEnd# AND Location_Code = #NumTienda#
+      AND Product_Description LIKE '%CANELAZO%'
+      GROUP BY PE.Location_Code, T.Nombre_tienda, T.Orden
+      ORDER BY T.Orden DESC
+    </select>
+  </statements>
+</sqlMap>

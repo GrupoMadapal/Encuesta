@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="SettingsFileSales" type="Poleo.Objects.SettingsFileSales" />
+  </alias>
+
+  <statements>
+    <select id="SelectObjSettingsFileSales" parameterClass="SettingsFileSales" resultClass="SettingsFileSales">
+      SELECT * FROM SM_SettingsFileSales WHERE Company = #Company# AND Year = #Year#
+    </select>
+
+    <insert id="InsertObjSettings" parameterClass="SettingsFileSales">
+      INSERT INTO SM_SettingsFileSales (Company, Year, NumWeek) VALUES (#Company#, #Year#, #NumWeek#)
+    </insert>
+  
+    <update id="UpdateObjSettings" patameterClass="SettingsFileSales">
+      UPDATE SM_SettingsFileSales SET
+      NumWeek = #NumWeek#
+      WHERE Company = #Company# AND Year = #Year#
+    </update>
+  </statements>
+</sqlMap>

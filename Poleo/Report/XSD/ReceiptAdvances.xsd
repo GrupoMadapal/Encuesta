@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReceiptAdvances"
+    targetNamespace="http://tempuri.org/ReceiptAdvances.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/ReceiptAdvances.xsd"
+    xmlns:mstns="http://tempuri.org/ReceiptAdvances.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="Cabezera">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="NameUser" type="xs:string" />
+        <xs:element name="NumberDoc" type="xs:string" />
+        <xs:element name="Receipt_Date" type="xs:dateTime" />
+        <xs:element name="Quantity" type="xs:string" />
+        <xs:element name="Departure_Date" type="xs:string"/>
+        <xs:element name="Return_Date" type="xs:string" />
+        <xs:element name="Hotel" type="xs:boolean" />
+        <xs:element name="Plane" type="xs:boolean" />
+        <xs:element name="Bus" type="xs:boolean" />
+        <xs:element name="Comments" type="xs:string" />
+        <xs:element name="Destination" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Conceptos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="StrConcept" type="xs:string" />
+        <xs:element name="Quantity" type="xs:string" />
+        <xs:element name="Comments" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

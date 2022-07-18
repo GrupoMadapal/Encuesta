@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="DOT_Inventory" type="Poleo.Objects.DOT_Inventory" />
+  </alias>
+  
+  <parameterMaps>
+    <parameterMap id="paramMapStoredI" class="InfoTiempoReal">
+      <parameter property="NumTienda" column="Store" />
+      <parameter property="Fecha"     column="DateIni"/>
+      <parameter property="FechaEnd"  column="DateEnd" />
+    </parameterMap>
+  </parameterMaps>
+
+  <statements>
+    <procedure id="GetUseInventory" resultClass="DOT_Inventory" parameterMap="paramMapStoredI">
+      GetUseInventory 
+    </procedure>
+  </statements>
+</sqlMap>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CheckingExpense"
+    targetNamespace="http://tempuri.org/CheckingExpense.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/CheckingExpense.xsd"
+    xmlns:mstns="http://tempuri.org/CheckingExpense.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="Cabecera">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id" type="xs:string" />
+        <xs:element name="Name" type="xs:string" />
+        <xs:element name="Advances" type="xs:boolean" />
+        <xs:element name="Reembolso" type="xs:decimal" />
+        <xs:element name="Adv" type="xs:decimal" />
+        <xs:element name="TotalG" type="xs:decimal" />
+        <xs:element name="NumberChecking" type="xs:string" />
+        <xs:element name="NumberDoc" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Detalle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="CompanyName" type="xs:string" />
+        <xs:element name="CityName" type="xs:string" />
+        <xs:element name="StateName" type="xs:string" />
+        <xs:element name="Date" type="xs:string" />
+        <xs:element name="StrConcept" type="xs:string" />
+        <xs:element name="Description" type="xs:string" />
+        <xs:element name="TotalQuantity" type="xs:decimal" />
+        <xs:element name="Invoice" type="xs:string" />
+        <xs:element name="Supplier" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

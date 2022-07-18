@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Login" type="Poleo.Objects.Login" />
+  </alias>
+  <statements>
+    <insert id="InsertNewLogin" parameterClass="Login">
+      INSERT INTO Login
+      ( Username 
+      ,Password
+      ,Email
+      ,Name
+      ,Activo)
+      VALUES
+      (#UserName#
+      ,#Password#
+      ,#Email#
+      ,#Name#
+      ,#Activo#)
+    </insert>
+    <select id ="SearchUser" parameterClass ="Login" resultClass ="int">
+      select Count(*) from Login where Username=#UserName# and Password=#Password#    
+    </select>
+    <select id ="ExistUser" parameterClass ="Login" resultClass ="int">
+      select Count(*) from Login where Username=#UserName# OR Email=#Email#
+    </select>
+    <select id ="SelectUser" parameterClass ="Login" resultClass ="Login">
+      select IdUser,UserName, CONVERT (varchar(255),DECRYPTBYPASSPHRASE(Llave,Password)) as Password
+      , Email, Name, Activo from Login
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND" property="UserName">
+          UserName=#UserName#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="Password">
+          Password=CONVERT (varchar(255),DECRYPTBYPASSPHRASE(Llave,Password))
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="Email">
+          Email=#Email#
+        </isNotEmpty>
+      </dynamic>
+      <!--where Username=#UserName# and Password=#Password#-->
+    </select>
+
+    <select id ="GetPasswordByEmail" parameterClass ="Login" resultClass ="Login">
+      select Password from Login where  Email=#Email#
+    </select>
+    
+    
+  </statements>
+</sqlMap>

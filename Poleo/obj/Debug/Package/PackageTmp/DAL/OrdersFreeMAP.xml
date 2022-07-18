@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+	<alias>
+		<typeAlias alias="OrdenesGratis" type="Poleo.Objects.OrderCupons" />
+
+
+	</alias>
+
+	<statements> 
+	<select id="SelectFreeOrders" parameterClass="VentasFinder" resultClass="OrdenesGratis">
+		SELECT
+		OrdersDump.Location_Code,
+		OrdersDump.Order_Number,
+		OrdersDump.Order_Date,
+		OrdersDump.Customer_Name,
+		OrdersExtracts.Phone as phone,
+		OrdersDump.OrderPaymentDueAmt
+		FROM OrdersDump
+		inner join OrdersExtracts on
+		ordersdump.order_Number = ordersextracts.ord_no and
+		OrdersDump.location_Code = ordersextracts.Store_No
+		inner join Tiendas T on T.Number_tienda = OrdersDump.Location_Code
+		where OrdersDump.Order_Status_Code='98' and (OrdersDump.Order_Date between #DateIni# AND #DateEnd#)
+
+		<isNotEmpty prepend="AND" property="NumTienda" >
+			Location_Code= #NumTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="TipoTienda" >
+			T.Tipo= #TipoTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="UbicacionTienda" >
+			T.Ubicacion = #UbicacionTienda#
+		</isNotEmpty>
+		group by Order_Number, Order_Date, Customer_Name,Phone,OrderPaymentDueAmt,Location_Code
+	</select>
+
+		
+		<select id="SelectOrdenesEditadas" parameterClass="VentasFinder" resultClass="OrdenesGratis">
+			 SELECT o.Location_Code, 
+			 o.Order_Number,
+			 o.Order_Date,
+			 o.EditEmployeeCode as Num_Empleado,
+			 e.First_Name+ ' '+e.Last_Name as NombreEmpleado
+			FROM OrdersDump O
+			  left join EmployeePOS E on E.location_code=O.location_code and E.employee_code=o.EditEmployeeCode
+				 inner join Tiendas T on T.Number_tienda = O.Location_Code
+			where o.OrderEditCount='1' and o.Order_Date between #DateIni# AND #DateEnd# and o.OrderFinalPrice &lt; o.OrderListPrice
+			
+		<isNotEmpty prepend="AND" property="NumTienda" >
+			O.Location_Code= #NumTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="TipoTienda" >
+			T.Tipo= #TipoTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="UbicacionTienda" >
+			T.Ubicacion = #UbicacionTienda#
+		</isNotEmpty>
+		
+	    </select>
+
+	<select id="SelectOrdenesCanceladas" parameterClass="VentasFinder" resultClass="OrdenesGratis">
+	 SELECT
+		O.Location_Code,
+		O.Order_Number,
+		O.Order_Date,
+		O.Customer_Name,
+		o.orderfinalprice as Total_Orden,
+		CASE WHEN (o.Order_Status_Code='99') THEN 'MALA' 
+		WHEN (o.Order_Status_Code='100') THEN 'CANCELADA'
+		WHEN (o.Order_Status_Code='103') THEN 'SUSPENDIDA' END AS Razon,
+		O.Void_Canc_Auth_Code AS Num_Empleado,
+		e.First_Name+ ' '+e.Last_Name as NombreEmpleado,
+		OrdersExtracts.Phone as Phone
+		FROM OrdersDump o
+		inner join OrdersExtracts on o.order_Number = ordersextracts.ord_no and o.location_Code = ordersextracts.Store_No
+		inner join Tiendas T on T.Number_tienda = O.Location_Code
+		left join EmployeePOS E on  E.location_code=O.location_code and E.employee_code=o.Void_Canc_Auth_Code
+		where Order_Status_Code in ('99','100','103') AND (O.Order_Date between #DateIni# AND #DateEnd#) and  Order_Type_Code='D'
+		<isNotEmpty prepend="AND" property="NumTienda" >
+			O.Location_Code= #NumTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="TipoTienda" >
+			T.Tipo= #TipoTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="UbicacionTienda" >
+			T.Ubicacion = #UbicacionTienda#
+		</isNotEmpty>
+		
+	    </select>
+	
+		
+	<select id="SelectOpenPay" parameterClass="VentasFinder" resultClass="OrdenesGratis">
+		SELECT O.Location_Code,
+		Order_Date,
+		sum(O.OrderFinalPrice) As OrderFinalPrice
+		FROM            OrdersDump O
+		inner join Tiendas T on T.Number_tienda = O.Location_Code
+		WHERE       (OrderCityName != 'Uber') AND (Order_Date between #DateIni# AND #DateEnd#) AND (Order_Status_Code='4') and Added_By = 'power' and (Source_Code = 'web')  and (Comments like 'OP%') and Order_Time &lt; '5'
+
+		<isNotEmpty prepend="AND" property="NumTienda" >
+			O.Location_Code= #NumTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="TipoTienda" >
+			T.Tipo= #TipoTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="UbicacionTienda" >
+			T.Ubicacion = #UbicacionTienda#
+		</isNotEmpty>
+		
+	GROUP BY Location_Code, Order_Date
+		
+	    </select>
+		
+		
+		
+		<select id="SelectPagoUber" parameterClass="VentasFinder" resultClass="OrdenesGratis">
+			SELECT
+			O.Location_Code,
+			sum(O.OrderFinalPrice) as Pagoconuber ,
+			Order_Date
+			FROM            OrdersDump O
+			inner join Tiendas T on T.Number_tienda = O.Location_Code
+			WHERE      (OrderCityName = 'Uber') AND (Order_Date between #DateIni# AND #DateEnd#) AND (Order_Status_Code='4') and Added_By = 'power' and (Source_Code = 'web')  and (Comments like 'OP%') and Order_Time &lt; '5'
+
+			<isNotEmpty prepend="AND" property="NumTienda" >
+			O.Location_Code= #NumTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="TipoTienda" >
+			T.Tipo= #TipoTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="UbicacionTienda" >
+			T.Ubicacion = #UbicacionTienda#
+		</isNotEmpty>
+		
+	GROUP BY Location_Code, Order_Date
+		
+	    </select>
+
+
+		<select id="SelectDetalleOpenPay" parameterClass="VentasFinder" resultClass="OrdenesGratis">
+			select
+			Location_Code
+			,Order_Number
+			,Order_Date
+			,Customer_Name
+			,Comments
+			,Order_Status_Code
+			,Cancel_Reason
+			,OrderFinalPrice
+			,OrderStreetNumber
+			,OrderStreetName
+			,OrderAddressLine2
+			,OrderAddressLine4
+			,OrderPostalCode
+			,OrderCityName
+			from OrdersDump O
+			inner join Tiendas T on T.Number_tienda = O.Location_Code
+			where (O.OrderAddressLine4 != '') and O.Order_Date between #DateIni# AND #DateEnd# 
+			<isNotEmpty prepend="AND" property="NumTienda" >
+				O.Location_Code= #NumTienda#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="TipoTienda" >
+				T.Tipo= #TipoTienda#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="UbicacionTienda" >
+				T.Ubicacion = #UbicacionTienda#
+			</isNotEmpty>
+
+			
+
+		</select>
+		
+		
+	
+	</statements>
+
+
+</sqlMap>

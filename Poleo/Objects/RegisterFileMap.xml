@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="RegisterFile" type="Poleo.Objects.RegisterFile" />
+    <typeAlias alias="Files" type="Poleo.Objects.Files" />
+  </alias>
+<statements >
+<insert id="InsertRegisterFile" parameterClass="RegisterFile" >
+  INSERT INTO Register_File
+           (Tienda
+           ,DateRegister
+           ,ATR
+           ,CKY
+           ,DYS
+           ,INV
+           ,IPR
+           ,ORD
+           ,PRS
+           ,OC2
+           ,IPD
+           ,ODT)
+     VALUES
+           (#Tienda#
+           ,#DateRegister#
+           ,0
+           ,0
+           ,0
+           ,0
+           ,0
+           ,0
+           ,0
+           ,0
+           ,0
+           ,0)
+  
+
+</insert>
+  <insert id="InsertUpLoadedFiles" parameterClass="Files">
+    INSERT INTO UpLoadedFiles
+           (RegisterTotal
+           ,RegisterSaved
+           ,RegisterWarning
+           ,Shop
+           ,DateFile
+           ,TypeFile
+           ,Name
+           ,NameFull)
+     VALUES
+           (#TotalRegister#
+           ,#TotalCorrect#
+           ,#TotalError#
+           ,#NumberShop#
+           ,#DateFile#
+           ,#TypeFile#
+           ,#TableName#
+           ,#NameFile#)
+  </insert>
+ <select id="SelectRegisterFile" parameterClass="RegisterFile" resultClass="RegisterFile">
+   Select * from Register_File
+   where Tienda=#Tienda# and convert(date,DateRegister)=convert(date,#DateRegister#)
+ </select>
+  <update id="UpDateRegisterFileATR" parameterClass="RegisterFile">
+    Update Register_File
+    SET ATR=1
+    where Tienda=#Tienda# and DateRegister=#DateRegister#
+  </update>
+  <update id="UpDateRegisterFileCKY" parameterClass="RegisterFile">
+    Update Register_File
+    SET CKY=1
+    where Tienda=#Tienda# and DateRegister=#DateRegister#
+  </update>
+  <update id="UpDateRegisterFileDYS" parameterClass="RegisterFile">
+    Update Register_File
+    SET DYS=1
+    where Tienda=#Tienda# and DateRegister=#DateRegister#
+  </update>
+<update id="UpDateRegisterFileINV" parameterClass="RegisterFile">
+    Update Register_File
+    SET INV=1
+    where Tienda=#Tienda# and DateRegister=#DateRegister#
+  </update>
+<update id="UpDateRegisterFileIPR" parameterClass="RegisterFile">
+    Update Register_File
+    SET IPR=1
+    where Tienda=#Tienda# and DateRegister=#DateRegister#
+  </update>
+<update id="UpDateRegisterFileORD" parameterClass="RegisterFile">
+    Update Register_File
+    SET ORD=1
+    where Tienda=#Tienda# and DateRegister=#DateRegister#
+  </update>
+<update id="UpDateRegisterFilePRS" parameterClass="RegisterFile">
+    Update Register_File
+    SET PRS=1
+    where Tienda=#Tienda# and DateRegister=#DateRegister#
+  </update>
+  <update id="UpDateRegisterFileOC2" parameterClass="RegisterFile">
+    Update Register_File
+    SET OC2=1
+    where Tienda=#Tienda# and DateRegister=#DateRegister#
+  </update>
+  <update id="UpDateRegisterFileIPD" parameterClass="RegisterFile">
+    Update Register_File
+    SET IPD=1
+    where Tienda=#Tienda# and DateRegister=#DateRegister#
+  </update>
+  <update id="UpDateRegisterFileODT" parameterClass="RegisterFile">
+    Update Register_File
+    SET ODT=1
+    where Tienda=#Tienda# and DateRegister=#DateRegister#
+  </update>
+  
+  <!--Added by Hector Sanchez M. 20160518-->
+  <update id="UpDateRegisterFileOR2" parameterClass="RegisterFile">
+    Update Register_File
+    SET OR2 = 1
+    where Tienda = #Tienda# and DateRegister = #DateRegister#
+  </update>
+</statements>
+</sqlMap>

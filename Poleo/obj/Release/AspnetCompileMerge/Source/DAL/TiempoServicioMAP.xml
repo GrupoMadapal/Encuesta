@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="TiempoServicio" type="Poleo.Objects.TiempoServicio" />
+  </alias>
+  <statements>
+    <select id="SelectTiempoServicio" parameterClass="VentasFinder" resultClass="TiempoServicio">
+      SELECT
+      Ave_Load_Hms AS EntradaHornoMinHMS,
+      Ave_load_Seconds As EntradaHornoSec,
+      EndDate AS Fecha,
+      CASE  when DATEPART(dw,EndDate)=1  then 7 else DATEPART(dw,EndDate)-1 end  AS NumDia,
+      DATEPART(ISO_WEEK, EndDate) as NumSemana
+      FROM KeysExtractsCorpVersion
+      WHERE EndDate BETWEEN #DateIni# AND #DateEnd#
+      AND Location_Code = #NumTienda#
+      ORDER BY EndDate
+    </select>
+  </statements>
+</sqlMap>

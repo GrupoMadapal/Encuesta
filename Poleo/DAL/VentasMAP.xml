@@ -1,0 +1,838 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Ventas" type="Poleo.Objects.Ventas" />
+    <typeAlias alias="VentasFinder" type="Poleo.Objects.VentasFinder" />
+    <typeAlias alias="TotalSales" type="Poleo.Objects.TotalSales" />
+    <typeAlias alias="ResumenVentas" type="Poleo.Objects.ResumenVentas" />
+    <typeAlias alias="SalesLastYear" type="Poleo.Objects.SalesLastYear" />
+    <typeAlias alias="DepositoYTransacciones" type="Poleo.Objects.DepositoYTransacciones" />
+    <typeAlias alias="InfoTiempoReal" type="Poleo.Objects.InfoTiempoReal" />
+    <typeAlias alias="DailyInventoryExtractss" type="Poleo.Objects.DailyInventoryExtracts" />
+
+	
+
+    
+  
+  </alias>
+  <statements>
+    <select id="SelectVentas" parameterClass="VentasFinder" resultClass="Ventas">
+      SELECT
+      EndDate            AS  FechaVenta
+      ,Master_Sales	      AS  VentasBrutas
+      ,Void_Sales	        AS  Canceladas
+      ,Bad_Sales          AS  OrdenesMalas
+      ,Total_Sales        AS  VentasNetas
+      ,Tax_Amount          AS  IVA  
+      ,Net_Sales          AS  VentasReales
+      ,Delivery_Sales     AS  VentasReparto
+      ,Carryout_Sales     AS  VentasMostrador
+      ,order_count AS Ordenes
+      ,Food_Cost as Utilizado
+      ,Location_Code      AS  Tienda
+      ,T.Nombre_tienda         AS    Name
+      FROM KeysExtractsCorpVersion as KeysCorp
+      inner join Tiendas as T on T.Number_tienda=KeysCorp.Location_Code
+      where EndDate between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+         Location_Code= #NumTienda#    
+      </isNotEmpty> 
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+         T.Tipo= #TipoTienda#    
+      </isNotEmpty>
+    <isNotEmpty prepend="AND" property="UbicacionTienda" >
+         T.Ubicacion = #UbicacionTienda#    
+      </isNotEmpty>
+      ORDER BY Location_Code,EndDate    
+    </select>
+  <select id ="TotalSalesbyStore" parameterClass="VentasFinder" resultClass="TotalSales">
+    SELECT
+    SUM(Master_Sales)	              AS    VentasBrutasTotal
+    , SUM(Void_Sales)	              AS    CanceladasTotal
+    , SUM(Bad_Sales)                AS    OrdenesMalasTotal
+    , SUM(Total_Sales)              AS    VentasNetasTotal
+    , SUM(Tax_Amount)               AS    IVATotal
+    , SUM(Net_Sales)                AS    VentasRealesTotal
+    , SUM(Delivery_Sales)           AS    VentasRepartoTotal
+    , SUM(Carryout_Sales - Dine_In_Sales)           AS    VentasMostradorTotal  <!--20170927 Modified by Hector Sanchez M. se le tiene que restar el total de ventas en restaurante-->
+    , SUM(Dine_In_Sales)            AS    VentasRestauranteTotal
+    , SUM(Master_Order_Count)       AS    OrdenesTotales
+    , SUM(Dine_In_Order_Count)      AS    OrdenesTotalesRestaurante
+    , SUM(Carryout_Order_Count)     AS    OrdenesTotalesMostrador
+    , SUM(Delivery_Order_Count)     AS    OrdenesTotalReparto
+    , SUM(Bad_Order_Count)          AS    OrdenesMalasCount
+    , SUM(Ideal_Food_Cost)          AS    Utilizado
+    <!--, Location_Code                 AS    Tienda
+    , T.Nombre_tienda               AS    Name-->
+    FROM KeysExtractsCorpVersion as KeysCorp
+    inner join Tiendas as T on T.Number_tienda=KeysCorp.Location_Code
+    where EndDate between #DateIni# AND #DateEnd#
+    <isNotEmpty prepend="AND" property="NumTienda" >
+         Location_Code= #NumTienda#    
+      </isNotEmpty>
+    <isNotEmpty prepend="AND" property="TipoTienda" >
+         T.Tipo= #TipoTienda#    
+      </isNotEmpty>
+    <isNotEmpty prepend="AND" property="UbicacionTienda" >
+         T.Ubicacion = #UbicacionTienda#    
+      </isNotEmpty>
+      <!--group By Location_Code,T.Nombre_tienda-->
+  </select>
+    <select id="SelectTotalGratis" parameterClass="VentasFinder" resultClass="TotalSales">
+      select SUM(Cust_Amt) as TotalGratis from OrdersExtracts  ORD
+      inner join Tiendas as T on T.Number_tienda=ORD.Store_No
+      WHERE Ord_Dt between #DateIni# AND #DateEnd# and Ord_Status_Cd ='P'
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        ORD.Store_No= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+    </select>
+    <select id="SelectResumenVentas" parameterClass="VentasFinder" resultClass="ResumenVentas">
+      SELECT
+      Location_Code as Tienda,
+      endDate as fecha,
+      order_count AS OrdenesTotales,
+      Bad_Order_Count as OrdenesMalas,
+      Net_Sales as VentasReales,
+      Bad_Sales as VentasMalas,
+      Food_Cost as Utilizado,
+      Food_Cost_Percent as UtilizadoPorcentaje,
+      DATEPART(ISO_WEEK, endDate)-1 as NumeroSemana,
+      DATENAME(WEEKDAY,EndDate) as Dia
+      FROM KeysExtractsCorpVersion  Keys
+      inner join Tiendas T on T.Number_tienda =Keys.Location_Code
+      WHERE EndDate BETWEEN   #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        T.Number_tienda= #NumTienda#
+      </isNotEmpty>
+    <isNotEmpty prepend="AND" property="TipoTienda" >
+      T.Tipo= #TipoTienda#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="UbicacionTienda" >
+      T.Ubicacion = #UbicacionTienda#
+    </isNotEmpty>
+      order by Location_Code, EndDate
+    </select>
+    <select id="SelectResumenVentas2" parameterClass="VentasFinder" resultClass="ResumenVentas">
+      SELECT  endDate as Fecha,
+      cast(Keys.Master_Sales as decimal(12,2)) AS MasterSales,
+      cast(Net_Sales as decimal(12,2)) as  VentasReales,
+      cast((Bad_Sales+Void_Sales) as decimal(12,2)) as VentasMalas,
+      (Bad_Order_Count+Void_Order_Count) as OrdenesMalas,
+      T.Code as Code,
+      order_count AS OrdenesTotales,
+      Ending_Inventory_Amount AS InventarioFinal,
+      (select Ending_Inventory_Amount from KeysExtractsCorpVersion where EndDate=Keys.EndDate-1 and Keys.Location_Code=Location_Code ) +
+      (select ISNULL(SUM(INVOICE.Amount+INVOICE.DeliveryCharge),0) from InventoryPurchasesExtracts INVOICE where INVOICE.System_Date=Keys.EndDate and INVOICE.Location_Code=Keys.Location_Code)-
+      Keys.Ending_Inventory_Amount AS Utilizado,
+      DATEPART(ISO_WEEK, endDate) as numeroSemana,
+      DATENAME(WEEKDAY,EndDate) as Dia,
+      <!--Modified by Hector Sanchez M. 20161221-->
+      <!--Total_CPO_Amount AS DepositosTargeta,
+      Bank_Deposit_Amount AS DepositosEfectivo-->
+      (SELECT SUM(Trans_Amount) FROM TransactionsExtracts WHERE Location_Code = Keys.Location_Code AND System_Date = Keys.EndDate AND Account_Code IN ('3', '40042', '910002', '910003', '16', '206', '91')) AS DepositosTargeta,
+      (SELECT SUM(Trans_Amount) FROM TransactionsExtracts WHERE Location_Code = Keys.Location_Code AND System_Date = Keys.EndDate AND Account_Code IN ('1', '10004')) AS DepositosEfectivo,
+      <!--Modified by Hector Sanchez M. 20171220-->
+		(SELECT SUM(Trans_Amount) FROM TransactionsExtracts WHERE Location_Code = Keys.Location_Code AND System_Date = Keys.EndDate AND Account_Code IN ('90')) AS OpenPay,
+		(SELECT SUM(Trans_Amount) FROM TransactionsExtracts WHERE Location_Code = Keys.Location_Code AND System_Date = Keys.EndDate AND Account_Code IN ('136')) AS UberEats
+		<!--(SELECT SUM(Cust_Amt) FROM OrdersExtracts WHERE Store_No = Keys.Location_Code AND Ord_Dt = Keys.EndDate AND Currency_Code = 'OpenPay') AS OpenPay-->
+      FROM KeysExtractsCorpVersion  Keys
+      INNER JOIN  Tiendas T ON T.Number_tienda=Keys.Location_Code
+      WHERE EndDate BETWEEN   #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        T.Number_tienda= #NumTienda#
+      </isNotEmpty>
+    <isNotEmpty prepend="AND" property="TipoTienda" >
+      T.Tipo= #TipoTienda#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="UbicacionTienda" >
+      T.Ubicacion = #UbicacionTienda#
+    </isNotEmpty>
+      <!--order by Location_Code, EndDate-->
+      order by Code, EndDate
+    </select>
+    <select id="SelectVentasGratis" parameterClass="VentasFinder" resultClass="Ventas">
+      DECLARE @tblGratis table
+      (
+      VentasRegaladas money DEFAULT 0
+      ,OrdenesRegaladas int DEFAULT 0
+      ,Tienda Varchar(50)
+      ,Fecha datetime
+      )
+
+      insert @tblGratis
+      SELECT
+      SUM(Cust_Amt) AS VentasRegaladas ,
+      count(Cust_Amt) AS OrdenesRegaladas
+      ,Store_No AS  Tienda
+      ,ord_dt AS Fecha
+      FROM OrdersExtracts  ORD
+      INNER JOIN Tiendas AS T ON T.Number_tienda=ORD.Store_No
+      WHERE ord_dt BETWEEN #DateIni# AND #DateEnd# AND Ord_Status_Cd ='P'
+      <isNotEmpty prepend="AND" property="NumTienda" >
+         T.Number_tienda= #NumTienda#    
+      </isNotEmpty> 
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+         T.Tipo= #TipoTienda#    
+      </isNotEmpty>
+    <isNotEmpty prepend="AND" property="UbicacionTienda" >
+         T.Ubicacion = #UbicacionTienda#    
+      </isNotEmpty>
+      GROUP BY Ord_Dt, Store_No
+
+      DECLARE @tblVentas TABLE
+      (
+      FechaVenta Datetime
+      ,Tienda Varchar(50)
+      ,VentasReales Money
+      ,VentasReparto Money
+      ,VentasMostrador Money
+      ,VentasRestaurante Money
+      ,Ordenes int
+      ,Utilizado money
+      )
+
+      insert @tblVentas
+      SELECT
+      EndDate            AS  FechaVenta
+      ,Location_Code      AS  Tienda
+      ,Net_Sales          AS  VentasReales
+      ,Delivery_Sales     AS  VentasReparto
+      ,Carryout_Sales     AS  VentasMostrador
+      ,Dine_In_Sales as VentasRestaurante
+      ,Order_Count AS Ordenes
+      ,Ideal_Food_Cost AS Utilizado
+      FROM KeysExtractsCorpVersion AS KeysCorp
+      INNER JOIN Tiendas AS T ON T.Number_tienda=KeysCorp.Location_Code
+      WHERE EndDate BETWEEN  #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+         Location_Code= #NumTienda#    
+      </isNotEmpty> 
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+         T.Tipo= #TipoTienda#    
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+         T.Ubicacion = #UbicacionTienda#    
+      </isNotEmpty>
+
+      declare @inventario  table
+      (
+      fecha datetime,
+      tienda varchar(50),
+      Inventario_Inicial money,
+      Inventario_Final money
+
+      )
+      declare @factura table
+      (
+      fecha datetime,
+      tienda varchar(50),
+      factura money
+      )
+      declare @UtilizadoReal Table
+      (
+      fecha datetime,
+      tienda varchar(50),
+      UtilizadoReal money
+      )
+
+      insert @inventario
+      select
+      inv2.System_Date as fecha,
+      inv2.Location_Code as tienda,
+      SUM( INV2.Count_Unit_Cost * INV2.Beginning_Qty) AS Inventario_Inicial
+      , SUM( INV2.Count_Unit_Cost * INV2.Ending_Qty) AS Inventario_Final
+      from  DailyInventoryExtracts INV2
+      INNER JOIN Tiendas AS T ON T.Number_tienda=inv2.Location_Code
+      where  System_Date between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      group by System_Date,Location_Code
+
+      insert @factura
+      select
+      System_Date as fecha
+      ,inv.Location_Code as tienda
+      , SUM(inv.Amount+inv.DeliveryCharge) as factura
+      from InventoryPurchasesExtracts inv
+      INNER JOIN Tiendas AS T ON T.Number_tienda=inv.Location_Code
+      where  System_Date between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      group by System_Date,Location_Code
+
+
+      insert @UtilizadoReal
+      select  inv.fecha, inv.tienda,
+      ((case when fac.factura IS null then 0 else fac.factura end) +inv.Inventario_Inicial-inv.Inventario_Final) as  utilizado_real
+      from @inventario inv
+      left join @factura fac on fac.fecha=inv.fecha and inv.tienda=fac.tienda
+      order by fecha
+
+
+      SELECT
+      V.*
+      ,CASE WHEN G.OrdenesRegaladas IS NULL THEN 0 ELSE G.OrdenesRegaladas END AS OrdenesRegaladas
+      ,CASE WHEN G.VentasRegaladas IS NULL THEN 0 ELSE G.VentasRegaladas END AS VentasRegaladas
+      ,CASE  when DATEPART(dw,V.FechaVenta)=1  then 7 else DATEPART(dw,V.FechaVenta)-1 end  AS NumDia
+      , DATEPART(ISO_WEEK, V.FechaVenta) as NumSemana
+      ,UR.UtilizadoReal
+      FROM @tblVentas V
+      LEFT JOIN  @tblGratis G ON G.Tienda=V.Tienda AND G.Fecha=V.FechaVenta
+      left join @UtilizadoReal UR on UR.tienda=V.Tienda AND UR.fecha=V.FechaVenta
+
+    </select>
+    <select id="SelectVentasGratisTotal" parameterClass="VentasFinder" resultClass="Ventas">  
+      DECLARE @tblGratis table
+      (
+      VentasRegaladas money DEFAULT 0
+      ,OrdenesRegaladas int DEFAULT 0
+      ,Fecha datetime
+      )
+
+      insert @tblGratis
+      SELECT
+      SUM(Cust_Amt) AS VentasRegaladas ,
+      count(Cust_Amt) AS OrdenesRegaladas
+      ,ord_dt AS Fecha
+      FROM OrdersExtracts  ORD
+      INNER JOIN Tiendas AS T ON T.Number_tienda=ORD.Store_No
+      WHERE ord_dt BETWEEN #DateIni# AND #DateEnd# AND Ord_Status_Cd ='P'
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        T.Number_tienda= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      GROUP BY Ord_Dt
+
+      DECLARE @tblVentas TABLE
+      (
+      FechaVenta Datetime
+      ,VentasReales Money
+      ,VentasReparto Money
+      ,VentasMostrador Money
+      ,VentasRestaurante Money
+      ,OrdenesRestaurante int
+      ,OrdenesMostrador int
+      ,OrdenesReparto int
+      ,OrdenesRestauranteMostrador int
+      ,Ordenes int
+      ,Utilizado money
+      ,TotalOrdenesMalas int /*Added by Hector Sanchez M. 20160121*/
+      ,OrdenesMalas money
+      ,TotalOrdenesCanceladas int
+      ,Canceladas money
+      ,OrdenesInternet int/*Added by Hector Sanchez M. 20160316*/
+      ,VentasInternet money
+      )
+
+      insert @tblVentas
+      SELECT
+      EndDate            AS  FechaVenta
+      ,SUM(Net_Sales)          AS  VentasReales
+      <!--,SUM(Delivery_Sales)     AS  VentasReparto Estos valores NO cuadran en los totales
+      ,SUM(Carryout_Sales)     AS  VentasMostrador-->
+      ,SUM(Delivery_Net)     AS  VentasReparto
+      ,SUM(Carryout_Net)     AS  VentasMostrador
+      ,SUM(Dine_In_Sales) as VentasRestaurante
+      ,SUM(Dine_In_Order_Count) AS OrdenesRestaurante
+      ,SUM(Carryout_Order_Count) AS OrdenesMostrador
+      ,SUM(delivery_order_count) AS OrdenesReparto
+      ,SUM(Carryout_Order_Count + Dine_In_Order_Count) AS OrdenesRestauranteMostrador
+      ,SUM(Order_Count) AS Ordenes
+      ,SUM(Ideal_Food_Cost) AS Utilizado
+      ,SUM(Bad_Order_Count) as TotalOrdenesMalas /*Added by Hector Sanchez M. 20160121*/
+      ,SUM(Bad_Sales) as OrdenesMalas
+      ,SUM(Void_Order_Count) as TotalOrdenesCanceladas
+      ,SUM(Void_Sales) as Canceladas
+      ,SUM(Internet_Order_Count) AS OrdenesInternet/*Added by Hector Sanchez M. 20160316*/
+      ,SUM(Internet_NET) AS VentasInternet
+      FROM KeysExtractsCorpVersion AS KeysCorp
+      INNER JOIN Tiendas AS T ON T.Number_tienda=KeysCorp.Location_Code
+      WHERE EndDate BETWEEN  #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      GROUP BY EndDate
+
+      declare @inventario  table
+      (
+      fecha datetime,
+      Inventario_Inicial money,
+      Inventario_Final money
+
+      )
+      declare @factura table
+      (
+      fecha datetime,
+      factura money
+      )
+      declare @UtilizadoReal Table
+      (
+      fecha datetime,
+      UtilizadoReal money
+      )
+
+      insert @inventario
+      select
+      inv2.System_Date as fecha,
+      SUM( INV2.Count_Unit_Cost * INV2.Starting_Qty) AS Inventario_Inicial
+      , SUM( INV2.Count_Unit_Cost * INV2.Ending_Qty) AS Inventario_Final
+      from  DailyInventoryExtracts INV2
+      INNER JOIN Tiendas AS T ON T.Number_tienda=inv2.Location_Code
+      where  System_Date between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      group by System_Date
+
+      insert @factura
+      select
+      System_Date as fecha
+      , SUM(inv.Amount+inv.DeliveryCharge) as factura
+      from InventoryPurchasesExtracts inv
+      INNER JOIN Tiendas AS T ON T.Number_tienda=inv.Location_Code
+      where  System_Date between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      group by System_Date
+
+
+      insert @UtilizadoReal
+      select  inv.fecha,
+      +inv.Inventario_Inicial-inv.Inventario_Final as  utilizado_real
+      from @inventario inv
+      left join @factura fac on fac.fecha=inv.fecha 
+      order by fecha
+
+
+      SELECT
+      V.*
+      ,CASE WHEN G.OrdenesRegaladas IS NULL THEN 0 ELSE G.OrdenesRegaladas END AS OrdenesRegaladas
+      ,CASE WHEN G.VentasRegaladas IS NULL THEN 0 ELSE G.VentasRegaladas END AS VentasRegaladas
+      ,CASE  when DATEPART(dw,V.FechaVenta)=1  then 7 else DATEPART(dw,V.FechaVenta)-1 end  AS NumDia
+      , DATEPART(ISO_WEEK, V.FechaVenta) as NumSemana
+      ,UR.UtilizadoReal
+      FROM @tblVentas V
+      LEFT JOIN  @tblGratis G ON  G.Fecha=V.FechaVenta
+      left join @UtilizadoReal UR on  UR.fecha=V.FechaVenta
+
+    </select>  <!--todo todo todo -->
+   <select id ="ventasAcumuladas" parameterClass="VentasFinder" resultClass="TotalSales">
+      Declare @tblVentas table
+      (
+	VentasRealesTotal			money
+    ,VentasRepartoTotal			money
+    ,VentasMostradorTotal		money
+    ,VentasRestauranteTotal		money
+    ,OrdenesTotales				int
+    ,OrdenesTotalesRestaurante	int
+    ,OrdenesTotalesMostrador	int
+    ,OrdenesTotalReparto		int
+    ,Code						int
+    ,Utilizado					money
+)
+insert into @tblVentas
+SELECT
+    
+	  SUM(Net_Sales)                AS    VentasRealesTotal
+    , SUM(Delivery_Sales)           AS    VentasRepartoTotal
+    , SUM(Carryout_Sales)           AS    VentasMostradorTotal
+    , SUM(Dine_In_Sales)            AS    VentasRestauranteTotal
+    , SUM(Master_Order_Count)       AS    OrdenesTotales
+    , SUM(Dine_In_Order_Count)      AS    OrdenesTotalesRestaurante
+    , SUM(Carryout_Order_Count)     AS    OrdenesTotalesMostrador
+    , SUM(Delivery_Order_Count)     AS    OrdenesTotalReparto
+    , 1234							AS    Code 
+    , SUM(Food_Cost)				AS	  Utilizado 
+    FROM KeysExtractsCorpVersion AS KeysCorp
+    INNER JOIN  Tiendas AS T ON T.Number_tienda=KeysCorp.Location_Code
+    WHERE EndDate BETWEEN #DateIni# AND #DateEnd#
+    <isNotEmpty prepend="AND" property="NumTienda" >
+         Location_Code= #NumTienda#    
+      </isNotEmpty>
+    <isNotEmpty prepend="AND" property="TipoTienda" >
+         T.Tipo= #TipoTienda#    
+      </isNotEmpty>
+    <isNotEmpty prepend="AND" property="UbicacionTienda" >
+         T.Ubicacion = #UbicacionTienda#    
+      </isNotEmpty>
+    
+    
+DECLARE @tblGratis TABLE
+(
+	VentasRegaladas money DEFAULT 0
+	,OrdenesRegaladas int DEFAULT 0
+	, Code int
+)
+
+      INSERT @tblGratis
+      SELECT
+      SUM(Cust_Amt) AS VentasRegaladas ,
+      count(Cust_Amt) AS OrdenesRegaladas
+      ,1234  AS Code
+      FROM OrdersExtracts  ORD
+      INNER JOIN Tiendas AS T ON T.Number_tienda=ORD.Store_No
+      WHERE ord_dt BETWEEN #DateIni# AND #DateEnd#  AND Ord_Status_Cd ='P'
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        ORD.Store_No= #NumTienda#
+      </isNotEmpty>
+   <isNotEmpty prepend="AND" property="TipoTienda" >
+     T.Tipo= #TipoTienda#
+   </isNotEmpty>
+   <isNotEmpty prepend="AND" property="UbicacionTienda" >
+     T.Ubicacion = #UbicacionTienda#
+   </isNotEmpty>
+      
+      
+      
+       select  * from @tblVentas V
+       inner join  @tblGratis G on G.Code= V.Code
+    </select>
+
+    <select id="SelectSalesLastYearFirst" parameterClass="VentasFinder" resultClass="SalesLastYear">
+      select SUM(Master_Order_Count) as Ordenes,
+      SUM(Net_Sales) as VentasReales,
+      COUNT(*) as NumDias
+      from KeysExtractsCorpVersion as KeysCorp
+      inner join Tiendas as T on T.Number_tienda=KeysCorp.Location_Code
+      where EndDate between #DateIniLastYear# and #DateEndLastYear#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+      Location_Code= #NumTienda#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="TipoTienda" >
+      T.Tipo= #TipoTienda#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="UbicacionTienda" >
+      T.Ubicacion = #UbicacionTienda#
+    </isNotEmpty>
+      
+    </select>
+    <select id="SelectSalesLastYearSecond" parameterClass="VentasFinder" resultClass="SalesLastYear">
+      select SUM(Total_Orders) as Ordenes,
+      SUM(Net_Sales) as VentasReales,
+      COUNT(*) as NumDias
+      from Daily_Summary as KeysCorp
+      inner join Tiendas as T on T.Number_tienda=KeysCorp.Location_Code
+      where System_date between #DateIniLastYear# and #DateEndLastYear#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      
+    </select>
+    <select id="SelectSalesLastWeek" parameterClass="VentasFinder" resultClass="SalesLastYear">
+      select SUM(Total_Orders) as Ordenes,
+      SUM(Net_Sales) as VentasReales,
+      COUNT(*) as NumDias
+      from Daily_Summary as KeysCorp
+      inner join Tiendas as T on T.Number_tienda=KeysCorp.Location_Code
+      where System_date between #DateIniLastWeek# and #DateEndLastWeek#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      
+    </select>
+    <select id="SelectMasterSales" parameterClass="VentasFinder" resultClass="Ventas">
+      DECLARE @tblGratis table
+      (
+      VentasRegaladas money DEFAULT 0
+      ,OrdenesRegaladas int DEFAULT 0
+      ,Tienda Varchar(50)
+      ,Fecha datetime
+      )
+
+      insert @tblGratis
+      SELECT
+      SUM(Cust_Amt) AS VentasRegaladas ,
+      count(Cust_Amt) AS OrdenesRegaladas
+      ,Store_No AS  Tienda
+      ,ord_dt AS Fecha
+      FROM OrdersExtracts  ORD
+      INNER JOIN Tiendas AS T ON T.Number_tienda=ORD.Store_No
+      WHERE ord_dt BETWEEN #DateIni# AND #DateEnd# AND Ord_Status_Cd ='P'
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        ORD.Store_No= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      GROUP BY Ord_Dt, Store_No
+
+      SELECT
+      KeysCorp.EndDate            AS  FechaVenta
+      ,KeysCorp.Location_Code      AS  Tienda
+      ,KeysCorp.Net_Sales          AS  VentasReales
+      ,KeysCorp.Delivery_Sales     AS  VentasReparto    <!--Estos atributos se toman otras valores en esta misma consulta-->
+      ,KeysCorp.Carryout_Sales     AS  VentasMostrador
+      ,KeysCorp.Dine_In_Sales AS VentasRestaurante
+      ,KeysCorp.Order_Count AS Ordenes
+      ,KeysCorp.Ideal_Food_Cost AS Utilizado  <!-- Costo Ideal-->
+      ,KeysCorp.Food_Cost AS UtilizadoReal    <!-- Utilizado Real-->
+      ,KeysCorp.Food_Cost_Percent AS CostodeComidaReal    <!-- Costo de Comida Real-->
+      ,ISNULL((select G.OrdenesRegaladas from @tblGratis G where G.Fecha=KeysCorp.EndDate and G.Tienda=KeysCorp.Location_Code ),0) as OrdenesRegaladas
+      ,ISNULL((select  G.VentasRegaladas from @tblGratis G where G.Fecha=KeysCorp.EndDate and G.Tienda=KeysCorp.Location_Code ),0) as VentasRegaladas
+      ,CASE  when DATEPART(dw,KeysCorp.EndDate)=1  then 7 else DATEPART(dw,KeysCorp.EndDate)-1 end  AS NumDia
+      , DATEPART(ISO_WEEK, KeysCorp.EndDate) as NumSemana
+      , KeysCorp.Bad_Order_Count as TotalOrdenesMalas
+      , Bad_Sales as OrdenesMalas
+      , KeysCorp.Void_Order_Count as TotalOrdenesCanceladas
+      , KeysCorp.Void_Sales as Canceladas
+      , KeysCorp.Internet_Order_Count AS OrdenesInternet
+      , KeysCorp.Internet_NET AS VentasInternet
+      , KeysCorp.Dine_In_Net AS VentasRestaurante
+      , KeysCorp.Carryout_Net AS VentasMostrador
+      , KeysCorp.Delivery_Net AS VentasReparto
+      , KeysCorp.Dine_In_Order_Count AS OrdenesRestaurante
+      , KeysCorp.Carryout_Order_Count AS OrdenesMostrador
+      , KeysCorp.delivery_order_count AS OrdenesReparto
+      , KeysCorp.Dine_In_Order_Count + Carryout_Order_Count AS OrdenesRestauranteMostrador
+      FROM KeysExtractsCorpVersion AS KeysCorp
+      INNER JOIN Tiendas AS T ON T.Number_tienda=KeysCorp.Location_Code
+
+      WHERE KeysCorp.EndDate BETWEEN  #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        KeysCorp.Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      ORDER BY Location_Code,FechaVenta
+
+    </select>
+    <select id="SelectDepositosYTransacciones" parameterClass="VentasFinder" resultClass="DepositoYTransacciones">
+
+		SELECT
+		Location_Code       AS Tienda,
+		System_Date         AS Fecha,
+		Account_Code        AS Code,
+		CAST( Account_Description  AS VARCHAR) as Tipo ,
+		Trans_Amount  AS Total,
+		CASE  WHEN DATEPART(dw,System_Date)=1  THEN 7 ELSE DATEPART(dw,System_Date)-1 END  AS NumDia,
+		DATEPART(ISO_WEEK,System_Date) AS NumSemana
+		, Trans_Description as Comentarios
+		, invoice_Number as NumFactura 
+		FROM TransactionsExtracts TR
+		inner join Tiendas as T on T.Number_tienda=TR.Location_Code
+		where System_Date between #DateIni# AND #DateEnd#
+		<isNotEmpty prepend="AND" property="NumTienda" >
+			TR.Location_Code= #NumTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="TipoTienda" >
+			T.Tipo= #TipoTienda#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="UbicacionTienda" >
+			T.Ubicacion = #UbicacionTienda#
+		</isNotEmpty>
+
+		GROUP BY
+		Location_Code,
+		System_Date,
+		Account_Code,
+		CAST( Account_Description  AS VARCHAR), Trans_Amount, Trans_Description, invoice_Number
+		ORDER BY
+		Location_Code,
+		System_Date
+
+
+    </select>
+    
+    <!--Added by Hector Sanchez M. - 20160712 -->
+    <select id="SelectOrderInternet" parameterClass="VentasFinder" resultClass="Ventas">
+      SELECT 
+      SUM(KECV.Internet_Order_Count) AS OrdenesInternet
+      ,KECV.Location_Code AS Tienda
+      ,DATEPART(ISO_WEEK, KECV.EndDate) AS NumSemana 
+      FROM KeysExtractsCorpVersion KECV
+      WHERE EndDate BETWEEN #DateIni# AND #DateEnd#
+      AND KECV.Location_Code = #NumTienda# AND DATEPART(ISO_WEEK, KECV.EndDate) = #NumeroSemana#
+      GROUP BY KECV.Location_Code, DATEPART(ISO_WEEK, KECV.EndDate)
+    </select>
+    
+    <!--Added by Hector Sanchez M. 20170524-->
+    <select id="SelectSalesLastYearOnLine" parameterClass="InfoTiempoReal" resultClass="decimal">
+      SELECT Net_Sales AS SalesLastYear FROM KeysExtractsCorpVersion WHERE Location_Code = #NumTienda# AND BeginDate = #Fecha#
+    </select>
+
+    <!-- Added by Leo -->
+        
+        <select id="SelectCounts" parameterClass="VentasFinder" resultClass="Ventas">
+          SELECT
+          Tiendas.Nombre_tienda AS NombreTienda
+          ,Dine_In_Order_Count AS OrdenesRestaurante
+          ,Carryout_Order_Count AS OrdenesMostrador
+          ,delivery_order_count AS OrdenesReparto
+          from KeysExtractsCorpVersion
+          INNER JOIN Tiendas ON Tiendas.Number_tienda = KeysExtractsCorpVersion.Location_Code
+          where EndDate between #DateIni# AND #DateEnd#
+          <isNotEmpty prepend="AND" property="NumTienda" >
+          Location_Code= #NumTienda#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="TipoTienda" >
+          Tiendas.Tipo= #TipoTienda#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="UbicacionTienda" >
+          Tiendas.Ubicacion = #UbicacionTienda#
+        </isNotEmpty>
+        ORDER BY Location_Code
+        </select>
+   
+    <!--Modified by Leobardo Martinez H. 20191005-->
+    <select id="SelectUseInventory" parameterClass="VentasFinder" resultClass="DailyInventoryExtractss">
+      DECLARE @inventario  TABLE
+      (
+      Inventory_Code varchar(15),
+      Actual_Usage decimal (10,2),
+      Count_Unit varchar(13),
+      Location_Code varchar(11),
+      System_Date datetime,
+      [Description] varchar(MAX)
+      )
+
+      INSERT @inventario
+      SELECT
+      'DO-'+Inventory_Code AS Inventory_Code
+      , Actual_Usage
+      , CASE WHEN count_unit ='KILO' THEN 'KG'
+      WHEN count_unit ='CUB' THEN 'CUBETA'  else Count_Unit  END
+      Count_Unit
+      , Location_Code
+      , System_Date
+      , [Description]
+      FROM  DailyInventoryExtracts INV2
+      INNER JOIN Tiendas AS T ON T.Number_tienda=inv2.Location_Code
+      WHERE  Actual_Usage &gt; 0 AND System_Date between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+                  INV2.Location_Code= #NumTienda#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="TipoTienda" >
+                  T.Tipo= #TipoTienda#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="UbicacionTienda" >
+                  T.Ubicacion = #UbicacionTienda#
+                </isNotEmpty>
+      order by System_Date, [Description] asc
+
+      SELECT Inventory_Code, Actual_Usage, Count_Unit, Location_Code, System_Date, [Description]   FROM @inventario
+    </select>
+
+    <!--Added by Leobardo Martinez H. 20191210-->
+    <select id="SelectLinealSales" parameterClass="VentasFinder" resultClass="Ventas">
+      SELECT
+      CASE
+      WHEN Location_Code = 11028  THEN 1
+      WHEN Location_Code = 11747  THEN 2
+      WHEN Location_Code = 11456  THEN 3
+      WHEN Location_Code = 11288  THEN 4
+      WHEN Location_Code = 11544  THEN 5
+      WHEN Location_Code = 11842  THEN 6
+      WHEN Location_Code = 11876  THEN 7
+      WHEN Location_Code = 11220  THEN 8
+      WHEN Location_Code = 11053  THEN 9
+      WHEN Location_Code = 11405  THEN 10
+      WHEN Location_Code = 11406  THEN 11
+      WHEN Location_Code = 11911  THEN 12
+      WHEN Location_Code = 11863  THEN 13
+      WHEN Location_Code = 11488  THEN 14
+      WHEN Location_Code = 11101  THEN 15
+      WHEN Location_Code = 11484  THEN 16
+      WHEN Location_Code = 11497  THEN 17
+      WHEN Location_Code = 11490  THEN 18
+      WHEN Location_Code = 11127  THEN 19
+      WHEN Location_Code = 11181  THEN 20
+      WHEN Location_Code = 11450  THEN 21
+      WHEN Location_Code = 11443  THEN 22
+      WHEN Location_Code = 11214  THEN 23
+      WHEN Location_Code = 11597  THEN 24
+      WHEN Location_Code = 11598  THEN 29
+      WHEN Location_Code = 11978  THEN 30
+      WHEN Location_Code = 11982  THEN 31
+      WHEN Location_Code = 11641  THEN 40
+      WHEN Location_Code = 12361  THEN 43
+      WHEN Location_Code = 12390  THEN 44
+      END AS NumTienda ,
+      endDate as FechaVenta,
+      order_count AS Ordenes,
+      cast(Net_Sales as decimal(12,2)) as  VentasReales
+      FROM dbo.KeysExtractsCorpVersion  INNER JOIN  Tiendas T ON T.Number_tienda=KeysExtractsCorpVersion.Location_Code
+      WHERE EndDate BETWEEN #DateIni# AND #DateEnd#
+      AND Net_Sales &gt; 0
+      <isNotEmpty prepend="AND" property="NumTienda" >
+      Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      ORDER BY EndDate ASC, NumTienda
+
+    </select>
+
+
+ 
+
+  </statements>
+</sqlMap>

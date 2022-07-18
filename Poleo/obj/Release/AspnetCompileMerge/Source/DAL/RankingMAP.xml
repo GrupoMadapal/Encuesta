@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Ranking" type="Poleo.Objects.Ranking" />
+    <typeAlias alias="RankingFinder" type="Poleo.Objects.RankingFinder" />
+  </alias>
+
+  <statements>
+    <select id="SelectDataRanking" parameterClass="RankingFinder" resultClass="Ranking" >
+      DECLARE @VentasLastYear TABLE
+      (
+      Tienda            VARCHAR(50) ,
+      Ventas            MONEY       ,
+      Ordenes           INT
+      )
+      DECLARE @Ventas TABLE
+      (
+      Tienda				        VARCHAR(50)   ,
+      Ventas				        MONEY         ,
+      Ordenes				        INT           ,
+      NumOrdenesMalas		    INT			      ,
+      TiempoEntrada			    DECIMAL(8,2)  ,
+      OrdenesEntregaTime    INT			      ,
+      OrdenesSalidaTienda   INT			      ,
+      OrdenesRunTime		    INT			      ,
+      VentasMalas			      MONEY
+      )
+      INSERT @Ventas
+      SELECT
+      Location_Code                                 AS Tienda
+      ,		SUM(Net_Sales)									              AS Ventas
+      ,		SUM(Order_Count)							                AS Ordenes
+      ,		SUM(Bad_Order_Count+Void_Order_Count)			    AS NumOrdenesMalas
+      ,   AVG(Ave_Load_Minutes)							            AS TiempoEntrada
+      ,		SUM( Corp_Attain_Delivery_Time_Order_Count )	AS OrdenesEntregaTime
+      ,		SUM( Attain_Dispatch_Order_Count)				AS OrdenesSalidaTienda
+      ,		SUM(Run_Order_Count)							AS OrdenesRunTime
+      ,		SUM(Bad_Sales+Void_Sales)						AS VentasMalas
+      FROM KeysExtractsCorpVersion
+      WHERE EndDate BETWEEN #DateIni# AND #DateEnd#
+      GROUP BY Location_Code
+
+      INSERT @VentasLastYear
+      SELECT
+      Location_Code													                        AS	Tienda
+      , SUM(Net_Sales)												                        AS  Ventas
+      , SUM(Total_Orders)												                      AS  Ordenes
+      FROM Daily_Summary
+      WHERE System_Date BETWEEN #LastYearDateIni# AND #LastYearDateEnd#
+      GROUP BY Location_Code
+
+      DECLARE @Adicionales TABLE
+      (
+      Tienda        VARCHAR(50)   ,
+      Adicionales   INT
+      )
+      INSERT @Adicionales
+      SELECT
+      Location_Code                                                                                     AS  Tienda      ,
+      SUM(CASE WHEN Product_Code LIKE 'PKCNGT' THEN Quantity/2
+      WHEN Product_Code LIKE 'PKCPAP' THEN Quantity/2
+      WHEN Product_Code LIKE 'WINGSMED' THEN Quantity*2 ELSE Quantity END)                     AS  Adicionales
+      FROM  ProductsExtracts
+      WHERE  EndDate  BETWEEN #DateIni# AND #DateEnd#
+      AND (Product_Category_Code  LIKE 'Wings' OR Product_Category_Code  LIKE 'Bread' OR Product_Category_Code  LIKE 'Drinks')
+      GROUP BY Location_Code
+
+      DECLARE @inventarioInicial  TABLE
+      (
+      tienda              VARCHAR(50),
+      Inventario_Inicial  MONEY
+      )
+
+      DECLARE @inventarioFinal  TABLE
+      (
+      tienda              VARCHAR(50),
+      Inventario_Final    MONEY
+      )
+
+      declare @factura table
+      (
+      tienda VARCHAR(50),
+      factura MONEY
+      )
+      declare @UtilizadoReal Table
+      (
+      tienda VARCHAR(50),
+      UtilizadoReal MONEY
+      )
+
+      INSERT @inventarioInicial
+      select Location_Code,Ending_Inventory_Amount from KeysExtractsCorpVersion
+      where EndDate= DATEADD(day,-1, #DateIni#)
+
+      INSERT @inventarioFinal
+      select Location_Code,Ending_Inventory_Amount from KeysExtractsCorpVersion
+      where EndDate=#DateEnd#
+
+      INSERT @factura
+      SELECT
+      Location_Code AS tienda
+      , SUM(Amount+DeliveryCharge) AS factura
+      FROM InventoryPurchasesExtracts
+      WHERE  System_Date BETWEEN #DateIni# AND #DateEnd#
+      GROUP BY Location_Code
+
+      INSERT @UtilizadoReal
+      SELECT  inv.tienda,
+      ((CASE WHEN fac.factura IS null THEN 0 ELSE fac.factura END) +inv.Inventario_Inicial-inv2.Inventario_Final) AS  utilizado_real
+      FROM @inventarioInicial inv
+      LEFT JOIN @factura fac ON inv.tienda=fac.tienda
+      LEFT JOIN @inventarioFinal inv2 ON inv.tienda=inv2.tienda
+      DECLARE @tblGratis table
+      (
+      VentaOrdenesGratis MONEY DEFAULT 0,
+      NumOrdenesGratis int DEFAULT 0,
+      Tienda VARCHAR(50)
+      )
+
+      insert @tblGratis
+      SELECT
+      SUM(Cust_Amt) AS VentaOrdenesGratis,
+      count(Cust_Amt) AS NumOrdenesGratis,
+      ORD.Store_No AS Tienda
+      FROM OrdersExtracts  ORD
+      WHERE ord_dt BETWEEN #DateIni# AND #DateEnd# AND Ord_Status_Cd ='P'
+      GROUP BY ORD.Store_No
+
+      SELECT
+      v.Tienda                ,
+      VLY.Ventas              AS VentasLastYear,
+      V.Ventas                AS Ventas,
+      vly.Ordenes             AS OrdenesLastYear,
+      V.Ordenes               AS Ordenes,
+      A.Adicionales           AS TotalAdicionales,
+      U.UtilizadoReal         ,
+      U.UtilizadoReal/V.Ventas AS UtilizadoPor,
+      V.NumOrdenesMalas,
+      G.NumOrdenesGratis,
+      G.VentaOrdenesGratis,
+      V.OrdenesEntregaTime,
+      V.OrdenesRunTime,
+      V.OrdenesSalidaTienda,
+      V.TiempoEntrada,
+      T.Nombre_tienda,
+      V.VentasMalas,
+      T.Tipo AS TipoTienda
+      FROM  @Ventas AS V
+      INNER JOIN  Tiendas T             ON T.Number_tienda= V.Tienda
+      LEFT  JOIN  @VentasLastYear VLY   ON v.Tienda=vly.Tienda
+      LEFT  JOIN  @Adicionales A        ON A.Tienda=V.Tienda
+      LEFT  JOIN  @UtilizadoReal U      ON U.tienda=V.Tienda
+      left join   @tblGratis G on V.Tienda=G.Tienda
+      <dynamic prepend="WHERE">
+      <isNotEmpty prepend="AND" property="Tienda" >
+        V.Tienda= #Tienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      </dynamic>
+        ORDER BY    T.Ubicacion, T.Number_tienda
+    </select>
+    <select id="SelectDataRankingPorTienda" parameterClass="RankingFinder" resultClass="Ranking" >
+      DECLARE @VentasLastYear TABLE
+      (
+      Tienda            VARCHAR(50) ,
+      Ventas            MONEY       ,
+      Ordenes           INT         ,
+      NumSemana         INT
+      )
+      DECLARE @Ventas TABLE
+      (
+      Tienda				VARCHAR(50)   ,
+      Ventas				MONEY         ,
+      Ordenes				INT           ,
+      NumOrdenesMalas		INT			  ,
+      TiempoEntrada			DECIMAL(8,2)  ,
+      OrdenesEntregaTime    INT			  ,
+      OrdenesSalidaTienda   INT			  ,
+      OrdenesRunTime		INT			  ,
+      VentasMalas			MONEY		  ,
+      NumSemana         INT
+      )
+      INSERT @Ventas
+      SELECT
+      Location_Code                                 AS Tienda
+      ,		SUM(Net_Sales)									              AS Ventas
+      ,		SUM(Order_Count)							                AS Ordenes
+      ,		SUM(Bad_Order_Count+Void_Order_Count)			    AS NumOrdenesMalas
+      ,   AVG(Ave_Load_Minutes)							            AS TiempoEntrada
+      ,		SUM( Corp_Attain_Delivery_Time_Order_Count )	AS OrdenesEntregaTime
+      ,		SUM( Attain_Dispatch_Order_Count)				AS OrdenesSalidaTienda
+      ,		SUM(Run_Order_Count)							AS OrdenesRunTime
+      ,		SUM(Bad_Sales+Void_Sales)						AS VentasMalas
+      ,		DATEPART(ISO_WEEK, endDate)-1 as numeroSemana
+      FROM KeysExtractsCorpVersion
+      WHERE EndDate BETWEEN #DateIni# AND #DateEnd# and Location_Code=#Tienda#
+      GROUP BY Location_Code,DATEPART(ISO_WEEK, endDate)-1
+
+      INSERT @VentasLastYear
+      SELECT
+      Location_Code													                        AS	Tienda
+      , SUM(Net_Sales)												                        AS  Ventas
+      , SUM(Total_Orders)												                      AS  Ordenes
+      <!--,DATEPART(ISO_WEEK, System_Date)-1 as numeroSemana-->
+      ,CASE WHEN DATEPART(ISO_WEEK, System_Date)-1 = 0 THEN 52 ELSE DATEPART(ISO_WEEK, System_Date)-1 END as numeroSemana
+      FROM Daily_Summary
+      WHERE System_Date BETWEEN #LastYearDateIni# AND #LastYearDateEnd# and Location_Code=#Tienda#
+      GROUP BY Location_Code,DATEPART(ISO_WEEK, System_Date)-1
+
+      DECLARE @Adicionales TABLE
+      (
+      Tienda        VARCHAR(50)   ,
+      Adicionales   INT			  ,
+      NumSemana         INT
+
+      )
+      INSERT @Adicionales
+      SELECT
+      Location_Code                                                                                     AS  Tienda      ,
+      SUM(CASE WHEN Product_Code LIKE 'PKCNGT' THEN Quantity/2
+      WHEN Product_Code LIKE 'PKCPAP' THEN Quantity/2
+      WHEN Product_Code LIKE 'WINGSMED' THEN Quantity*2 ELSE Quantity END)                     AS  Adicionales,
+      DATEPART(ISO_WEEK, EndDate)-1 as numeroSemana
+      FROM  ProductsExtracts
+      WHERE  EndDate  BETWEEN #DateIni# AND #DateEnd# and Location_Code=#Tienda#
+      AND (Product_Category_Code  LIKE 'Wings' OR Product_Category_Code  LIKE 'Bread' OR Product_Category_Code  LIKE 'Drinks')
+      GROUP BY Location_Code,DATEPART(ISO_WEEK, EndDate)-1
+
+      DECLARE @inventarioInicial  TABLE
+      (
+      tienda              VARCHAR(50),
+      Inventario_Inicial  MONEY		 ,
+      NumSemana         INT
+      )
+
+      DECLARE @inventarioFinal  TABLE
+      (
+      tienda              VARCHAR(50),
+      Inventario_Final    MONEY		 ,
+      NumSemana         INT
+      )
+
+      declare @factura table
+      (
+      tienda VARCHAR(50),
+      factura MONEY	,
+      NumSemana         INT
+      )
+      declare @UtilizadoReal Table
+      (
+      tienda VARCHAR(50),
+      UtilizadoReal MONEY,
+      NumSemana         INT
+      )
+
+      INSERT @inventarioInicial
+      select
+      Location_Code
+      ,Ending_Inventory_Amount
+      , DATEPART(ISO_WEEK, EndDate) as numeroSemana
+      from KeysExtractsCorpVersion
+      where DATEPART(dw,EndDate)=1 and EndDate BETWEEN DATEADD(day,-1, #DateIni#)  AND DATEADD(day,-1,#DateEnd#) and Location_Code=#Tienda#
+
+      INSERT @inventarioFinal
+      select
+      Location_Code
+      ,Ending_Inventory_Amount
+      ,DATEPART(ISO_WEEK, EndDate)-1 as numeroSemana
+      from KeysExtractsCorpVersion
+      where DATEPART(dw,EndDate)=1 and EndDate BETWEEN  #DateIni# AND #DateEnd#  and Location_Code=#Tienda#
+
+      INSERT @factura
+      SELECT
+      Location_Code AS tienda
+      , SUM(Amount+DeliveryCharge) AS factura
+      ,DATEPART(ISO_WEEK, System_Date)-1 as numeroSemana
+      FROM InventoryPurchasesExtracts
+      WHERE  System_Date BETWEEN #DateIni# AND #DateEnd# and Location_Code=#Tienda#
+      GROUP BY Location_Code,DATEPART(ISO_WEEK, System_Date)-1
+
+      INSERT @UtilizadoReal
+      SELECT  inv.tienda,
+      ((CASE WHEN fac.factura IS null THEN 0 ELSE fac.factura END) +inv.Inventario_Inicial-inv2.Inventario_Final) AS  utilizado_real
+      ,inv.NumSemana
+      FROM @inventarioInicial inv
+      LEFT JOIN @factura fac ON inv.tienda=fac.tienda and fac.NumSemana=inv.NumSemana
+      LEFT JOIN @inventarioFinal inv2 ON inv.tienda=inv2.tienda and inv.NumSemana=inv2.NumSemana
+      DECLARE @tblGratis table
+      (
+      VentaOrdenesGratis MONEY DEFAULT 0,
+      NumOrdenesGratis int DEFAULT 0,
+      Tienda VARCHAR(50),
+      NumSemana         INT
+      )
+
+      insert @tblGratis
+      SELECT
+      SUM(Cust_Amt) AS VentaOrdenesGratis,
+      count(Cust_Amt) AS NumOrdenesGratis,
+      ORD.Store_No AS Tienda,
+      DATEPART(ISO_WEEK, ord_dt)-1 as numeroSemana
+      FROM OrdersExtracts  ORD
+      WHERE ord_dt BETWEEN #DateIni# AND #DateEnd# AND Ord_Status_Cd ='P'
+      GROUP BY ORD.Store_No,DATEPART(ISO_WEEK, ord_dt)-1
+
+      SELECT
+      v.Tienda                ,
+      VLY.Ventas              AS VentasLastYear,
+      V.Ventas                AS Ventas,
+      vly.Ordenes             AS OrdenesLastYear,
+      V.Ordenes               AS Ordenes,
+      A.Adicionales           AS TotalAdicionales,
+      U.UtilizadoReal         ,
+      U.UtilizadoReal/V.Ventas AS UtilizadoPor,
+      V.NumOrdenesMalas,
+      G.NumOrdenesGratis,
+      G.VentaOrdenesGratis,
+      V.OrdenesEntregaTime,
+      V.OrdenesRunTime,
+      V.OrdenesSalidaTienda,
+      V.TiempoEntrada,
+      T.Nombre_tienda,
+      V.VentasMalas,
+      T.Tipo AS TipoTienda,
+      V.NumSemana
+      FROM  @Ventas AS V
+      INNER JOIN  Tiendas T             ON T.Number_tienda= V.Tienda
+      LEFT  JOIN  @VentasLastYear VLY   ON v.Tienda=vly.Tienda and V.NumSemana=VLY.NumSemana
+      LEFT  JOIN  @Adicionales A        ON A.Tienda=V.Tienda and V.NumSemana=A.NumSemana
+      LEFT  JOIN  @UtilizadoReal U      ON U.tienda=V.Tienda and U.NumSemana=V.NumSemana
+      left join   @tblGratis G on V.Tienda=G.Tienda and V.NumSemana= G.NumSemana
+    </select>
+  </statements>
+</sqlMap>

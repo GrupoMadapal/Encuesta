@@ -1,0 +1,1281 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="InfoTiempoReal" type="Poleo.Objects.InfoTiempoReal" />
+    <typeAlias alias="DQ_VentasFinder" type="Poleo.Objects.DQ_VentasFinder" />
+	<typeAlias alias="Contabilidad" type="Poleo.Objects.Contabilidad" />
+	<typeAlias alias="ContabilidadDP" type="Poleo.Objects.ContabilidadDP" />
+  <typeAlias alias="Date" type="Poleo.Objects.Date" />
+  </alias>
+
+  <statements>
+    <!--SEF-->
+    <select id="SelectVentasSEFOnLine" parameterClass="InfoTiempoReal" resultClass="InfoTiempoReal">
+      SELECT
+      SUM(PrecioTotal - Impuestos) AS VentasReales,
+      SUM(PrecioTotal) AS VentasTotales
+      FROM Venta
+      WHERE Empresa ='SEF' AND Mov='Factura Electronica' AND Estatus='Concluido'
+      <isEqual prepend="AND" property="rangeDate" compareValue="false">
+        FechaEmision = #Fecha#
+      </isEqual>
+      <isEqual prepend="AND" property="rangeDate" compareValue="true">
+        FechaEmision BETWEEN #Fecha# AND #FechaEnd#
+      </isEqual>
+    </select>
+
+    <select id="SelectCobrosSEFOnLine" parameterClass="InfoTiempoReal" resultClass="InfoTiempoReal">
+      SELECT SUM(Importe) AS TotalCobros
+      FROM Cxc
+      WHERE Mov ='Cobro' and Empresa='SEF' and Estatus='CONCLUIDO'
+      <isEqual prepend="AND" property="rangeDate" compareValue="false">
+        FechaEmision = #Fecha#
+      </isEqual>
+      <isEqual prepend="AND" property="rangeDate" compareValue="true">
+        FechaEmision BETWEEN #Fecha# AND #FechaEnd#
+      </isEqual>
+    </select>
+
+    <select id="SelectCanceladoSEFOnLine" parameterClass="InfoTiempoReal" resultClass="InfoTiempoReal">
+      SELECT
+      SUM(PrecioTotal - Impuestos) AS VentasReales,
+      SUM(PrecioTotal) AS VentasTotales
+      FROM Venta
+      WHERE Empresa ='SEF' AND Mov='Factura Electronica' AND Estatus='CANCELADO'
+      <isEqual prepend="AND" property="rangeDate" compareValue="false">
+        FechaEmision = #Fecha#
+      </isEqual>
+      <isEqual prepend="AND" property="rangeDate" compareValue="true">
+        FechaEmision BETWEEN #Fecha# AND #FechaEnd#
+      </isEqual>
+    </select>
+    <!--RAAL-->
+    <select id="SelectVentasRAALOnLine" parameterClass="InfoTiempoReal" resultClass="InfoTiempoReal">
+      SELECT
+      SUM(PrecioTotal - Impuestos) AS VentasReales,
+      SUM(PrecioTotal) AS VentasTotales
+      FROM Venta
+      WHERE Empresa ='IRAAL' AND Mov='Factura Electronica' AND Estatus='Concluido'
+      <isEqual prepend="AND" property="rangeDate" compareValue="false">
+        FechaEmision = #Fecha#
+      </isEqual>
+      <isEqual prepend="AND" property="rangeDate" compareValue="true">
+        FechaEmision BETWEEN #Fecha# AND #FechaEnd#
+      </isEqual>
+    </select>
+
+    <select id="SelectCobrosRAALOnLine" parameterClass="InfoTiempoReal" resultClass="InfoTiempoReal">
+      SELECT SUM(Importe) AS TotalCobros
+      FROM Cxc
+      WHERE Mov ='Cobro' and Empresa='IRAAL' and Estatus='CONCLUIDO'
+      <isEqual prepend="AND" property="rangeDate" compareValue="false">
+        FechaEmision = #Fecha#
+      </isEqual>
+      <isEqual prepend="AND" property="rangeDate" compareValue="true">
+        FechaEmision BETWEEN #Fecha# AND #FechaEnd#
+      </isEqual>
+    </select>
+    <!--MADAPAL-->
+    <select id="SelectVentasMADAPALOnLine" parameterClass="InfoTiempoReal" resultClass="InfoTiempoReal">
+      SELECT
+      SUM(PrecioTotal - Impuestos) AS VentasReales,
+      SUM(PrecioTotal) AS VentasTotales
+      FROM Venta
+      WHERE Empresa ='GRAL' AND Mov='Factura Electronica' AND Estatus='Concluido'
+      <isEqual prepend="AND" property="rangeDate" compareValue="false">
+        FechaEmision = #Fecha#
+      </isEqual>
+      <isEqual prepend="AND" property="rangeDate" compareValue="true">
+        FechaEmision BETWEEN #Fecha# AND #FechaEnd#
+      </isEqual>
+    </select>
+
+    <select id="SelectCobrosMADAPALOnLine" parameterClass="InfoTiempoReal" resultClass="InfoTiempoReal">
+      SELECT SUM(Importe) AS TotalCobros
+      FROM Cxc
+      WHERE Mov ='Cobro' and Empresa='GRAL' and Estatus='CONCLUIDO'
+      <isEqual prepend="AND" property="rangeDate" compareValue="false">
+        FechaEmision = #Fecha#
+      </isEqual>
+      <isEqual prepend="AND" property="rangeDate" compareValue="true">
+        FechaEmision BETWEEN #Fecha# AND #FechaEnd#
+      </isEqual>
+    </select>
+	  <select id="selectDQContabilidad" resultClass="Contabilidad" parameterClass="DQ_VentasFinder">
+		  Declare @Fecha Datetime
+		  DECLARE @MONTH INT
+		  DECLARE @YEAR INT
+		  Set @Fecha = (DATEADD(MONTH, -1,GETDATE()))
+
+		  SET @MONTH=MONTH(@Fecha)
+		  SET @YEAR=YEAR(@Fecha)
+
+		  DECLARE @CONTABILIDAD TABLE
+		  (
+		  SENDERO DECIMAL (10,4),
+		  LOMAS DECIMAL (10,4),
+		  DORADO DECIMAL (10,4),
+		  VALLES DECIMAL (10,4),
+		  CHAPULTEPEC DECIMAL (10,4),
+		  CENTRO DECIMAL (10,4),
+		  WTC DECIMAL (10,4),
+		  CONSTRUPLAZA DECIMAL (10,4),
+		  MATEHUALA DECIMAL (10,4),
+		  CARRANZA DECIMAL (10,4),
+		  FENAPO DECIMAL (10,4),
+		  GALERIAS DECIMAL (10,4),
+		  PACHUCA DECIMAL (10,4)
+		  )
+		  /***********Ventas Netas Mostrador***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, abonos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('4100-001-002-000001')
+		  group by subcuenta,abonos ) S
+		  PIVOT (
+		  SUM(abonos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD SELECT * FROM (
+		  SELECT  subcuenta, abonos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('4100-001-002-000001')
+		  group by subcuenta,abonos ) S
+		  PIVOT (
+		  SUM(abonos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+		  /***********Ventas Netas devoluciones***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, abonos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('4100-001-001-000000')
+		  group by subcuenta,abonos ) S
+		  PIVOT (
+		  SUM(abonos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD SELECT * FROM (
+		  SELECT  subcuenta, abonos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('4100-001-001-000000')
+		  group by subcuenta,abonos ) S
+		  PIVOT (
+		  SUM(abonos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+		  /***********Regalias Extranjero***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-002-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-002-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+		  /***********Agua Potable***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-008-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-008-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+		  /***********Energia Electrica***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-009-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-009-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+		  /***********Telefono***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-011-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-011-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+		  /***********Telefono Celulares***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-012-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-012-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+		  /***********Renta de Locales y Mant Plaza***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-013-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-013-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+
+		  /***********Alarmas***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-014-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-014-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+
+
+		  /***********Fumigaciones***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-015-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-015-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+		  /***********Aseo y Limpieza***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-017-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-017-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+		  /***********Papeleria***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio='2021' and periodo=@MONTH AND cuenta in ('6100-018-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio='2021' and periodo=@MONTH AND cuenta in ('6100-018-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+		  /***********Traslado de Valores***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo='1' AND cuenta in ('6100-018-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo='1' AND cuenta in ('6100-018-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+
+		  /***********Mantenimiento local***********/
+		  IF EXISTS (
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-023-001-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-023-001-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+
+
+		  /***********Mtto Maquinaria y equipo***********/
+		  IF EXISTS (
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-023-002-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-023-002-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+
+
+		  /***********Mtto Mobiliario y equipo***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-023-003-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-023-003-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+
+		  /***********Mantenimiento plaza***********/
+		  IF EXISTS (
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-024-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-024-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+
+
+		  /***********Cargos del Banco***********/
+		  IF EXISTS (
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-026-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-026-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+
+		  /***********Mensajeria***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-029-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-029-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+
+
+		  /***********Uniforme***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-039-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-039-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+		  /***********Gastos de Viaje***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-041-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-041-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+		  /***********Eventos Internos***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-042-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-042-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+		  /***********Gasolina y Equipo***********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-047-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-047-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+		  /***********Comisiones Plataforma**********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-061-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-061-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+		  /***********Diversos**********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-999-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6100-999-000-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+
+
+
+
+		  /***********Comisiones Bancarias**********/
+		  IF EXISTS(
+		  SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6200-029-001-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P)
+		  INSERT @CONTABILIDAD SELECT * FROM (
+		  SELECT  subcuenta, cargos
+		  FROM [Madapal].[dbo].[Acum] where empresa='RODPE' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('6200-029-001-000000')
+		  group by subcuenta,cargos ) S
+		  PIVOT (
+		  SUM(cargos)
+		  for [subcuenta] in ([14001],[14002],[14003],[14004],[14005],[14006],[14007],[14008],[14009],[14010],[14013],[14011],[14012])
+		  ) P
+		  ELSE
+		  INSERT INTO @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+		  SELECT * FROM @CONTABILIDAD
+
+	  </select>
+
+	  <select id="SelectDPContabilidad" resultClass="ContabilidadDP" parameterclas="Date">
+      DECLARE @YEAR CHAR(10);
+      DECLARE @MONTH CHAR(10);
+      SET @MONTH=#Month#;
+      SET @YEAR=#Year#;
+      DECLARE @CONTABILIDAD TABLE
+      (
+      T11053 DECIMAL (10,1),
+      T11028 DECIMAL (10,1),
+      T11597 DECIMAL (10,1),
+      T11641 DECIMAL (10,1),
+      T11405 DECIMAL (10,1),
+      T11544 DECIMAL (10,1),
+      T11488 DECIMAL (10,1),
+      T11911 DECIMAL (10,1),
+      T11982 DECIMAL (10,1),
+      T11406 DECIMAL (10,1),
+      T11842 DECIMAL (10,1),
+      T11288 DECIMAL (10,1),
+      T11220 DECIMAL (10,1),
+      T11863 DECIMAL (10,1),
+      T11876 DECIMAL (10,1),
+      T12390 DECIMAL (10,1),
+      T11456 DECIMAL (10,1),
+      T11101 DECIMAL (10,1),
+      T11127 DECIMAL (10,1),
+      T11181 DECIMAL (10,1),
+      T11214 DECIMAL (10,1),
+      T11443 DECIMAL (10,1),
+      T11450 DECIMAL (10,1),
+      T11484 DECIMAL (10,1),
+      T11490 DECIMAL (10,1),
+      T11497 DECIMAL (10,1),
+      T11598 DECIMAL (10,1),
+      T11978 DECIMAL (10,1),
+      T12361 DECIMAL (10,1)
+      )
+      /***********INGRESOS***********/
+      IF EXISTS(
+      SELECT * FROM (
+      SELECT  subcuenta, abonos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('4100-001-001-000000')
+      group by subcuenta,abonos ) S
+      PIVOT (
+      SUM(abonos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD SELECT * FROM (
+      SELECT  subcuenta, abonos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR and periodo=@MONTH AND cuenta in ('4100-001-001-000000')
+      group by subcuenta,abonos ) S
+      PIVOT (
+      SUM(abonos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],
+      [12390],[11456],[11101],[11127],[11181],[11214],[11443], [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************COSTOCOMIDA****************/
+      IF EXISTS(
+      SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('5000-001-004-000000')
+      group by subcuenta,cargos,abonos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD
+      SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('5000-001-004-000000')
+      group by subcuenta,cargos,abonos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************COSTOREFRESCO****************/
+      IF EXISTS(
+      SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('5000-001-003-000000')
+      group by subcuenta,cargos,abonos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('5000-001-003-000000')
+      group by subcuenta,cargos,abonos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************MANO DE OBRA****************/
+      IF EXISTS(
+      SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH  AND cuenta in ('5500-000-000-000000','6100-007-000-000000','6100-040-000-000000','6100-041-000-000000',
+      '6100-042-000-000000','6100-043-000-000000','6100-044-000-000000','6100-100-000-000000','6100-400-000-000000','6100-500-000-000000','6200-001-000-000000','6200-002-000-000000',
+      '6200-003-000-000000','6200-004-000-000000','6200-005-000-000000','6200-006-000-000000','6200-007-000-000000','6200-008-000-000000','6200-009-000-000000','6200-010-000-000000',
+      '6200-036-000-000000','6200-039-000-000000','6200-044-000-000000','6200-045-000-000000','6200-046-000-000000','6200-047-000-000000','6200-048-000-000000','
+      6200-051-000-000000')
+      group by subcuenta,cargos ) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD
+      SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH  AND cuenta in ('5500-000-000-000000','6100-007-000-000000','6100-040-000-000000','6100-041-000-000000',
+      '6100-042-000-000000','6100-043-000-000000','6100-044-000-000000','6100-100-000-000000','6100-400-000-000000','6100-500-000-000000','6200-001-000-000000','6200-002-000-000000',
+      '6200-003-000-000000','6200-004-000-000000','6200-005-000-000000','6200-006-000-000000','6200-007-000-000000','6200-008-000-000000','6200-009-000-000000','6200-010-000-000000',
+      '6200-036-000-000000','6200-039-000-000000','6200-044-000-000000','6200-045-000-000000','6200-046-000-000000','6200-047-000-000000','6200-048-000-000000','
+      6200-051-000-000000')
+      group by subcuenta,cargos ) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************RENTA LOCAL****************/
+      IF EXISTS(
+      SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-013-000-000000','6100-034-000-000000','6200-038-000-000000','6200-042-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P )
+      INSERT @CONTABILIDAD SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-013-000-000000','6100-034-000-000000','6200-038-000-000000','6200-042-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************Energia****************/
+      IF EXISTS(
+      SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-009-000-000000','6200-017-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-009-000-000000','6200-017-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************GAS****************/
+      IF EXISTS(
+      SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-010-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD  SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-010-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************CUOTAS****************/
+      IF EXISTS(
+      SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-027-000-000000','6100-037-000-000000','6200-022-000-000000','6200-029-003-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-027-000-000000','6100-037-000-000000','6200-022-000-000000','6200-029-003-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************SEGURIDAD****************/
+      IF EXISTS(
+      SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-036-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-036-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+      /**************RECOLECCION DE BASURA****************/
+      IF EXISTS( SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-016-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD  SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-016-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************DERECHOS DE AGUA****************/
+      IF EXISTS(
+      SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-008-000-000000','6200-016-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD  SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-008-000-000000','6200-016-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************SEGUROS****************/
+      IF EXISTS(  SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-031-000-000000','6100-049-000-000000','6100-105-000-000000','6200-028-000-000000',
+      '6200-033-000-000000','6200-053-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD   SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-031-000-000000','6100-049-000-000000','6100-105-000-000000','6200-028-000-000000',
+      '6200-033-000-000000','6200-053-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************OTROS GASTOS DE OCUPACION****************/
+      IF EXISTS(
+      SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-011-000-000000','6100-014-000-000000','6100-015-000-000000','6100-019-000-000000',
+      '6100-029-000-000000','6200-010-001-000002','6200-019-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-011-000-000000','6100-014-000-000000','6100-015-000-000000','6100-019-000-000000',
+      '6100-029-000-000000','6200-010-001-000002','6200-019-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************PUBLICIDAD****************/
+
+      IF EXISTS(SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6200-021-000-000000','6100-003-000-000000','6100-006-000-000000','6100-114-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6200-021-000-000000','6100-003-000-000000','6100-006-000-000000','6100-114-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************REGALIAS****************/
+      IF EXISTS(  SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-001-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD   SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-001-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************REPARACMANT****************/
+      IF EXISTS( SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-021-000-000000','6100-023-000-000000','6100-033-000-000000','6100-101-000-000000','6100-103-000-000000',
+      '6100-104-000-000000','6200-026-000-000000','6200-030-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD  SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-021-000-000000','6100-023-000-000000','6100-033-000-000000','6100-101-000-000000','6100-103-000-000000',
+      '6100-104-000-000000','6200-026-000-000000','6200-030-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+      /**************SUMINISTROS****************/
+      IF EXISTS(SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-012-000-000000','6100-017-000-000000','6100-018-000-000000','6100-020-000-000000','
+      6100-022-000-000000','6100-039-000-000000','6100-056-000-000000','6100-112-000-000000','6200-015-000-000000','6200-018-000-000000','6200-020-000-000000','6200-034-000-000000','
+      6200-035-000-000000','6200-043-000-000000','6200-056-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-012-000-000000','6100-017-000-000000','6100-018-000-000000','6100-020-000-000000','
+      6100-022-000-000000','6100-039-000-000000','6100-056-000-000000','6100-112-000-000000','6200-015-000-000000','6200-018-000-000000','6200-020-000-000000','6200-034-000-000000','
+      6200-035-000-000000','6200-043-000-000000','6200-056-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************AGREGADORES****************/
+      IF EXISTS(SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-059-000-000000','6100-110-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-059-000-000000','6100-110-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+      /**************GASTOS DISTRIBUCION****************/
+      IF EXISTS(  SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-047-000-000000','6100-102-000-000000','6100-106-000-000000','6100-108-000-000000','
+      6200-031-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD   SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-047-000-000000','6100-102-000-000000','6100-106-000-000000','6100-108-000-000000','
+      6200-031-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************OTROS GASTOS TIENDA****************/
+      IF EXISTS( SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-005-000-000000','6100-025-000-000000','6100-026-000-000000','6100-038-000-000000','
+      6100-045-000-000000','6100-048-000-000000','6100-050-000-000000','6100-052-000-000000','6100-057-000-000000','6100-060-000-000000','6100-107-000-000000','6100-998-000-000000','
+      6100-999-000-000000','6200-010-001-000001','6200-010-002-000000','6200-010-003-000000','6200-010-004-000000','6200-011-000-000000','6200-012-000-000000','
+      6200-013-000-000000','6200-014-000-000000','6200-023-000-000000','6200-025-000-000000','6200-027-000-000000','6200-032-000-000000','6200-041-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6100-005-000-000000','6100-025-000-000000','6100-026-000-000000','6100-038-000-000000','
+      6100-045-000-000000','6100-048-000-000000','6100-050-000-000000','6100-052-000-000000','6100-057-000-000000','6100-060-000-000000','6100-107-000-000000','6100-998-000-000000','
+      6100-999-000-000000','6200-010-001-000001','6200-010-002-000000','6200-010-003-000000','6200-010-004-000000','6200-011-000-000000','6200-012-000-000000','
+      6200-013-000-000000','6200-014-000-000000','6200-023-000-000000','6200-025-000-000000','6200-027-000-000000','6200-032-000-000000','6200-041-000-000000')
+      group by subcuenta,cargos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      /**************CIF****************/
+      IF EXISTS(SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6200-029-000-000000','6200-037-000-000000','7100-000-000-000000')
+      group by subcuenta,cargos,abonos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P)
+      INSERT @CONTABILIDAD SELECT * FROM (
+      SELECT  subcuenta,Cargos
+      FROM [Madapal].[dbo].[Acum] where empresa='DOT' AND Ejercicio=@YEAR AND  periodo=@MONTH AND cuenta in ('6200-029-000-000000','6200-037-000-000000','7100-000-000-000000')
+      group by subcuenta,cargos,abonos) S
+      PIVOT (
+      SUM(cargos)
+      for [subcuenta] in ([11053],[11028],[11597],[11641],[11405],[11544],[11488],[11911],[11982],[11406],[11842],[11288],[11220],[11863],[11876],[12390],[11456],[11101],[11127],[11181],[11214],[11443],
+      [11450],[11484],[11490],[11497],[11598],[11978],[12361])
+      ) P
+      ELSE
+      INSERT @CONTABILIDAD VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+
+      SELECT * FROM @CONTABILIDAD
+    </select>
+  </statements>
+</sqlMap>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="Transfer" type="Poleo.Objects.Transfer" />
+  </alias>
+  <statements>
+    <select id="SelectTransfer" parameterClass="Transfer" resultClass="Transfer">
+      SELECT
+      *
+      FROM SM_Transfer
+      <dynamic prepend="WHERE">
+        <isNotNull prepend="AND" property="Numer_Tienda">
+          Numer_Tienda = #Numer_Tienda#
+        </isNotNull>
+        <isNotNull prepend="AND" property="DateTransferIni">
+          convert(date,DateTransferIni) = convert(date,#DateTransferIni#)
+        </isNotNull>
+        <isNotNull prepend="AND" property="IDScheduleTransfer">
+          IDScheduleTransfer = #IDScheduleTransfer#
+        </isNotNull>
+      </dynamic>
+    </select>
+
+    <select id="SelectLastTransfer" parameterClass="Transfer" resultClass="Transfer">
+      SELECT TOP(1)
+      *
+      FROM SM_Transfer
+      <dynamic prepend="WHERE">
+        <isNotNull prepend="AND" property="Numer_Tienda">
+          Numer_Tienda = #Numer_Tienda#
+        </isNotNull>
+      </dynamic>
+      ORDER BY DateTransferIni ASC
+    </select>
+
+    <insert id="InsertTransfer" parameterClass="Transfer">
+      INSERT INTO SM_Transfer (IDScheduleTransfer, Numer_Tienda, DateTransferIni, SuccessfulTransfer, AttemptsTransfer)
+      VALUES (#IDScheduleTransfer#, #Numer_Tienda#, #DateTransferIni#, #SuccessfulTransfer#, #AttemptsTransfer#)
+    </insert>
+
+    <update id="UpdateTransfer" parameterClass="Transfer">
+      UPDATE SM_Transfer SET
+      IDScheduleTransfer = #IDScheduleTransfer#,
+      Numer_Tienda = #Numer_Tienda#, 
+      DateTransferIni = #DateTransferIni#, 
+      SuccessfulTransfer = #SuccessfulTransfer#, 
+      AttemptsTransfer = #AttemptsTransfer#
+      WHERE IDTransfer = #IDTransfer#
+    </update>
+  </statements>
+</sqlMap>

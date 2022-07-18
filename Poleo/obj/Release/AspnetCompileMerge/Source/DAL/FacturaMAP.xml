@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Facturas" type="Poleo.Objects.Facturas" />
+    <typeAlias alias="FacturasFinder" type="Poleo.Objects.FacturasFinder" />
+  </alias>
+  <statements>
+    <insert id="InsertFacturas" parameterClass="Facturas">
+      INSERT INTO Factura
+      (IdProveedor,IdEmpresa, Folio,Fecha_Factura,Fecha_Vigencia, Fecha_Pago, Total_Factura,Estatus,FolioFiscal,RetencionIVA,RetencionISR,TrasladosIVA,TrasladosIEPS,Descuentos,Activo,SubTotal)
+      VALUES
+      (#IdProveedor#,#IdEmpresa#,#Folio#,#Fecha_Factura#,#Fecha_Vigencia#,#Fecha_Pago#,#Total_Factura#,#Estatus#,#FolioFiscal#,#RetencionIVA#,#RetencionISR#,#TrasladosIVA#,#TrasladosIEPS#,#Descuentos#,#Activo#,#SubTotal#)
+      <selectKey resultClass="int" type="post" property="IdFactura" >
+        select @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <select id="SelectFactura" parameterClass="Facturas" resultClass="Facturas">
+      select * from Factura where FolioFiscal =#FolioFiscal# 
+    </select>
+    <select id="SelectFacturaChange"  resultClass="Facturas" parameterClass="FacturasFinder">
+      SELECT
+      F.*,
+      P.Nombre AS Proveedor,
+      E.Nombre_Empresa AS Empresa,
+      P.Tipo AS TipoProveedor
+      FROM factura AS F
+      INNER JOIN Proveedor P ON F.IdProveedor=P.IdProveedor
+      INNER JOIN Empresa E ON E.IdEmpresa= F.IdEmpresa
+      WHERE F.Activo=#Activo#
+
+      <isNotNull prepend="AND" property="FechaFacturaIni" >
+          <isNotNull  property="FechaFacturaEnd" >
+            Fecha_Factura BETWEEN #FechaFacturaIni# AND #FechaFacturaEnd#
+          </isNotNull>
+        </isNotNull>
+
+        <isNotNull prepend="AND" property="FechaVencimientoIni" >
+          <isNotNull  property="FechaVencimientoEnd" >
+            Fecha_Vigencia BETWEEN #FechaVencimientoIni# AND #FechaVencimientoEnd#
+          </isNotNull>
+        </isNotNull>
+
+        <isNotNull prepend="AND" property="FechaPagoIni" >
+          <isNotNull  property="FechaPagoEnd" >
+            Fecha_Pago BETWEEN #FechaPagoIni# AND #FechaPagoEnd#
+          </isNotNull>
+        </isNotNull>
+
+        <isNotEmpty prepend="AND" property="NombreEmpresa" >
+          E.Nombre_Empresa =#NombreEmpresa#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="NombreProveedor" >
+          P.Nombre=#NombreProveedor#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="Folio" >
+          F.Folio=#Folio#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="FolioFiscal" >
+          F.FolioFiscal=#FolioFiscal#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="EstatusFactura" >
+          F.Estatus=#EstatusFactura#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="TipoProveedor" >
+          P.Tipo=#TipoProveedor#
+        </isNotEmpty>
+      order by E.Nombre_Empresa,P.Tipo desc,P.Nombre,F.Folio
+    </select>
+    <update id ="UpdateFacturas" parameterClass="Facturas">
+      UPDATE Factura
+      SET Activo=#Activo#,
+      Estatus=#Estatus#,
+      Fecha_Vigencia=#Fecha_Vigencia#,
+      Fecha_Pago=#Fecha_Pago#
+      WHERE IdFactura=#IdFactura#
+    </update>
+    <select id="SelectFacturastoChange" parameterClass="Facturas" resultClass="Facturas">
+      select * from Factura
+      where IdProveedor=#IdProveedor# and Estatus in ('INACTIVA','VENCIDA','PROXIMAVENCIMIENTO')
+    </select>
+  </statements>
+</sqlMap>

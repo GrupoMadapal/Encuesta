@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Tienda" type="Poleo.Objects.Tienda" />
+  </alias>
+  <statements>
+    <select id="selectTiendaUp" resultClass="Tienda">
+      select Ubicacion from Tiendas group by Ubicacion
+    </select>
+    <select id="SelectTipoTienda" resultClass="Tienda" parameterClass="Tienda">
+      select Tipo from Tiendas
+    <dynamic prepend="where">
+      <isNotEmpty prepend="and" property="Ubicacion">
+       Ubicacion=#Ubicacion#
+      </isNotEmpty>  
+    </dynamic>  
+     group by Tipo
+    </select>
+    <select  id ="SelectTiendas" resultClass="Tienda" parameterClass="Tienda">
+      select * from Tiendas
+      <dynamic prepend="where">
+        <isNotEmpty prepend="AND" property="Number_tienda" >
+          Number_tienda = #Number_tienda#
+        </isNotEmpty>
+      <isNotEmpty prepend="and" property="Ubicacion">
+       Ubicacion=#Ubicacion#
+      </isNotEmpty>  
+      <isNotEmpty prepend="and" property="Tipo">
+        Tipo=#Tipo#
+      </isNotEmpty> 
+      </dynamic>
+      order by orden desc
+
+    </select>
+  <select ID="SELECTDQTIENDAS" resultClass="Tienda">
+    SELECT NumeroTienda AS Number_tienda,
+    NombreCompleto AS Nombre_tienda,
+    Gerente,
+    Code
+    FROM DQTiendas
+    order by orden desc
+  </select>
+  </statements>
+</sqlMap>

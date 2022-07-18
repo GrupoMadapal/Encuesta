@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="InformacionOperativa" type="Poleo.Objects.InformacionOperativa" />
+    <typeAlias alias="FinderInformacionOp" type="Poleo.Objects.VentasFinder" />
+    <typeAlias alias="OrderbyTime" type="Poleo.Objects.OrderbyTime" />
+  </alias>
+  <statements>
+    <select id="SelectTiemposPromedio" parameterClass="FinderInformacionOp" resultClass="InformacionOperativa">
+       SELECT
+      SUM(Ave_Take_Minutes)/COUNT(Ave_Take_Hms) AS TomaOrden,
+      SUM(Ave_Load_Minutes)/COUNT(Ave_Load_Hms) AS Produccion,
+      SUM(Ave_Wait_Minutes)/COUNT(Ave_Wait_Hms) AS Repisa,
+      SUM(Ave_Dispatch_Minutes)/COUNT(Ave_Dispatch_Hms) as FueraTienda,
+      SUM(Ave_Delivery_Minutes)/COUNT(Ave_Delivery_Hms) AS Entrega
+      FROM KeysExtractsCorpVersion as KeysCorp
+      inner join Tiendas as T on T.Number_tienda=KeysCorp.Location_Code
+      where EndDate between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+
+    </select>
+    <select id="SelectOrderbyTime" parameterClass="FinderInformacionOp" resultClass="OrderbyTime">
+      <![CDATA[
+      SELECT
+      SUM(CASE WHEN DATEDIFF(second,Ord_Hms ,Disp_Hms) >0 AND DATEDIFF(second,Ord_Hms ,Disp_Hms)<=900 THEN 1 ELSE 0 END)AS Ord_Less_15,
+      SUM(CASE WHEN Delv_Tm >0 AND Delv_Tm<=1800 THEN 1 ELSE 0 END)AS Ord_Less_30,
+      SUM(CASE WHEN Delv_Tm >1800  THEN 1 ELSE 0 END)AS Ord_More_30,
+      COUNT(*)AS Ord_Total
+      ]]>
+      FROM OrdersExtracts
+      inner join Tiendas as T on T.Number_tienda=OrdersExtracts.Store_No
+      WHERE Ord_Dt between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        OrdersExtracts.Store_No= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty> AND Ord_Status_Cd LIKE 'G' AND Ord_Type_Cd LIKE  'D'
+      
+    </select>
+  </statements>
+</sqlMap>

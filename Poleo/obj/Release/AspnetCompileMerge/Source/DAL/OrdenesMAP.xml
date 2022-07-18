@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="OrdenesFinder" type="Poleo.Objects.OrdenesFinder" />
+    <typeAlias alias="OrdenDetalle" type="Poleo.Objects.OrderDetail" />
+  </alias>
+  <statements>
+    <select id="selectOrdenesPorCupon" parameterClass="OrdenesFinder" resultClass="OrdenDetalle">
+      declare @ordenesCupon table (
+      numeroOrden int,
+      tienda varchar(10)
+      )
+      insert @ordenesCupon
+      select  distinct  ORD.Ord_No, ORD.Store_No from OrderDetailsExtracts  ORD
+      INNER JOIN  Tiendas T ON T.Number_tienda=ORD.Store_No
+      where Cpn_Cd=#CodigoCupon#
+      and Ord_Dt between #DateIni# and #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        T.Number_tienda= #NumTienda#
+      </isNotEmpty>
+    <isNotEmpty prepend="AND" property="TipoTienda" >
+      T.Tipo= #TipoTienda#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="UbicacionTienda" >
+      T.Ubicacion = #UbicacionTienda#
+    </isNotEmpty>
+
+
+      select od.* from OrderDetailsExtracts OD
+      inner join @ordenesCupon OC on oc.numeroOrden=od.Ord_No and OC.tienda= OD.Store_No
+    </select>
+  </statements>
+</sqlMap>

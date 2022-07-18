@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="HeaderEncuesta" type="Poleo.Objects.EncuestaHeader" />
+    <typeAlias alias="Encuesta_ASPECTOLABORAL" type="Poleo.Objects.Encuesta_ASPECTOLABORAL" />
+    <typeAlias alias="Encuesta_OportunidadLaboral" type="Poleo.Objects.Encuesta_OportunidadLaboral" />
+    <typeAlias alias="Encuesta_FamiliaresPersonales" type="Poleo.Objects.Encuesta_FamiliaresPersonales" />
+    <typeAlias alias="Encuesta_ESTUDIOS_U_OTROS_INTERESES_PROFESIONALES" type="Poleo.Objects.Encuesta_ESTUDIOS_U_OTROS_INTERESES_PROFESIONALES" />
+    <typeAlias alias="EncuestaFooter" type="Poleo.Objects.EncuestaFooter" />
+    <typeAlias alias="RecluFechas" type="Poleo.Objects.RecluFechas" />
+    
+  </alias>
+  <statements>
+    <insert id="InsertNewHeaderEncuesta" parameterClass="HeaderEncuesta">
+      INSERT INTO EncuestaHeader
+      (Nombre,
+      Puesto,
+      NombreJefe,
+      PuestoJefe,
+      Marca,
+      Sucursal_Departamento,
+      Ingreso,
+      Salida,
+      Razon,
+      FechaEncuesta
+      )
+      VALUES
+      (#Nombre#
+      ,#Puesto#
+      ,#NombreJefe#
+      ,#PuestoJefe#
+      ,#Marca#
+      ,#Sucursal_Departamento#
+      ,#Ingreso#
+      ,#Salida#
+      ,#Razon#
+      ,#FechaEncuesta#)
+    </insert>
+    <insert id="InsertAspectoLaboral" parameterClass="Encuesta_ASPECTOLABORAL">
+      INSERT INTO Encuesta_ASPECTOLABORAL
+      (Razon1,
+      Razon2,
+      Razon3,
+      IdEncuesta
+      )
+      VALUES
+      (#Razon1#
+      ,#Razon2#
+      ,#Razon3#
+      ,#IdEncuesta#)
+    </insert>
+    <select id ="SearchEncuesta" parameterClass ="HeaderEncuesta" resultClass ="HeaderEncuesta">
+      select * from EncuestaHeader where Nombre=#Nombre# and Marca=#Marca# and Puesto =#Puesto#
+    </select>
+    <select id ="SearchAL" parameterClass ="RecluFechas" resultClass ="Encuesta_ASPECTOLABORAL">
+      select AL.* from EncuestaHeader EH
+      inner join Encuesta_ASPECTOLABORAL AL on AL.IdEncuesta=EH.IdEncuesta
+      where EH.FechaEncuesta BETWEEN #DateIni# and #DateEnd# and AL.IdEncuesta=#IdEntrevista#
+    </select>
+    <select id ="SearchOPL" parameterClass ="RecluFechas" resultClass ="Encuesta_OportunidadLaboral">
+      select OL.* from EncuestaHeader EH
+      inner join Encuesta_OportunidadLaboral OL on OL.IdEncuesta=EH.IdEncuesta
+      where EH.FechaEncuesta BETWEEN #DateIni# and #DateEnd# and OL.IdEncuesta=#IdEntrevista#
+    </select>
+    
+      <select id ="SearchFP" parameterClass ="RecluFechas" resultClass ="Encuesta_FamiliaresPersonales">
+        select FP.* from EncuestaHeader EH
+        inner join Encuesta_MOTIVOS_PERSONALES_y_o_FAMILIARES FP on FP.IdEncuesta=EH.IdEncuesta
+        where EH.FechaEncuesta BETWEEN #DateIni# and #DateEnd# and FP.IdEncuesta=#IdEntrevista#
+      </select>
+    
+    <select id ="SearcEI" parameterClass ="RecluFechas" resultClass ="Encuesta_ESTUDIOS_U_OTROS_INTERESES_PROFESIONALES">
+      select PF.* from EncuestaHeader EH
+      inner join Encuesta_ESTUDIOS_U_OTROS_INTERESES_PROFESIONALES PF on PF.IdEncuesta=EH.IdEncuesta
+      where EH.FechaEncuesta BETWEEN #DateIni# and #DateEnd# and PF.IdEncuesta=#IdEntrevista#
+    </select>
+    
+    
+    <select id ="SearcEF" parameterClass ="RecluFechas" resultClass ="EncuestaFooter">
+      select PF.* from EncuestaHeader EH
+      inner join Encuesta_Footer PF on PF.IdEncuesta=EH.IdEncuesta
+      where EH.FechaEncuesta BETWEEN #DateIni# and #DateEnd# and PF.IdEncuesta=#IdEntrevista#
+    </select>
+    
+      
+    <select id ="SearchHeader" parameterClass ="RecluFechas" resultClass ="HeaderEncuesta">
+      select * from EncuestaHeader
+	  where FechaEncuesta BETWEEN #DateIni# and #DateEnd#
+    </select>
+      
+    <insert id="InsertEncuesta_OportunidadLaboral" parameterClass="Encuesta_OportunidadLaboral">
+      INSERT INTO Encuesta_OportunidadLaboral
+      (Razon1,
+      Razon2,
+      Razon3,
+      Otro,
+      IdEncuesta
+      )
+      VALUES
+      (#Razon1#
+      ,#Razon2#
+      ,#Razon3#
+      ,#Otro#
+      ,#IdEncuesta#)
+    </insert>
+    <insert id="InsertEncuesta_MOTIVOSPERSONALES_FAMILIARES" parameterClass="Encuesta_FamiliaresPersonales">
+      INSERT INTO Encuesta_MOTIVOS_PERSONALES_y_o_FAMILIARES
+      (Razon1,
+      Otro,
+      IdEncuesta
+      )
+      VALUES
+      (#Razon1#
+      ,#Otro#
+      ,#IdEncuesta#)
+    </insert>
+    <insert id="InsertEncuesta_ESTUDIOS_U_OTROS_INTERESES_PROFESIONALES" parameterClass="Encuesta_ESTUDIOS_U_OTROS_INTERESES_PROFESIONALES">
+      INSERT INTO Encuesta_ESTUDIOS_U_OTROS_INTERESES_PROFESIONALES
+      (Razon1,
+      Otro,
+      IdEncuesta
+      )
+      VALUES
+      (#Razon1#
+      ,#Otro#
+      ,#IdEncuesta#)
+    </insert> 
+    <insert id="InsertEncuesta_Footer" parameterClass="EncuestaFooter">
+      INSERT INTO Encuesta_Footer
+      (Pregunta1,
+      Pregunta2,
+      Pregunta3,
+      Pregunta4,
+      Pregunta5,
+      Pregunta6,
+      Pregunta7,
+      Pregunta8,
+      Pregunta9,
+      Pregunta10,
+      Pregunta11,
+      Pregunta12,
+      Pregunta13,
+      Pregunta13Des,
+      Pregunta14,
+      Pregunta14Des,
+      Pregunta15,
+      Pregunta16,
+      Pregunta17,
+      Pregunta18,
+      Pregunta19,
+      Pregunta20,
+      Pregunta21,
+      Pregunta22,
+      Pregunta23,
+      IdEncuesta
+      )
+      VALUES
+      (#Pregunta1#,
+      #Pregunta2#,
+      #Pregunta3#,
+      #Pregunta4#,
+      #Pregunta5#,
+      #Pregunta6#,
+      #Pregunta7#,
+      #Pregunta8#,
+      #Pregunta9#,
+      #Pregunta10#,
+      #Pregunta11#,
+      #Pregunta12#,
+      #Pregunta13#,
+      #Pregunta13Des#,
+      #Pregunta14#,
+      #Pregunta14Des#,
+      #Pregunta15#,
+      #Pregunta16#,
+      #Pregunta17#,
+      #Pregunta18#,
+      #Pregunta19#,
+      #Pregunta20#,
+      #Pregunta21#,
+      #Pregunta22#,
+      #Pregunta23#,
+      #IdEncuesta#)
+    </insert>
+  </statements>
+</sqlMap>

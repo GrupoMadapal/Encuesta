@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Buttons>
+  <Button>
+    <Image>
+      <ID>ibtnPDF</ID>
+      <URL>~/Images/Excel-Grey.ico</URL>
+      <Event>btnExcel_Click</Event>
+    </Image>
+    <Control>
+      <ID>btnPDFEncuesta</ID>
+      <Text>Encuesta</Text>
+      <Event>btnPDFEncuesta_Click</Event>
+      <Width>80px</Width>
+      <Height>35px</Height>
+    </Control>
+    <Rol></Rol>
+  </Button>
+</Buttons>

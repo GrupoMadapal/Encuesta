@@ -1,0 +1,692 @@
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\Poleo.dll.config
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\Poleo.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\Poleo.pdb
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\Antlr3.Runtime.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.Core.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\EntityFramework.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\System.Web.Optimization.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\System.Web.Providers.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\WebGrease.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\EntityFramework.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.Core.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.dll
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.pdb
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.csprojResolveAssemblyReference.cache
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\IBatisNet.Common.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\IBatisNet.Common.Logging.Log4Net.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\IBatisNet.DataMapper.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\bin\log4net.xml
+C:\Users\Sistemas\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.strText.resources
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.csproj.GenerateResource.Cache
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\obj\Debug\RdlCompile.cache
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\obj\Debug\RdlCompile.compiled
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Enumn\StoreType.cs
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Poleo.dll.config
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Poleo.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Poleo.pdb
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Antlr3.Runtime.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.Core.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\EntityFramework.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\System.Web.Optimization.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\System.Web.Providers.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\WebGrease.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\EntityFramework.xml
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.Core.xml
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.dll
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.pdb
+C:\Users\madapal\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.csprojResolveAssemblyReference.cache
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Enumn\StoreType.cs
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Poleo.dll.config
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Poleo.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Poleo.pdb
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Antlr3.Runtime.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.Core.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\EntityFramework.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\System.Web.Optimization.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\System.Web.Providers.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\WebGrease.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\EntityFramework.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.Core.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.csprojResolveAssemblyReference.cache
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.strText.resources
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.csproj.GenerateResource.Cache
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\obj\Debug\RdlCompile.cache
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\obj\Debug\RdlCompile.compiled
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo\Poleo\obj\Debug\Poleo.pdb
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Enumn\StoreType.cs
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Poleo.dll.config
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Poleo.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Poleo.pdb
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Antlr3.Runtime.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.Core.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\EntityFramework.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\System.Web.Optimization.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\System.Web.Providers.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\WebGrease.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\EntityFramework.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.Core.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.strText.resources
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csproj.GenerateResource.Cache
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\RdlCompile.cache
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\RdlCompile.compiled
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.dll
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.pdb
+C:\Users\PROGRAMADOR\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csprojResolveAssemblyReference.cache
+C:\Users\Sistemas1\Desktop\respaldo hsm\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csprojResolveAssemblyReference.cache
+C:\Users\Sistemas1\Desktop\respaldo hsm\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+C:\Users\Sistemas1\Desktop\respaldo hsm\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.strText.resources
+C:\Users\Sistemas1\Desktop\respaldo hsm\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csproj.GenerateResource.Cache
+C:\Users\Sistemas1\Desktop\respaldo hsm\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\RdlCompile.cache
+C:\Users\Sistemas1\Desktop\respaldo hsm\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\RdlCompile.compiled
+C:\Users\Sistemas1\Desktop\respaldo hsm\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.dll
+C:\Users\Sistemas1\Desktop\respaldo hsm\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.pdb
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Enumn\StoreType.cs
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Poleo.dll.config
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Poleo.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Poleo.pdb
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Antlr3.Runtime.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.Core.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\EntityFramework.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\System.Web.Optimization.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\System.Web.Providers.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\WebGrease.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\EntityFramework.xml
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.Core.xml
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csprojResolveAssemblyReference.cache
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.strText.resources
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csproj.GenerateResource.Cache
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\RdlCompile.cache
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\RdlCompile.compiled
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.dll
+C:\Users\Sistemas1\Desktop\proyects\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.pdb
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Enumn\StoreType.cs
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Poleo.dll.config
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Poleo.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Poleo.pdb
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Antlr3.Runtime.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.AspNet.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.Core.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\EntityFramework.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Microsoft.Web.Infrastructure.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\System.Web.Optimization.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\System.Web.Providers.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\WebGrease.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\EntityFramework.xml
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.Core.xml
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.xml
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.xml
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.AspNet.xml
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+F:\Proyectos\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+F:\Proyectos\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csprojAssemblyReference.cache
+F:\Proyectos\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+F:\Proyectos\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.strText.resources
+F:\Proyectos\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csproj.GenerateResource.cache
+F:\Proyectos\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csproj.CoreCompileInputs.cache
+F:\Proyectos\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csproj.CopyComplete
+F:\Proyectos\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.dll
+F:\Proyectos\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.pdb
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Enumn\StoreType.cs
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Poleo.dll.config
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Poleo.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Poleo.pdb
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Antlr3.Runtime.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.Core.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\EntityFramework.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\System.Web.Optimization.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\System.Web.Providers.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\WebGrease.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\EntityFramework.xml
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.Core.xml
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csprojResolveAssemblyReference.cache
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.strText.resources
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.csproj.GenerateResource.Cache
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\obj\Debug\RdlCompile.cache
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\obj\Debug\RdlCompile.compiled
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.dll
+C:\Users\Sistemas1\Desktop\Poleo_NuevaImagen\Poleo\obj\Debug\Poleo.pdb
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Enumn\StoreType.cs
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Poleo.dll.config
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Poleo.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Poleo.pdb
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Antlr3.Runtime.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.Core.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\EntityFramework.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\System.Web.Optimization.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\System.Web.Providers.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\WebGrease.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\EntityFramework.xml
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.Core.xml
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.strText.resources
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.GenerateResource.Cache
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\obj\Debug\RdlCompile.cache
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\obj\Debug\RdlCompile.compiled
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.dll
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.pdb
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csprojResolveAssemblyReference.cache
+C:\Users\Sistemas1\Desktop\POLEO\Poleo Nueva Imagen\Poleo\obj\Debug\Interop.ADODB.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Enumn\StoreType.cs
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.dll.config
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.pdb
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Antlr3.Runtime.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.AspNet.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.Core.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.Web.Infrastructure.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\System.Web.Optimization.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\System.Web.Providers.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\WebGrease.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.xml
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.Core.xml
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.xml
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.xml
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.AspNet.xml
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csprojAssemblyReference.cache
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Interop.ADODB.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.strText.resources
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.GenerateResource.cache
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.CoreCompileInputs.cache
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.CopyComplete
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.dll
+F:\GitHub\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.pdb
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Enumn\StoreType.cs
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.dll.config
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.pdb
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Antlr3.Runtime.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.AspNet.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.Core.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.Web.Infrastructure.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\System.Web.Optimization.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\System.Web.Providers.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\WebGrease.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.xml
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.Core.xml
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.xml
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.xml
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.AspNet.xml
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csprojAssemblyReference.cache
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Interop.ADODB.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.strText.resources
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.GenerateResource.cache
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.CoreCompileInputs.cache
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.CopyComplete
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.pdb
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.SqlServer.dll
+D:\Datos\Github\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.SqlServer.xml
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Enumn\StoreType.cs
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.dll.config
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.pdb
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Antlr3.Runtime.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.Core.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.SqlServer.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\System.Web.Optimization.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\System.Web.Providers.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\WebGrease.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.xml
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.SqlServer.xml
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.Core.xml
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csprojAssemblyReference.cache
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Interop.ADODB.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.strText.resources
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.GenerateResource.cache
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.CoreCompileInputs.cache
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.CopyComplete
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.dll
+C:\Users\Sistemas2\source\repos\GrupoMadapal\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.pdb
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Enumn\StoreType.cs
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.dll.config
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.pdb
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Antlr3.Runtime.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.Core.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.SqlServer.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\System.Web.Optimization.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\System.Web.Providers.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\WebGrease.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.xml
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.SqlServer.xml
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.Core.xml
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csprojAssemblyReference.cache
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Interop.ADODB.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.strText.resources
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.GenerateResource.cache
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\RdlCompile.cache
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\RdlCompile.compiled
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.CoreCompileInputs.cache
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.CopyComplete
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.dll
+C:\Users\Sistemas2\Source\Repos\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.pdb
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Enumn\StoreType.cs
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.dll.config
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Poleo.pdb
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Antlr3.Runtime.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.Core.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.SqlServer.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\System.Web.Optimization.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\System.Web.Providers.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\WebGrease.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.xml
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\EntityFramework.SqlServer.xml
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.Core.xml
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.AssemblyReference.cache
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Interop.ADODB.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.strText.resources
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.GenerateResource.cache
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.CoreCompileInputs.cache
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.csproj.CopyComplete
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.dll
+C:\Users\Sistemas2\Documents\GitHub\Poleo\Poleo Nueva Imagen\Poleo\obj\Debug\Poleo.pdb
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Enumn\StoreType.cs
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Poleo.dll.config
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Poleo.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Poleo.pdb
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Antlr3.Runtime.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\DotNetOpenAuth.Core.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\EntityFramework.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\EntityFramework.SqlServer.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.Optimization.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.Providers.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\WebGrease.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\EntityFramework.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\EntityFramework.SqlServer.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\DotNetOpenAuth.Core.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\obj\Debug\Poleo.csproj.AssemblyReference.cache
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\obj\Debug\Interop.ADODB.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\obj\Debug\Poleo.csproj.ResolveComReference.cache
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\obj\Debug\Poleo.strText.resources
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\obj\Debug\Poleo.csproj.GenerateResource.cache
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\obj\Debug\Poleo.csproj.CoreCompileInputs.cache
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\obj\Debug\Poleo.csproj.CopyComplete
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\obj\Debug\Poleo.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\obj\Debug\Poleo.pdb
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\BouncyCastle.Crypto.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\iTextSharp.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Buffers.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Collections.Immutable.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Memory.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Numerics.Vectors.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Reflection.Metadata.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\BouncyCastle.Crypto.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Buffers.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Collections.Immutable.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Memory.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Numerics.Vectors.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Reflection.Metadata.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Syncfusion.Compression.Base.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Syncfusion.Licensing.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Syncfusion.Compression.Base.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\SqlServerTypes\x64\msvcr120.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\SqlServerTypes\x86\msvcr120.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.ReportViewer.Design.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.ReportViewer.WebDesign.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.ReportViewer.WebForms.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.SqlServer.Types.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\EnvDTE.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Microsoft.ReportViewer.WinForms.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\stdole.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\de\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\es\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\fr\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\it\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ja\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ko\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\pt\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ru\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\de\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\es\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\it\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\de\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\es\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\fr\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\it\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ja\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ko\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\pt\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ru\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\zh-CHS\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\zh-CHT\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Aspose.Cells.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\Aspose.Cells.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.Helpers.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.Mvc.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.Razor.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.WebPages.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.WebPages.Razor.dll
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.Helpers.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.Mvc.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.Razor.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.WebPages.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Sistemas2\Desktop\Encuesta\Poleo\bin\System.Web.WebPages.Razor.xml

@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <!--Type aliases allow you to use a shorter name for long fully qualified class names.-->
+  <alias>
+    <typeAlias alias="ProductsExtracts" type="Poleo.Objects.ProductsExtracts" />
+    <typeAlias alias="Complementos" type="Poleo.Objects.Complementos" />
+    <typeAlias alias="VentasFinder3" type="Poleo.Objects.VentasFinder" />
+  </alias>
+
+  <statements>
+    <select id="SelectTest" resultClass="int">
+      SELECT COUNT (*) from
+      ProductsExtracts
+    </select>
+    <insert id="InsertProducts" parameterClass="ProductsExtracts">
+      INSERT INTO ProductsExtracts
+      (
+      [RecordType]
+      ,[DatabaseVersion]
+      ,[Location_Code]
+      ,[BeginDate]
+      ,[EndDate]
+      ,[Product_Code]
+      ,[Product_Description]
+      ,[Product_Category_Code]
+      ,[Product_Menu_Code]
+      ,[Product_Size_Code]
+      ,[Product_Crust_Code]
+      ,[Quantity]
+      ,[Sales]
+      ,[IFC_Quantity]
+      ,[IFC]
+      ,[Order_Count]
+      )
+      VALUES
+      (
+      #RecordType#
+      ,#DatabaseVersion#
+      ,#Location_Code#
+      ,#BeginDate#
+      ,#EndDate#
+      ,#Product_Code#
+      ,#Product_Description#
+      ,#Product_Category_Code#
+      ,#Product_Menu_Code#
+      ,#Product_Size_Code#
+      ,#Product_Crust_Code#
+      ,#Quantity#
+      ,#Sales#
+      ,#IFC_Quantity#
+      ,#IFC#
+      ,#Order_Count#
+      )
+    </insert>
+    <select id="Selectcomplementos" parameterClass="VentasFinder3" resultClass="Complementos">
+      SELECT
+      Location_Code as Tienda,
+      Product_Description as Producto,
+      Product_Category_Code as Categoria,
+      SUM(Quantity) as Cantidad
+      FROM ProductsExtracts P
+      inner join Tiendas as T on T.Number_tienda=P.Location_Code
+      WHERE  Product_Category_Code not like 'Pizza'
+     and 
+      EndDate between #DateIni# AND #DateEnd#
+      <isNotEmpty prepend="AND" property="NumTienda" >
+        Location_Code= #NumTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="TipoTienda" >
+        T.Tipo= #TipoTienda#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UbicacionTienda" >
+        T.Ubicacion = #UbicacionTienda#
+      </isNotEmpty>
+      group by Location_Code, Product_Description,Product_Category_Code
+      order by Location_Code,Product_Category_Code
+    </select>
+
+    <!--<select id="SelectTest" resultClass="int">
+      SELECT COUNT (*) from
+      ProductsExtracts
+    </select>
+    <insert id="InsertProducts" parameterClass="ProductsExtracts2">
+      INSERT INTO ProductsExtracts
+      (
+      [RecordType]
+      ,[DatabaseVersion]
+      ,[Location_Code]
+      ,[BeginDate]
+      ,[EndDate]
+      ,[Product_Code]
+      ,[Product_Description]
+      ,[Product_Category_Code]
+      ,[Product_Menu_Code]
+      ,[Product_Size_Code]
+      ,[Product_Crust_Code]
+      ,[Quantity]
+      ,[Sales]
+      ,[IFC_Quantity]
+      ,[IFC]
+      ,[Order_Count]
+      )
+      VALUES
+      (
+      #RecordType#
+      ,#DatabaseVersion#
+      ,#Location_Code#
+      ,#BeginDate#
+      ,#EndDate#
+      ,#Product_Code#
+      ,#Product_Description#
+      ,#Product_Category_Code#
+      ,#Product_Menu_Code#
+      ,#Product_Size_Code#
+      ,#Product_Crust_Code#
+      ,#Quantity#
+      ,#Sales#
+      ,#IFC_Quantity#
+      ,#IFC#
+      ,#Order_Count#
+      )
+    </insert>-->
+    
+  </statements>
+</sqlMap>

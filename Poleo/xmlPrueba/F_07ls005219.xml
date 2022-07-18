@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd" version="3.2" serie="LS" folio="5219" fecha="2015-04-07T08:04:36" formaDePago="PAGO EN UNA SOLA EXHIBICIÓN" certificado="MIIEsDCCA5igAwIBAgIUMDAwMDEwMDAwMDAyMDI0NzI4OTEwDQYJKoZIhvcNAQEFBQAwggGVMTgwNgYDVQQDDC9BLkMuIGRlbCBTZXJ2aWNpbyBkZSBBZG1pbmlzdHJhY2nDs24gVHJpYnV0YXJpYTEvMC0GA1UECgwmU2VydmljaW8gZGUgQWRtaW5pc3RyYWNpw7NuIFRyaWJ1dGFyaWExODA2BgNVBAsML0FkbWluaXN0cmFjacOzbiBkZSBTZWd1cmlkYWQgZGUgbGEgSW5mb3JtYWNpw7NuMSEwHwYJKoZIhvcNAQkBFhJhc2lzbmV0QHNhdC5nb2IubXgxJjAkBgNVBAkMHUF2LiBIaWRhbGdvIDc3LCBDb2wuIEd1ZXJyZXJvMQ4wDAYDVQQRDAUwNjMwMDELMAkGA1UEBhMCTVgxGTAXBgNVBAgMEERpc3RyaXRvIEZlZGVyYWwxFDASBgNVBAcMC0N1YXVodMOpbW9jMRUwEwYDVQQtEwxTQVQ5NzA3MDFOTjMxPjA8BgkqhkiG9w0BCQIML1Jlc3BvbnNhYmxlOiBDZWNpbGlhIEd1aWxsZXJtaW5hIEdhcmPDrWEgR3VlcnJhMB4XDTEyMTEzMDAwMTIxN1oXDTE2MTEzMDAwMTIxN1owgfExMTAvBgNVBAMTKFNFR1VSSVRFQyBUUkFOU1BPUlRFIERFIFZBTE9SRVMgU0EgREUgQ1YxMTAvBgNVBCkTKFNFR1VSSVRFQyBUUkFOU1BPUlRFIERFIFZBTE9SRVMgU0EgREUgQ1YxMTAvBgNVBAoTKFNFR1VSSVRFQyBUUkFOU1BPUlRFIERFIFZBTE9SRVMgU0EgREUgQ1YxJTAjBgNVBC0THFNUVjg0MDYxMTlCNiAvIE5PRko1NTA3MzA2NDAxHjAcBgNVBAUTFSAvIE5PRko1NTA3MzBIREZHTEwxODEPMA0GA1UECxMGTUFUUklaMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDVqJzf+yUnd6X+QMPWomaV24ZEofdAkIHI1om5qVHU+XS/mXfW0lf+HbCQFcvJhsd2pU3TbIS2RSNennVlkn9Y80YQJAqwFo/67vC7cUYoGSFq2ZSh03feEuyHvWwBsB7UjdcRTjOn19u/OYuEyV1E15BHxI6nXOOqK2V+iJqQXwIDAQABox0wGzAMBgNVHRMBAf8EAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQUFAAOCAQEAFhTrVM5bIGg9MqareKuzEi3Mne6RnLtOiZW6FMVwjbfaYY/TkfPCB8lhekNkfZubc20HsnykE6tUsibTAzDzWhIpgOPeaAHCZSRFhDqQDLNLGH99qB0Un9JoVfAypjuGn9yVnmvruiky046R5w4X2BxGJ12ttJnK+z7TWuXN8FMuEP5dl0ITsdE7RhJK/tEeBE+DnzbAhCWFYRsh2x1pKWTDjsal9/1hF6ikbXRmX/wUw1m8BKijca1hD7zZ7gNOujPayGIaQJjhvPWLekj1iwJ37Y8nZwLkIgFcDmXgFBIgYkZp22cJnZHwBBd6MtxMz7iwHcVRvl/vqJNzBa1thw==" tipoDeComprobante="ingreso" subTotal="4326.040" descuento="0.00" motivoDescuento="0.00" total="4845.170" TipoCambio="1.00" Moneda="MXN" metodoDePago="TRANSFERENCIAS ELECTRONICAS DE FONDOS" LugarExpedicion="SAN LUIS POTOSI, SLP., 2015-04-07T08:04:36" NumCtaPago="6661" sello="KlfKXQEfG71BMz3tX0FD7s4CNAqKLTJu9/8L+IBVJdLOYCPkdqrtCI0+whS3j32wITDEZ6C6OEJ4VyRyuJZ5CsFcEFSY639iy0onuQtacXNWdGuDqNuSVzThtmMaX3HKFFkuIH7o0ebfkil4L5BU3YaIqy0sYNW7nZimkcpbbBE=" noCertificado="00001000000202472891" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
+  <cfdi:Emisor rfc="STV8406119B6" nombre="SEGURITEC TRANSPORTE DE VALORES, S.A. DE C.V.">
+    <cfdi:DomicilioFiscal calle="TOPACIO" noExterior="156" colonia="TRÁNSITO" municipio="CUAUHTEMOC" estado="DF" pais="MEXICO" codigoPostal="06820" />
+    <cfdi:ExpedidoEn calle="GRACIANO SANCHEZ" noExterior="120" colonia="DEL VALLE" municipio="SAN LUIS POTOSI" estado="SAN LUIS POTOSI" pais="MEXICO" codigoPostal="78200" />
+    <cfdi:RegimenFiscal Regimen="REGIMEN GENERAL DE LEY PERSONAS MORALES" />
+  </cfdi:Emisor>
+  <cfdi:Receptor rfc="ODO910311U70" nombre="ORGANIZACIÓN DOT SA DE CV">
+    <cfdi:Domicilio calle="SIERRA SANTA CATANNA" noExterior="104" colonia="FRACC LOMAS 4TA SECC" localidad="SLP" municipio="SLP" estado="SAN LUIS POTOSI" pais="MEXICO" codigoPostal="78218" />
+  </cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto cantidad="13.000" unidad="SERVICIO" descripcion="TRANSP. RECOLECC. VAL.LUN-SAB 07:00 A 20" valorUnitario="178.8100" importe="2324.530000" />
+    <cfdi:Concepto cantidad="1059.000" unidad="MILES" descripcion="CUOTA DE TRANSP.X VOLUMEN(C/1000 O FRAC)" valorUnitario="1.8900" importe="2001.510000" />
+  </cfdi:Conceptos>
+  <cfdi:Impuestos totalImpuestosRetenidos="173.040" totalImpuestosTrasladados="692.170">
+    <cfdi:Retenciones>
+      <cfdi:Retencion impuesto="IVA" importe="173.040" />
+    </cfdi:Retenciones>
+    <cfdi:Traslados>
+      <cfdi:Traslado impuesto="IVA" tasa="16" importe="692.170" />
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital version="1.0" UUID="A3FEBB9C-99FE-4CB0-817D-95C19344E44B" FechaTimbrado="2015-04-07T08:06:28" selloCFD="KlfKXQEfG71BMz3tX0FD7s4CNAqKLTJu9/8L+IBVJdLOYCPkdqrtCI0+whS3j32wITDEZ6C6OEJ4VyRyuJZ5CsFcEFSY639iy0onuQtacXNWdGuDqNuSVzThtmMaX3HKFFkuIH7o0ebfkil4L5BU3YaIqy0sYNW7nZimkcpbbBE=" noCertificadoSAT="00001000000203220546" selloSAT="Zyzi0nL2mmEHnUUop06tvn5WjUj8/lxmp3tH1xYwlkm1RGWjwHTUODi+RvoiEp4f6NVKwEIQwl1IJXTAXd+RW5wwsIj4E5G9Skdw1yI2PBbwQIBegQkjYOpranS18VqS5YQwkzbMNPYhuXQtMMQhhGt9EjzKsKY7rzarB2szeJA=" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/TimbreFiscalDigital/TimbreFiscalDigital.xsd" />
+  </cfdi:Complemento>
+</cfdi:Comprobante>

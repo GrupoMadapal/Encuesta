@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="Cupones" type="Poleo.Objects.Cupones" />
+    <typeAlias alias="OrderCuponss" type ="Poleo.Objects.OrderCupons" />
+  
+ </alias>
+  
+  <statements>
+    <select id="SelectObjCupones" resultClass="Cupones" paramClass="strings">
+      SELECT * FROM Cupones WHERE Codigo = #code#
+    </select>
+    
+    <select id="SelectListCupones" resultClass="Cupones" paramClass="Cupones">
+      SELECT * FROM Cupones
+      WHERE Validity <![CDATA[<]]> #Validity#
+    </select>
+    
+    <select id="SelectCuponsByDDL" resultClass="Cupones" paramClass="Cupones">
+      SELECT Codigo, Codigo + ' - ' + Descripcion AS Descripcion
+      FROM Cupones
+      WHERE Active = #Active#
+      ORDER by Codigo
+    </select>
+
+    
+         
+     <!--CUPONES PORCENTAJES-->
+    <select id="SelectOrderCupontPorcentage" parameterClass="VentasFinder" resultClass="Cupones" >
+      SELECT BeginDate, Order_Count, Location_Code, Net_Sales
+      INTO ##TotalOrders
+      FROM KeysExtractsCorpVersion
+      WHERE EndDate BETWEEN #DateIni# AND #DateEnd# AND Location_Code = #NumTienda#
+
+      SELECT
+      OE.Ord_Dt,
+      OC.CouponCode,
+      Cup.Descripcion,
+      COUNT(OC.CouponCode) AS CountOrdenCupon,
+      TOr.Order_Count,
+      TOr.Net_Sales,
+      CAST(((CAST(COUNT(OC.CouponCode) AS DECIMAL(12,2)) * CAST(100 AS DECIMAL(12,2))) / CAST(TOr.Order_Count AS DECIMAL(12,2))) AS DECIMAL(12,2)) AS PorcOrderCupon,
+      SUM(OE.Menu_Amt) AS Menu_Amt,
+      SUM(OE.Disc_Amt) AS Disc_Amt,
+      SUM(OE.Net_Amt) AS Net_Amt,
+      SUM(OE.Tax_Amt) AS Tax_Amt,
+      SUM(OE.Cust_Amt) AS Cust_Amt
+      FROM OrderCoupons OC
+      INNER JOIN ##TotalOrders TOr ON OC.Location_Code = TOr.Location_Code AND OC.Order_Date = TOr.BeginDate
+      INNER JOIN OrdersExtracts OE ON OC.Order_Date = OE.Ord_Dt AND OC.Order_Number = OE.Ord_No AND OC.Location_Code = OE.Store_No
+      INNER JOIN Cupones Cup ON OC.CouponCode = Cup.Codigo
+      WHERE OC.Order_Date BETWEEN #DateIni# AND #DateEnd# AND OC.Location_Code = #NumTienda#
+      <isNotNull prepend="AND" property="LstCuponCode">
+        CouponCode IN
+        <iterate property="LstCuponCode" open="(" close=")" conjunction=",">
+          #LstCuponCode[]#
+        </iterate>
+      </isNotNull>
+      GROUP BY OE.Ord_Dt, OC.CouponCode, Cup.Descripcion, TOr.Order_Count, TOr.Net_Sales
+      ORDER BY OE.Ord_Dt, OC.CouponCode
+
+      DROP TABLE ##TotalOrders
+    </select>
+
+    <insert id="InserObjCupon" parameterClass="Cupones">
+      INSERT INTO Cupones (Codigo, Descripcion, Validity, Active)
+      VALUES (#Codigo#, #Descripcion#, #Validity#, #Active#)
+    </insert>
+
+    <update id="UpdateObjCupon" parameterClass="Cupones">
+      UPDATE Cupones SET
+      Descripcion = #Descripcion#,
+      Validity = #Validity#
+      WHERE Codigo = #Codigo#
+    </update>
+    
+    <update id="UpdateActiveCupon" parameterClass="Cupones">
+      UPDATE Cupones SET
+      Active = 0
+      WHERE Codigo = #Codigo# OR Descripcion = 'baja'
+    </update>
+
+   
+     <!--CUPONES INCENTIVOS-->
+     <select id="SelectIncentiveCoupons" parameterClass="VentasFinder" resultClass="OrderCuponss" >
+
+	  SELECT
+       O.Location_Code AS Tienda,
+       OrdersDump.Added_By as Num_Empleado,
+       E.First_Name+' '+E.Last_Name AS Empleado,
+       SUM(CASE WHEN O.CouponCode = '2A80' THEN O.OrdCpnQty ELSE 0 END ) AS Cupon1Quantity,
+       SUM(CASE WHEN O.CouponCode = 'CHY189' THEN O.OrdCpnQty ELSE 0 END ) AS Cupon2Quantity,
+       SUM(CASE WHEN O.CouponCode = 'N2E59' THEN O.OrdCpnQty ELSE 0 END ) AS Cupon3Quantity,
+       SUM(CASE WHEN O.CouponCode = 'PQCD2' THEN O.OrdCpnQty ELSE 0 END ) AS Cupon4Quantity,
+       SUM(CASE WHEN O.CouponCode = 'USG49' THEN O.OrdCpnQty ELSE 0 END) AS Cupon5Quantity,
+       SUM(CASE WHEN O.CouponCode = 'AD89' THEN O.OrdCpnQty ELSE 0 END) AS Cupon6Quantity,
+       SUM(CASE WHEN O.CouponCode = 'AD892' THEN O.OrdCpnQty ELSE 0 END) AS Cupon7Quantity,
+       sum(O.OrdCpnQty) as Cantidad
+       INTO ##CxEmpleado
+       FROM OrderCoupons O
+       left join EmployeePOS E on
+       E.location_code=O.location_code
+       inner join OrdersDump on
+       E.Employee_Code=OrdersDump.Added_By and
+       ordersdump.location_code = O.location_code and
+       ordersdump.Order_Number=O.Order_Number
+       LEFT JOIN Tiendas T ON O.Location_Code = T.Number_tienda
+       WHERE
+       (O.Order_Date BETWEEN #DateIni# AND #DateEnd#)
+       AND CouponCode IN ('CHY189','USG49','2A80','N2E59','PQCD2','AD89','AD892')
+       AND Order_Status_Code='4'
+       AND OrdersDump.Added_By not in ('1535','1441','2244','7057','6623','5395','9465','6636','4270','8244','1188','9593','2605','8504','0403','7960','9076','1566','3515','8852','5298','9860','6723','3006','0401','1106','2345','7571','3417','6833','3829','4807','7664','9022')
+
+       <isNotEmpty prepend="AND" property="NumTienda" >
+         O.Location_Code = #NumTienda#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="UbicacionTienda" >
+         T.Ubicacion = #UbicacionTienda#
+       </isNotEmpty>
+
+       GROUP BY O.Location_Code, OrdersDump.Added_By, E.First_Name, E.Last_Name
+
+
+
+       SELECT
+       OrdersDump.Location_Code as Tienda,
+       OrdersDump.Added_By as Num_Empleado,
+       EmployeePOS.First_Name+' '+EmployeePOS.Last_Name as Empleado,
+       COUNT(OrdersDump.Order_Number) as Cantidad_Ordenes
+       INTO ##OrdenesXEmpleado
+       FROM OrdersDump
+       LEFT JOIN EmployeePOS on employeepos.location_code=OrdersDump.location_code and  employeepos.Employee_Code=ordersdump.added_by
+       LEFT JOIN Tiendas T ON OrdersDump.Location_Code = T.Number_tienda
+       WHERE
+       (OrdersDump.Order_Date BETWEEN #DateIni# AND #DateEnd#)
+       AND OrdersDump.Order_Status_Code='4'
+       <isNotEmpty prepend="AND" property="NumTienda" >
+         OrdersDump.Location_Code = #NumTienda#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="UbicacionTienda" >
+         T.Ubicacion = #UbicacionTienda#
+       </isNotEmpty>
+       GROUP BY OrdersDump.Location_Code, OrdersDump.Added_By, EmployeePOS.First_Name, EmployeePOS.Last_Name
+
+
+       SELECT
+       OXE.Tienda AS Location_Code, CXE.Num_Empleado
+       ,CXE.Empleado AS NombreEmpleado
+       ,OXE.Cantidad_Ordenes as Cupon8Quantity
+       ,CXE.Cupon1Quantity
+       ,CXE.Cupon2Quantity
+       ,CXE.Cupon3Quantity
+       ,CXE.Cupon4Quantity
+       ,CXE.Cupon5Quantity
+       ,CXE.Cupon6Quantity
+       ,CXE.Cupon7Quantity
+       ,CONVERT(float,(CXE.Cupon1Quantity * 1.5)) as cupon9Quantity
+       ,convert(float,(CXE.Cupon2Quantity * 2)) as cupon11Quantity
+       ,convert(float,(CXE.Cupon3Quantity * 1)) as cupon12Quantity
+       ,convert(float,(CXE.Cupon4Quantity * 0)) as cupon13Quantity
+       ,convert(float,(CXE.Cupon5Quantity * 0)) as cupon14Quantity
+       ,convert(float,(CXE.Cupon6Quantity * 1.5)) as cupon15Quantity
+       ,convert(float,(CXE.Cupon7Quantity * 1.5)) as cupon16Quantity
+       ,case when convert(float, CXE.Cantidad*100) /OXE.Cantidad_Ordenes>40 and ((CXE.Cupon1Quantity * 1.5) + (CXE.Cupon2Quantity * 2) + (CXE.Cupon3Quantity * 1) + (CXE.Cupon4Quantity * 0) + (CXE.Cupon5Quantity * 0) + (CXE.Cupon6Quantity * 1.5) + (CXE.Cupon7Quantity * 1.5))>65 then ((CXE.Cupon1Quantity * 1.5) + (CXE.Cupon2Quantity * 2) + (CXE.Cupon3Quantity * 1) + (CXE.Cupon4Quantity * 0) + (CXE.Cupon5Quantity * 0) + (CXE.Cupon6Quantity * 1.5) + (CXE.Cupon7Quantity * 1.5)) else convert(float,0) end as cupon17Quantity
+       ,case when convert(float, CXE.Cantidad*100) /OXE.Cantidad_Ordenes>40 and ((CXE.Cupon1Quantity * 1.5) + (CXE.Cupon2Quantity * 2) + (CXE.Cupon3Quantity * 1) + (CXE.Cupon4Quantity * 0) + (CXE.Cupon5Quantity * 0) + (CXE.Cupon6Quantity * 1.5) + (CXE.Cupon7Quantity * 1.5))>65 then ((CXE.Cupon1Quantity * 1.5) + (CXE.Cupon2Quantity * 2) + (CXE.Cupon3Quantity * 1) + (CXE.Cupon4Quantity * 0) + (CXE.Cupon5Quantity * 0) + (CXE.Cupon6Quantity * 1.5) + (CXE.Cupon7Quantity * 1.5)) else convert(float,0) end as cupon18Quantity
+       ,round(convert (float, CXE.Cantidad*100) /OXE.Cantidad_Ordenes,2) as porcentaje
+       ,convert(float,(CXE.Cupon1Quantity * 1.5) + (CXE.Cupon2Quantity * 2) + (CXE.Cupon3Quantity * 1) + (CXE.Cupon4Quantity * 0) + (CXE.Cupon5Quantity * 0) + (CXE.Cupon6Quantity * 1.5) + (CXE.Cupon7Quantity * 1.5)) as totalcupones
+
+       FROM ##OrdenesXEmpleado AS OXE
+       inner JOIN ##CxEmpleado AS CXE ON CXE.Tienda = OXE.Tienda and CXE.Num_Empleado = OXE.Num_Empleado
+
+       ORDER BY OXE.Tienda, CXE.Empleado ASC
+
+
+       DROP TABLE ##OrdenesXEmpleado
+       DROP TABLE ##CxEmpleado
+	   
+     </select>
+
+
+	  <select id="SelectIncentiveCouponsSLP" parameterClass="VentasFinder" resultClass="OrderCuponss" >
+
+      SELECT
+      O.Location_Code AS Tienda,
+      OrdersDump.Added_By as Num_Empleado,
+      E.First_Name+' '+E.Last_Name AS Empleado,
+      SUM(CASE WHEN o.CouponCode in ('2x99','2X99AR','2x99D2','2x99D2')  THEN O.OrdCpnQty ELSE 0 END) AS Cupon2x99,
+      SUM(CASE WHEN o.CouponCode in ('FAV199')  THEN O.OrdCpnQty ELSE 0 END) AS CuponFavoritas,
+      SUM(CASE WHEN o.CouponCode in ('CHY30','SAR30','ITA30','ORIQ30')  THEN O.OrdCpnQty ELSE 0 END) AS CuponFavUpSale,
+      SUM(CASE WHEN o.CouponCode in ('PAQ239','PAQ279')  THEN O.OrdCpnQty ELSE 0 END) AS CuponPaquetes,
+      SUM(CASE WHEN o.CouponCode in ('PAQ239')  THEN O.OrdCpnQty ELSE 0 END) AS CuponPaquetes1,
+      SUM(CASE WHEN o.CouponCode in ('PAQ279')  THEN O.OrdCpnQty ELSE 0 END) AS CuponPaquetes2,
+      <!--SUM(CASE WHEN O.CouponCode IN ('2A80' , 'AD89' , 'AD891' , 'AD892', 'AD89R') THEN O.OrdCpnQty ELSE 0 END ) AS Cupon2OrdCpnQty,
+		  SUM(CASE WHEN O.CouponCode in ('FAV159','N2E59') THEN O.OrdCpnQty ELSE 0 END ) AS CuponN2E59,
+		  SUM(CASE WHEN O.CouponCode = 'OG139' THEN O.OrdCpnQty ELSE 0 END ) AS CuponOG139,-->
+      sum(O.OrdCpnQty) as Cantidad
+      INTO ##CxEmpleado
+      FROM OrderCoupons O
+      left join EmployeePOS E on
+      E.location_code=O.location_code
+      inner join OrdersDump on
+      E.Employee_Code=OrdersDump.Added_By and
+      ordersdump.location_code = O.location_code and
+      ordersdump.Order_Number=O.Order_Number
+      LEFT JOIN Tiendas T ON O.Location_Code = T.Number_tienda
+      WHERE
+      (O.Order_Date BETWEEN #DateIni# AND #DateEnd#)
+      AND CouponCode IN ('2x99','2X99AR','2x99D2','2x99D2','FAV199','CHY30','SAR30','ITA30','ORIQ30','PAQ239','PAQ279')
+      AND Order_Status_Code='4'
+      AND OrdersDump.Added_By not in ('1535','1441','2244','7057','6623','5395','9465','6636','4270','8244','1188','9593','2605','8504','0403','7960','9076','1566','3515','8852','5298','9860','6723','3006','0401','1106','2345','7571','3417','6833','3829','4807','7664','9022'
+      ,'0494','0551','0556','0562','3964','0564','0584','0626','0632','0637','0914','3912','4309','4344','4431','5128','5477','6348','6902','7136','8006','8192','8319','8926','9358','9613','0563','2376','2542','2835','3965','4823')
+      AND O.Location_Code IN ('11405','11544','11288','11028','11911','11842','11053','11982','11863','11220','12390','11488','11876','11406','11597','11641','11456','11978','11598','11101','11490','11127','11443','11497','11450','12361','11484','11214','11181')
+      <isNotEmpty prepend="AND" property="NumTienda" >
+         O.Location_Code = #NumTienda#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="UbicacionTienda" >
+         T.Ubicacion = #UbicacionTienda#
+        </isNotEmpty>
+		  GROUP BY O.Location_Code, OrdersDump.Added_By, E.First_Name, E.Last_Name
+
+
+		  SELECT
+		  O.Location_Code AS Tienda,
+		  SUM(CASE WHEN o.CouponCode in ('2x99','2X99AR','2x99D2','2x99D2')  THEN O.OrdCpnQty ELSE 0 END) AS CUPON1,
+		  SUM(CASE WHEN o.CouponCode in ('FAV199')  THEN O.OrdCpnQty ELSE 0 END) AS CUPON2,
+		  SUM(CASE WHEN o.CouponCode in ('CHY30','SAR30','ITA30','ORIQ30')  THEN O.OrdCpnQty ELSE 0 END) AS CUPON3,
+		  SUM(CASE WHEN o.CouponCode in ('PAQ239','PAQ279')  THEN O.OrdCpnQty ELSE 0 END) AS CUPON4,
+		  <!--SUM(CASE WHEN O.CouponCode IN ('2A80' , 'AD89' , 'AD891' , 'AD892', 'AD89R') THEN O.OrdCpnQty ELSE 0 END ) AS SUC2OrdCpnQty,
+		  SUM(CASE WHEN O.CouponCode in ('FAV159','N2E59') THEN O.OrdCpnQty ELSE 0 END ) AS SUCN2E59,
+		  SUM(CASE WHEN O.CouponCode = 'OG139' THEN O.OrdCpnQty ELSE 0 END ) AS SUCOG139,--> 
+      sum(O.OrdCpnQty) as Cantidad
+      INTO ##SUCURSAL
+      FROM OrderCoupons O
+      inner join OrdersDump on
+      ordersdump.location_code = O.location_code and
+      ordersdump.Order_Number=O.Order_Number
+      LEFT JOIN Tiendas T ON O.Location_Code = T.Number_tienda
+      WHERE
+      (O.Order_Date BETWEEN #DateIni# AND #DateEnd#)
+      AND CouponCode IN ('2x99','2X99AR','2x99D2','2x99D2','FAV199','CHY30','SAR30','ITA30','ORIQ30','PAQ239','PAQ279')
+      <!--AND CouponCode IN ('2A80','N2E59','AD89','AD891','AD892','AD89R','FAV159','OG139')-->
+		  AND Order_Status_Code='4'
+		  AND O.Location_Code IN ('11405','11544','11288','11028','11911','11842','11053','11982','11863','11220','12390','11488','11876','11406','11597','11641','11456','11978','11598','11101','11490','11127','11443','11497','11450','12361','11484','11214','11181')
+		  <isNotEmpty prepend="AND" property="NumTienda" >
+             O.Location_Code = #NumTienda#
+          </isNotEmpty>
+          <isNotEmpty prepend="AND" property="UbicacionTienda" >
+             T.Ubicacion = #UbicacionTienda#
+          </isNotEmpty>
+		  GROUP BY O.Location_Code 
+	
+		  
+		  SELECT
+		  OrdersDump.Location_Code as Tienda,
+		  OrdersDump.Added_By as Num_Empleado,
+		  EmployeePOS.First_Name+' '+EmployeePOS.Last_Name as Empleado,
+		  COUNT(OrdersDump.Order_Number) as Cantidad_Ordenes
+		  INTO ##OrdenesXEmpleado
+		  FROM OrdersDump
+		  LEFT JOIN EmployeePOS on employeepos.location_code=OrdersDump.location_code and  employeepos.Employee_Code=ordersdump.added_by
+		  LEFT JOIN Tiendas T ON OrdersDump.Location_Code = T.Number_tienda
+		  WHERE
+		  (OrdersDump.Order_Date BETWEEN #DateIni# AND #DateEnd#)
+		  AND OrdersDump.Order_Status_Code='4'
+		 AND OrdersDump.Location_Code IN ('11405','11544','11288','11028','11911','11842','11053','11982','11863','11220','12390','11488','11876','11406','11597','11641','11456','11978','11598','11101','11490','11127','11443','11497','11450','12361','11484','11214','11181')  
+	     <isNotEmpty prepend="AND" property="NumTienda" >
+         OrdersDump.Location_Code = #NumTienda#
+         </isNotEmpty>
+         <isNotEmpty prepend="AND" property="UbicacionTienda" >
+         T.Ubicacion = #UbicacionTienda#
+         </isNotEmpty>
+		  GROUP BY OrdersDump.Location_Code, OrdersDump.Added_By, EmployeePOS.First_Name, EmployeePOS.Last_Name
+
+
+		SELECT
+		  OrdersDump.Location_Code as Tienda,
+		  COUNT(OrdersDump.Order_Number) as Cantidad_Ordenes
+		  INTO ##OrdenesXSucursal
+		  FROM OrdersDump
+		  LEFT JOIN Tiendas T ON OrdersDump.Location_Code = T.Number_tienda
+		  WHERE
+		  (OrdersDump.Order_Date BETWEEN #DateIni# AND #DateEnd#)
+		  AND OrdersDump.Order_Status_Code='4'
+		  AND OrdersDump.Location_Code IN ('11405','11544','11288','11028','11911','11842','11053','11982','11863','11220','12390','11488','11876','11406','11597','11641','11456','11978','11598','11101','11490','11127','11443','11497','11450','12361','11484','11214','11181')  
+             <isNotEmpty prepend="AND" property="NumTienda" >
+                 OrdersDump.Location_Code = #NumTienda#
+            </isNotEmpty>
+             <isNotEmpty prepend="AND" property="UbicacionTienda" >
+                 T.Ubicacion = #UbicacionTienda#
+             </isNotEmpty>
+			GROUP BY OrdersDump.Location_Code
+			
+			
+			 SELECT
+		   OrderDetailsExtracts.Store_No AS Tienda,  E.First_Name+' '+E.Last_Name AS Empleado,  OrderDetailsExtracts.Ord_No as orden, OrdersDump.Added_By as Num_Empleado
+		  into ##Adicionales
+		  from OrderDetailsExtracts
+		  inner join OrderCoupons O on OrderDetailsExtracts.Store_No = o.Location_Code and O.Order_Number = OrderDetailsExtracts.Ord_No
+		  left join EmployeePOS E on E.location_code= OrderDetailsExtracts.Store_No
+		  inner join OrdersDump on  E.Employee_Code=OrdersDump.Added_By and ordersdump.location_code = OrderDetailsExtracts.Store_No and ordersdump.Order_Number=OrderDetailsExtracts.Ord_No
+		  LEFT JOIN Tiendas T ON OrderDetailsExtracts.Store_No = T.Number_tienda
+		  where Cpn_Cd = ' ' and (Ord_Dt  BETWEEN #DateIni# AND #DateEnd#) and Prod_Size_Code not in ('15lts', '16oz','2lts','500ml', '600ml','an600ml')
+		  AND O.Location_Code IN ('11405','11544','11288','11028','11911','11842','11053','11982','11863','11220','12390','11488','11876','11406','11597','11641','11456','11978','11598','11101','11490','11127','11443','11497','11450','12361','11484','11214','11181')
+	         <isNotEmpty prepend="AND" property="NumTienda" >
+                 OrderDetailsExtracts.Store_No  = #NumTienda#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="UbicacionTienda" >
+             T.Ubicacion = #UbicacionTienda#
+             </isNotEmpty>
+      GROUP BY  OrderDetailsExtracts.Store_No, O.CouponCode,OrdersDump.Added_By,  E.First_Name, E.Last_Name,  OrderDetailsExtracts.Ord_No, Prod_Size_Code
+
+
+
+      SELECT
+      round(convert(float, (SUC.CUPON1+SUC.CUPON3+SUC.CUPON4)*100)/OXS.Cantidad_Ordenes,2) as Porcentaje2a80
+      ,OXE.Tienda AS Location_Code
+      ,CXE.Num_Empleado
+      ,CXE.Empleado AS NombreEmpleado
+      ,OXE.Cantidad_Ordenes as Cantidad_Ordenes
+      ,convert(float,Cupon2x99) as Cupon1Qn
+      ,CXE.CuponFavoritas as Cupon2Qn
+      ,count(orden) as Adicionales
+      ,CXE.CuponFavUpSale as Cupon3Qn
+      ,CXE.CuponPaquetes Cupon4Qn
+      ,CXE.CuponPaquetes1 Cupon5Qn
+      ,CXE.CuponPaquetes2 Cupon6Qn
+      ,CONVERT(float,((Cupon2x99) * 2)) as Cupon1extra
+      ,convert(float,(CXE.CuponFavoritas * 1)) as Cupon2extra
+      ,convert(float,(CXE.CuponFavUpSale * 1)) as Cupon3extra
+      ,convert(float,((CXE.CuponPaquetes1 * 2.5)+(CXE.CuponPaquetes2 * 3))) as Cupon4extra
+      ,convert(float,((CXE.CuponPaquetes1 * 2.5))) as Cupon5extra
+      ,convert(float,((CXE.CuponPaquetes2 * 3))) as Cupon6extra
+      ,count(orden * 1) as AdicionalesPesos
+      ,round(convert (float, (CXE.Cantidad + count(orden))*100) /OXE.Cantidad_Ordenes,2) as porcentaje
+      ,convert(float,((Cupon2x99) * 2) + (CuponFavoritas * 1) + (CXE.CuponFavUpSale * 1)+ (CXE.CuponPaquetes1 * 2.5)+ (CXE.CuponPaquetes2 * 3)) as totalcupones
+      ,case when convert(float, (CXE.Cantidad + count(orden))*100) /OXE.Cantidad_Ordenes>45 and
+      (((Cupon2x99) * 2) + (CuponFavoritas * 1) <!--+count(orden)-->  + (CXE.CuponFavUpSale * 1) +
+      (CXE.CuponPaquetes1 * 2.5) + (CXE.CuponPaquetes2 * 3))>=100 AND round(convert(float, (SUC.Cupon1)*100)/OXS.Cantidad_Ordenes,2)>16
+      then (((Cupon2x99) * 2) + (CuponFavoritas * 1) + count(orden * 1) + (CXE.CuponFavUpSale * 1) +
+      (CXE.CuponPaquetes1 * 2.5)+ (CXE.CuponPaquetes2 * 3)) else convert(float,0) end as BANDERAOK
+
+      FROM ##OrdenesXEmpleado AS OXE
+      inner JOIN ##CxEmpleado AS CXE ON CXE.Tienda = OXE.Tienda and CXE.Num_Empleado = OXE.Num_Empleado
+      join ##Adicionales as ADS on  CXE.Tienda = ADS.Tienda and CXE.Num_Empleado = ADS.Num_Empleado
+      inner join ##OrdenesXSucursal As OXS on oxs.Tienda = CXE.Tienda
+      inner JOIN ##SUCURSAL AS SUC ON SUC.Tienda = ADS.Tienda
+      group by OXE.Tienda , CXE.Num_Empleado, CXE.Empleado, OXE.Cantidad_Ordenes, CXE.Cupon2x99, CXE.CuponFavoritas, CXE.Cantidad
+      , SUC.Cupon1, SUC.Cupon2,SUC.Cupon3,SUC.Cupon4, OXS.Cantidad_Ordenes, CXE.CuponFavUpSale, CXE.CuponPaquetes,CXE.CuponPaquetes1,CXE.CuponPaquetes2
+      ORDER BY OXE.Tienda, CXE.Empleado ASC
+
+
+      DROP TABLE ##OrdenesXEmpleado
+      DROP TABLE ##CxEmpleado
+      Drop TABLE ##Adicionales
+      Drop TABLE ##SUCURSAL
+      Drop table ##OrdenesXSucursal
+
+
+    </select>
+	  
+	  
+	  
+  
+        </statements>
+</sqlMap>

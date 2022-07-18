@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="ObjectsXUser" type="Poleo.Objects.ObjectsXUser" />
+  </alias>
+
+  <statements>
+    <select id="SelectLstObjectsXUser" resultClass="ObjectsXUser" parameterClass="int">
+      SELECT * FROM SM_ObjectsXUser WHERE IdUSer = #id#
+    </select>
+
+    <select id="SelectObjectsByUser" resultClass="int" parameterClass="int">
+      SELECT CodeObject FROM SM_ObjectsXUser WHERE IdUSer = #id#
+    </select>
+
+    <select id="SelectObjectXUser" resultClass="ObjectsXUser" parameterClass="ObjectsXUser">
+      SELECT * FROM SM_ObjectXUser WHERE IdUser = #IdUser# AND CodeObject = #CodeObject#
+    </select>
+  </statements>
+</sqlMap>

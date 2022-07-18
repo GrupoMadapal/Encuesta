@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Info_MasterInd" type="Poleo.Objects.Info_MasterInd" />
+  </alias>
+
+  <statements>
+    <select id="SelectObjInfoMasterInd" parameterClass="Info_MasterInd" resultClass="Info_MasterInd">
+      SELECT * FROM SM_Info_MasterInd
+      WHERE Store_Number = #Store_Number# AND Date_Ini = #Date_Ini# AND Date_End = #Date_End#
+    </select>
+
+    <insert id="InsertInfoMasterInd" parameterClass="Info_MasterInd">
+      INSERT INTO SM_Info_MasterInd (Store_Number, Date_Ini, Date_End, Full_Template, Training, Communication, DateRegister)
+      VALUES (#Store_Number#, #Date_Ini#, #Date_End#, #Full_Template#, #Training#, #Communication#, #DateRegister#)
+    </insert>
+
+    <select id="SelectInfoMasterFT" parameterClass="Info_MasterInd" resultClass="Info_MasterInd">
+      SELECT Full_Template FROM SM_Info_MasterInd
+      WHERE Store_Number = #Store_Number# AND Date_Ini = #Date_Ini# AND Date_End = #Date_End#
+    </select>
+
+    <select id="SelectInfoMasterTr" parameterClass="Info_MasterInd" resultClass="Info_MasterInd">
+      SELECT Training FROM SM_Info_MasterInd
+      WHERE Store_Number = #Store_Number# AND Date_Ini = #Date_Ini# AND Date_End = #Date_End#
+    </select>
+
+    <select id="SelectInfoMasterCm" parameterClass="Info_MasterInd" resultClass="Info_MasterInd">
+      SELECT Communication FROM SM_Info_MasterInd
+      WHERE Store_Number = #Store_Number# AND Date_Ini = #Date_Ini# AND Date_End = #Date_End#
+    </select>
+
+    <update id="UpdateObjInfoMasterInd" parameterClass="Info_MasterInd">
+      UPDATE SM_Info_MasterInd SET
+      <isNotNull property="Full_Template">
+        Full_Template = #Full_Template#
+      </isNotNull>
+      <isNotNull property="Training">
+        Training = #Training#
+      </isNotNull>
+      <isNotNull property="Communication">
+        Communication = #Communication#
+      </isNotNull>
+      WHERE Store_Number = #Store_Number# AND Date_Ini = #Date_Ini# AND Date_End = #Date_End#
+    </update>
+  </statements>
+</sqlMap>

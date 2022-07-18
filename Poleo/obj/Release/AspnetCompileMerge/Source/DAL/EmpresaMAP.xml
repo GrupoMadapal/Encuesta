@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Empresa" type="Poleo.Objects.Empresa" />
+  </alias>
+
+  <statements>
+    <insert id="insertEmpresa" parameterClass="Empresa">
+      INSERT INTO Empresa
+      (Nombre_Empresa, RFC,Activo)
+      VALUES
+      (#Nombre#,#RFC#,1)
+      <selectKey resultClass="int" type="post" property="IdEmpresa" >
+        select @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <select id="SelectEmpresabyRFC" parameterClass="Empresa" resultClass="Empresa">
+      select * from Empresa WHERE RFC=#RFC#
+    </select>
+    <select id="AutoCompleteEmpresa" parameterClass="Empresa" resultType="string">
+      select  Nombre_Empresa from Empresa WHERE Nombre_Empresa like #Nombre#
+    </select>
+    
+  </statements>
+</sqlMap>

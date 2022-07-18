@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="Cupones" type="Poleo.Objects.Cupones" />
+  </alias>
+  <statements>
+    <select id="SelectCuponsByDDL" resultClass="Cupones">
+      SELECT Codigo, Codigo + ' - ' + Descripcion AS Descripcion FROM Cupones ORDER by Codigo
+    </select>
+  </statements>
+</sqlMap>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="ConfigFilesTABS" type="Poleo.Objects.ConfigFilesTABS" />
+  </alias>
+
+  <statements>
+    <select id="SelectConfigFilesTABs" resultClass="ConfigFilesTABS">
+      SELECT
+      IdConfigFilesTABS,
+      Numer_Tienda,
+      DirOrigen,
+      DirDestino,
+      Activo
+      FROM SM_ConfigFilesTABS
+      WHERE Activo = 1
+    </select>
+  </statements>
+</sqlMap>

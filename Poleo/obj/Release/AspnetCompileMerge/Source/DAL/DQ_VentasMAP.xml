@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="DQ_Ventas" type="Poleo.Objects.DQ_Ventas" />
+    <typeAlias alias="DQ_VentasFinder" type="Poleo.Objects.DQ_VentasFinder" />
+  </alias>
+  <statements>
+    <select id="selectDQVentas" resultClass="DQ_Ventas" parameterClass="DQ_VentasFinder">
+      DECLARE @PASTEL TABLE
+      (
+      CODARTICULO VARCHAR(50)
+      )
+      INSERT @PASTEL
+      SELECT CODARTICULO FROM ARTICULOS
+      WHERE DPTO ='1800' AND SECCION  in ('1801','1802','1803','1804')
+
+      DECLARE @VENTAS TABLE
+      (
+      SUCURSAL VARCHAR(2),
+      FECHA DATETIME,
+      VENTASREALES DECIMAL(10,2),
+      ORDENES INT
+      )
+
+      INSERT @VENTAS
+      SELECT
+      SUBSTRING(NUMSERIE,1,2) AS SUCURSAL,
+      FECHA,
+      SUM(TOTALBRUTO) AS VENTASREALES,
+      SUM( CASE WHEN TOTALNETO>0 then 1
+      when TOTALNETO=0 then -1 ELSE -2 END) AS ORDENES
+      FROM ALBVENTACAB
+      WHERE FECHA BETWEEN #fechaIni# AND #FechaEnd# AND NUMSERIE NOT LIKE '%I'AND NUMSERIE NOT LIKE '%F' AND SUBSTRING(NUMSERIE,1,2) like #Sucursal#
+      GROUP BY SUBSTRING(NUMSERIE,1,2), FECHA
+
+      DECLARE @PASTELES TABLE
+      (
+      SUCURSAL VARCHAR(2),
+      FECHA DATETIME,
+      NUMEROPASTELES INT,
+      VENTASPASTELES DECIMAL(10,2)
+      )
+
+      INSERT @PASTELES
+      SELECT
+      SUBSTRING(VD.NUMSERIE,1,2) AS SUCURSAL,
+      convert(date,VD.HORA) as hora ,
+      SUM(VD.UNIDADESTOTAL) AS NUMEROPASTELES,
+      SUM(VD.TOTAL) AS VENTASPASTELES
+      FROM  ALBVENTALIN VD
+      INNER JOIN @PASTEL  ART  ON ART.CODARTICULO=VD.CODARTICULO
+      WHERE
+      <!--VD.HORA  BETWEEN #fechaIni# AND DATEADD(DAY,1,#FechaEnd#)-->
+      DATEADD(DD, 0, DATEDIFF(DD, 0, VD.HORA)) BETWEEN #fechaIni# AND #FechaEnd#
+      AND SUBSTRING(VD.NUMSERIE,1,2) LIKE #Sucursal#
+      GROUP BY SUBSTRING(VD.NUMSERIE,1,2),convert(date,VD.HORA)
+
+
+
+      SELECT
+      V.SUCURSAL AS Sucursal,
+      V.FECHA AS Fecha,
+      V.VENTASREALES AS VentasReales,
+      V.ORDENES AS Ordenes,
+      P.NUMEROPASTELES AS NumeroPasteles,
+      P.VENTASPASTELES AS VentasPasteles,
+      CASE  when DATEPART(dw,V.FECHA)=1  then 7 else DATEPART(dw,V.FECHA)-1 end  AS NumDia,
+      DATEPART(ISO_WEEK,V.FECHA) as NumSemana
+      FROM @VENTAS AS V
+      LEFT JOIN  @PASTELES P ON P.SUCURSAL=V.SUCURSAL AND P.FECHA=V.FECHA
+      ORDER BY V.SUCURSAL,V.FECHA
+    </select>
+    <select id="selectDQVentasTotal" resultClass="DQ_Ventas" parameterClass="DQ_VentasFinder">
+      DECLARE @PASTEL TABLE
+      (
+      CODARTICULO VARCHAR(50)
+      )
+      INSERT @PASTEL
+      SELECT CODARTICULO FROM ARTICULOS
+      WHERE DPTO ='1800' AND SECCION  in ('1801','1802','1803','1804')
+
+      DECLARE @VENTAS TABLE
+      (
+      FECHA DATETIME,
+      VENTASREALES DECIMAL(10,2),
+      ORDENES INT
+      )
+
+      INSERT @VENTAS
+      SELECT
+      FECHA,
+      SUM(TOTALBRUTO) AS VENTASREALES,
+      SUM( CASE WHEN TOTALNETO>0 then 1
+      when TOTALNETO=0 then -1 ELSE -2 END) AS ORDENES
+      FROM ALBVENTACAB
+      WHERE FECHA BETWEEN #fechaIni# AND #FechaEnd# AND NUMSERIE NOT LIKE '%I'AND NUMSERIE NOT LIKE '%F'
+      GROUP BY  FECHA
+
+      DECLARE @PASTELES TABLE
+      (
+      FECHA DATETIME,
+      NUMEROPASTELES INT,
+      VENTASPASTELES DECIMAL(10,2)
+      )
+
+      INSERT @PASTELES
+      SELECT
+      convert(date,VD.HORA) as hora ,
+      SUM(VD.UNIDADESTOTAL) AS NUMEROPASTELES,
+      SUM(VD.TOTAL) AS VENTASPASTELES
+      FROM  ALBVENTALIN VD
+      INNER JOIN @PASTEL  ART  ON ART.CODARTICULO=VD.CODARTICULO
+      WHERE
+      <!--VD.HORA  BETWEEN #fechaIni# AND DATEADD(DAY,1,#FechaEnd#)-->
+      DATEADD(DD, 0, DATEDIFF(DD, 0, VD.HORA)) BETWEEN #fechaIni# AND #FechaEnd#
+      GROUP BY convert(date,VD.HORA)
+
+
+
+      SELECT
+
+      V.FECHA AS Fecha,
+      V.VENTASREALES AS VentasReales,
+      V.ORDENES AS Ordenes,
+      P.NUMEROPASTELES AS NumeroPasteles,
+      P.VENTASPASTELES AS VentasPasteles,
+      CASE  when DATEPART(dw,p.FECHA)=1  then 7 else DATEPART(dw,V.FECHA)-1 end  AS NumDia,
+      DATEPART(ISO_WEEK,V.FECHA) as NumSemana
+      FROM @VENTAS AS V
+      LEFT JOIN  @PASTELES P ON  P.FECHA=V.FECHA
+      ORDER BY V.FECHA
+    </select>
+  </statements>
+  
+</sqlMap>

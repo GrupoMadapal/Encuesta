@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="DetallesFactura" type="Poleo.Objects.DetallesFactura" />
+  </alias>
+  <statements>
+    <insert id="InsertDetallesFactura" parameterClass="DetallesFactura">
+      INSERT INTO DetalleFactura
+      (IdFactura, Numero_Detalle, Producto, Cantidad, Precio_Unitario,Unidad_Medida,Importe)
+      VALUES
+      (#IdFactura#,0,#Producto#,#Cantidad#,#PrecioUnitario#,#UnidadMedida#,#Importe#)
+      <selectKey resultClass="int" type="post" property="IdDetalleFactura" >
+        select @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <select id="SelectDetallesFactura" parameterClass="DetallesFactura" resultClass="DetallesFactura">
+      select * from DetalleFactura
+      where
+      IdFactura = #IdFactura# and
+      Producto = #Producto# and
+      Cantidad = #Cantidad# and
+      Precio_Unitario = #PrecioUnitario#
+    </select>
+  </statements>
+</sqlMap> 

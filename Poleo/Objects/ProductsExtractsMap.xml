@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="LineItem"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <!--Type aliases allow you to use a shorter name for long fully qualified class names.-->
+  <alias>
+    <typeAlias alias="ProductsExtracts2" type="Poleo.Objects.ProductsExtracts" />
+  </alias>
+
+  <statements>
+    <select id="SelectTest" resultClass="int">
+      SELECT COUNT (*) from
+      ProductsExtracts
+    </select>
+    <insert id="InsertProducts" parameterClass="ProductsExtracts2">
+      INSERT INTO ProductsExtracts
+      (
+      [RecordType]
+      ,[DatabaseVersion]
+      ,[Location_Code]
+      ,[BeginDate]
+      ,[EndDate]
+      ,[Product_Code]
+      ,[Product_Description]
+      ,[Product_Category_Code]
+      ,[Product_Menu_Code]
+      ,[Product_Size_Code]
+      ,[Product_Crust_Code]
+      ,[Quantity]
+      ,[Sales]
+      ,[IFC_Quantity]
+      ,[IFC]
+      ,[Order_Count]
+      )
+      VALUES
+      (
+      #RecordType#
+      ,#DatabaseVersion#
+      ,#Location_Code#
+      ,#BeginDate#
+      ,#EndDate#
+      ,#Product_Code#
+      ,#Product_Description#
+      ,#Product_Category_Code#
+      ,#Product_Menu_Code#
+      ,#Product_Size_Code#
+      ,#Product_Crust_Code#
+      ,#Quantity#
+      ,#Sales#
+      ,#IFC_Quantity#
+      ,#IFC#
+      ,#Order_Count#
+      )
+    </insert>
+  </statements>
+</sqlMap>
