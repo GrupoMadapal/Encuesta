@@ -335,7 +335,7 @@ namespace Poleo.Pages
                             oSheet.get_Range("A" + inicioPreguntas.ToString(), "A" + inicioPreguntas.ToString()).Font.Bold = true;
                             oSheet.get_Range("A" + inicioPreguntas.ToString(), "A" + inicioPreguntas.ToString()).HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                             inicioPreguntas += 1;
-                            oSheet.Cells[inicioPreguntas, 1] = (EIP.Razon1 != "Otra") ? EIP.Razon1 : FP.Otro;
+                            oSheet.Cells[inicioPreguntas, 1] = (EIP.Razon1 != "Otra") ? EIP.Razon1 : EIP.Otro;
                             inicioPreguntas += 3;
                         }
                         #endregion
